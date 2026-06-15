@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aulas Particulares de Violão – Belchior Harmonia</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<script src="components.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--laranja:#F26522;--laranja-dark:#D9541A;--azul:#3B82F6;--azul-dark:#2563EB;--verde:#25D366;--verde-dark:#1da851;--preto:#111111;--branco:#FFFFFF;--cinza:#F5F5F5;--texto:#444444;--muted:#777777}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;color:var(--texto);background:var(--branco);overflow-x:hidden;max-width:100vw}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-l{opacity:0;transform:translateX(-36px);transition:opacity .65s ease,transform .65s ease}
+.reveal-r{opacity:0;transform:translateX(36px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on,.reveal-l.on,.reveal-r.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* BOTÕES */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;padding:.85rem 2rem;border-radius:8px;transition:background .2s,transform .15s,box-shadow .2s;border:none;cursor:pointer;text-decoration:none}
+.btn-wa{background:var(--verde);color:var(--branco)}
+.btn-wa:hover{background:var(--verde-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.4)}
+.btn-outline-w{background:transparent;color:var(--branco);border:2px solid rgba(255,255,255,.5)}
+.btn-outline-w:hover{border-color:var(--branco);transform:translateY(-2px)}
+.hero-video-wrap{border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);border:3px solid rgba(255,255,255,.2)}
+.hero-video-frame{position:relative;width:100%;padding-bottom:56.25%}
+.hero-video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+.wa-icon{width:20px;height:20px;flex-shrink:0}
+
+/* HERO */
+.hero{background:var(--laranja);padding:3.5rem 2rem 6rem;position:relative;overflow:hidden}
+
+.hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero h1{word-break:break-word;font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--branco);line-height:1.15;margin-bottom:.5rem}
+.hero-brand{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:600;color:rgba(255,255,255,.8);margin-bottom:1.25rem;letter-spacing:.02em}
+.hero-sub{color:rgba(255,255,255,.92);font-size:1rem;line-height:1.7;margin-bottom:2rem;max-width:460px}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-img{border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.3);border:4px solid rgba(255,255,255,.2)}
+.hero-img img{width:100%;height:420px;object-fit:cover;object-position:center top}
+
+/* SEÇÕES */
+.sec{padding:5rem 2rem}
+.sec-in{max-width:1100px;margin:0 auto}
+.eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja);margin-bottom:.6rem}
+.sec-title{word-break:break-word;font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:var(--preto);line-height:1.2;margin-bottom:1rem}
+.sec-title .azul{color:var(--azul)}
+.sec-sub{color:var(--muted);font-size:.95rem;line-height:1.7;margin-top:.6rem}
+
+/* O PROFESSOR */
+.prof-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.prof-photo{border-radius:16px;overflow:hidden;border:4px solid var(--laranja);box-shadow:0 16px 48px rgba(0,0,0,.15);aspect-ratio:3/4}
+.prof-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.prof-texto p{font-size:.95rem;line-height:1.8;color:var(--texto);margin-bottom:1rem}
+.stats{display:flex;gap:2rem;margin:1.5rem 0 2rem}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:900;color:var(--laranja)}
+.stat-lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;line-height:1.3}
+
+/* MODALIDADES */
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+.modal-card{border-radius:14px;padding:2rem;border:1px solid #E8E8E8;transition:transform .2s,box-shadow .2s,border-color .2s}
+.modal-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.09);border-color:var(--laranja)}
+.modal-icon{font-size:2.2rem;margin-bottom:1rem}
+.modal-card h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:var(--preto);margin-bottom:.6rem}
+.modal-card p{font-size:.88rem;color:var(--muted);line-height:1.65}
+
+/* METODOLOGIA — laranja */
+.sec-laranja{background:var(--laranja);position:relative;padding:5rem 2rem}
+
+
+.sec-laranja .sec-in{position:relative;z-index:1}
+.sec-laranja .eyebrow{color:rgba(255,255,255,.7)}
+.sec-laranja .sec-title{color:var(--branco)}
+.met-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:2.5rem}
+.met-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:1.5rem;transition:background .2s,transform .2s}
+.met-card:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
+.met-icon{font-size:1.8rem;margin-bottom:.75rem}
+.met-card h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:var(--branco);margin-bottom:.4rem}
+.met-card p{font-size:.83rem;color:rgba(255,255,255,.8);line-height:1.6}
+
+/* OBJETIVO */
+.obj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.obj-card{border-radius:12px;padding:1.75rem;border:1px solid #E8E8E8;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s}
+.obj-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.08);border-color:var(--laranja)}
+.obj-num{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:900;color:rgba(242,101,34,.15);margin-bottom:.25rem;line-height:1}
+.obj-icon{font-size:2rem;margin-bottom:.75rem}
+.obj-card h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:var(--preto);margin-bottom:.5rem}
+.obj-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+
+/* BENEFÍCIOS */
+.beneficios{background:var(--cinza)}
+.ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:2.5rem}
+.ben-texto p{font-size:.95rem;line-height:1.85;color:var(--texto);margin-bottom:1rem}
+.ben-texto p:last-child{margin-bottom:0}
+.ben-texto strong{color:var(--laranja)}
+.ben-visual{display:flex;flex-direction:column;gap:1rem}
+.ben-item{background:var(--branco);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;border:1px solid #E8E8E8;transition:border-color .2s,transform .2s}
+.ben-item:hover{border-color:var(--laranja);transform:translateX(4px)}
+.ben-item-icon{font-size:1.6rem;flex-shrink:0}
+.ben-item-text{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:var(--preto)}
+.ben-item-sub{font-size:.78rem;color:var(--muted);font-weight:400;margin-top:.15rem}
+
+/* CTA FINAL */
+.cta-sec{background:var(--preto);padding:6rem 2rem;text-align:center;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(37,211,102,.08) 0%,transparent 70%);top:-150px;left:50%;transform:translateX(-50%);pointer-events:none;animation:glow 7s ease-in-out infinite}
+@keyframes glow{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.1)}}
+.cta-sec .sec-in{position:relative;z-index:1}
+.cta-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--verde);margin-bottom:.75rem}
+.cta-title{word-break:break-word;font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:var(--branco);line-height:1.2;margin-bottom:1rem;max-width:600px;margin-left:auto;margin-right:auto}
+.cta-sub{color:rgba(255,255,255,.6);font-size:.95rem;line-height:1.7;margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+
+@media(max-width:900px){.obj-grid{grid-template-columns:1fr 1fr}.met-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.hero-in{grid-template-columns:1fr}.hero-img{max-width:340px;margin:0 auto}.prof-grid{grid-template-columns:1fr;gap:2.5rem}.prof-photo{max-width:300px;margin:0 auto}.modal-grid{grid-template-columns:1fr}.obj-grid{grid-template-columns:1fr}.ben-grid{grid-template-columns:1fr}.cta-btns{flex-direction:column;align-items:center}.stats{gap:1.25rem}}
+@media(max-width:480px){.hero-ctas{flex-direction:column}.btn{width:100%;justify-content:center}}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal-l,.reveal-r{opacity:1;transform:none;transition:none}.cta-sec::before{animation:none}}
+
+/* BOTÃO WHATSAPP FLUTUANTE */
+.wa-float{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(37,211,102,.5);
+  transition:transform .2s,box-shadow .2s;
+  text-decoration:none;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(37,211,102,.6)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+</style>
+</head>
+<body>
+
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></noscript>
+<div id="nav-placeholder"></div>
+<a href="https://wa.me/message/EGYDQ5YS6T44H1" target="_blank" class="wa-float" title="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.886a.75.75 0 00.943.899l6.184-1.623A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 01-4.964-1.362l-.356-.211-3.694.969.986-3.601-.232-.371A9.722 9.722 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem">
+        <img src="logo.png" alt="Belchior Harmonia" style="width:48px;height:48px;object-fit:contain;flex-shrink:0"/>
+        <p class="hero-brand" style="margin-bottom:0">Belchior Harmonia</p>
+      </div>
+      <h1>Aulas Particulares de Violão</h1>
+      <p class="hero-sub">Presenciais na Zona Oeste do Rio de Janeiro ou online para todo o Brasil — do nível zero ao avançado.</p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/message/EGYDQ5YS6T44H1" target="_blank" class="btn btn-wa">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.886a.75.75 0 00.943.899l6.184-1.623A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 01-4.964-1.362l-.356-.211-3.694.969.986-3.601-.232-.371A9.722 9.722 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+          Falar no WhatsApp
+        </a>
+        <a href="#metodologia" class="btn btn-outline-w">Ver metodologia</a>
+      </div>
+    </div>
+    <div>
+      <div class="hero-video-wrap">
+        <div class="hero-video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/SN_uMS20xt0?start=42"
+            title="Aulas Particulares de Violão – Belchior Harmonia"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O PROFESSOR -->
+<section class="sec" id="professor">
+  <div class="sec-in">
+    <div class="prof-grid">
+      <div class="prof-photo reveal-l">
+        <img src="professor.png" alt="João G. Belchior"/>
+      </div>
+      <div class="reveal-r">
+        <p class="eyebrow">O Professor</p>
+        <h2 class="sec-title">João G. Belchior</h2>
+        <p style="font-size:.95rem;line-height:1.8;color:var(--texto);margin-bottom:1rem">Prazer, me chamo João G. Belchior! Sou professor de Violão e Harmonia e trabalho com aulas presenciais na Barra da Tijuca, Anil, Freguesia e Pechincha e aulas online para todo o Brasil.</p>
+        <p style="font-size:.95rem;line-height:1.8;color:var(--texto);margin-bottom:1rem">Meu propósito é conciliar o aprendizado prático do violão com a aplicação da harmonia do nível zero ao avançado.</p>
+        <div style="display:flex;flex-direction:column;gap:.75rem;margin:1.5rem 0 2rem">
+          <div style="display:flex;align-items:center;gap:1rem;background:#FFF5F0;border-radius:10px;padding:1rem 1.25rem;border-left:4px solid #F26522">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;color:#F26522;min-width:48px">EMVL</div>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:#111">Escola de Música Villa-Lobos</div>
+              <div style="font-size:.75rem;color:#D9541A;margin-top:.15rem">Curso básico de guitarra</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;background:#FFF5F0;border-radius:10px;padding:1rem 1.25rem;border-left:4px solid #F26522">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;color:#F26522;min-width:48px">AVM</div>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:#111">AVM Educacional</div>
+              <div style="font-size:.75rem;color:#D9541A;margin-top:.15rem">Pós-graduação em Docência</div>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/message/EGYDQ5YS6T44H1" target="_blank" class="btn btn-wa">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.886a.75.75 0 00.943.899l6.184-1.623A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 01-4.964-1.362l-.356-.211-3.694.969.986-3.601-.232-.371A9.722 9.722 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+          Entrar em contato
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALIDADES -->
+<section class="sec" style="background:var(--cinza)" id="modalidades">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Modalidades</p>
+      <h2 class="sec-title">Presencial ou <span class="azul">online</span></h2>
+      <p class="sec-sub" style="margin:0 auto">Você escolhe o formato que funciona melhor para a sua rotina.</p>
+    </div>
+    <div class="modal-grid">
+      <div class="modal-card reveal d1">
+        <div class="modal-icon">📍</div>
+        <h3>Aulas Presenciais</h3>
+        <p>As aulas particulares presenciais são ministradas na casa do aluno. Os bairros onde atendo são: <strong>Barra da Tijuca, Anil, Freguesia e Pechincha</strong>.</p>
+      </div>
+      <div class="modal-card reveal d2">
+        <div class="modal-icon">💻</div>
+        <h3>Aulas Online</h3>
+        <p>As aulas particulares online são transmitidas para <strong>todo o Brasil</strong> pelo aplicativo Zoom, com a mesma qualidade e atenção das aulas presenciais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGIA -->
+<section class="sec-laranja" id="metodologia">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Metodologia</p>
+      <h2 class="sec-title">Como são as aulas</h2>
+    </div>
+    <div class="met-grid">
+      <div class="met-card reveal d1">
+        <div class="met-icon">🎵</div>
+        <h3>Repertório</h3>
+        <p>Periodicamente iremos escolher novas músicas de acordo com os gostos e objetivos do aluno. O repertório servirá de base para aplicar as técnicas aprendidas e desenvolver suas habilidades como músico.</p>
+      </div>
+      <div class="met-card reveal d2">
+        <div class="met-icon">📄</div>
+        <h3>Leitura</h3>
+        <p>Cada música terá seu material de apoio — cifras, tablaturas e/ou partituras selecionadas e aprovadas pelo professor.</p>
+      </div>
+      <div class="met-card reveal d3">
+        <div class="met-icon">🎼</div>
+        <h3>Harmonia</h3>
+        <p>Um tempo da aula é dedicado ao estudo de harmonia: notas, acordes, campo harmônico e escalas — aplicados diretamente ao repertório.</p>
+      </div>
+      <div class="met-card reveal d4">
+        <div class="met-icon">🏋️</div>
+        <h3>Exercícios</h3>
+        <p>O aluno recebe exercícios para praticar em casa diariamente e evoluir de forma consistente ao longo da semana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJETIVO -->
+<section class="sec" id="objetivo">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Objetivo</p>
+      <h2 class="sec-title">Tocar o que você ama de forma <span class="azul">refinada e consciente</span></h2>
+      <p class="sec-sub" style="margin:1rem auto 0;max-width:580px">Para isso, é preciso saber ouvir, entender e reproduzir à sua maneira os três elementos fundamentais da música.</p>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-card reveal d1">
+        <div class="obj-num">1</div>
+        <div class="obj-icon">🥁</div>
+        <h3>O Ritmo</h3>
+        <p>O elemento mais primitivo, que existe de forma independente dos demais. Formado pela organização de sons e silêncios.</p>
+      </div>
+      <div class="obj-card reveal d2">
+        <div class="obj-num">2</div>
+        <div class="obj-icon">🎸</div>
+        <h3>A Harmonia</h3>
+        <p>O elemento que acompanha e fornece a base para a melodia. Formado pelos acordes e suas progressões.</p>
+      </div>
+      <div class="obj-card reveal d3">
+        <div class="obj-num">3</div>
+        <div class="obj-icon">🎵</div>
+        <h3>A Melodia</h3>
+        <p>O elemento principal que define a identidade da música. Formado pela sequência de notas com ritmo e sentido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="sec beneficios" id="beneficios">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Por que praticar um instrumento?</p>
+      <h2 class="sec-title">Música é a <span class="azul">melhor coisa do mundo</span></h2>
+    </div>
+    <div class="ben-grid">
+      <div class="reveal-l">
+        <p style="font-size:.95rem;line-height:1.85;color:var(--texto);margin-bottom:1rem">Muitas vezes somos tomados pela nossa rotina de trabalho e de estudo. Para fugir um pouco disso, muitas pessoas optam por fazer uma atividade física. Isso é muito bom, pois estimula a liberação de dopamina pelo organismo — uma substância que nos dá a sensação de prazer.</p>
+        <p style="font-size:.95rem;line-height:1.85;color:var(--texto);margin-bottom:1rem">Mas você sabia que a música também tem esse poder? É por isso que as religiões sempre usaram e sempre vão usar a música em suas cerimônias e rituais.</p>
+        <p style="font-size:.95rem;line-height:1.85;color:var(--texto)">A música é uma das formas mais profundas e poderosas de comunicação entre nós, seres humanos. Se você quer mais <strong>bem-estar, prazer, diversão, criatividade e movimento</strong> na sua rotina — você está no lugar certo.</p>
+      </div>
+      <div class="ben-visual reveal-r">
+        <div class="ben-item">
+          <div class="ben-item-icon">😊</div>
+          <div><div class="ben-item-text">Bem-estar e prazer</div><div class="ben-item-sub">Liberação de dopamina através da música</div></div>
+        </div>
+        <div class="ben-item">
+          <div class="ben-item-icon">🧠</div>
+          <div><div class="ben-item-text">Criatividade e foco</div><div class="ben-item-sub">Estímulo cognitivo comprovado</div></div>
+        </div>
+        <div class="ben-item">
+          <div class="ben-item-icon">🎯</div>
+          <div><div class="ben-item-text">Desenvolvimento pessoal</div><div class="ben-item-sub">Disciplina, paciência e evolução constante</div></div>
+        </div>
+        <div class="ben-item">
+          <div class="ben-item-icon">🤝</div>
+          <div><div class="ben-item-text">Conexão humana</div><div class="ben-item-sub">A música como forma de comunicação</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-sec" id="cta">
+  <div class="sec-in">
+    <p class="cta-eyebrow">Vamos começar?</p>
+    <h2 class="cta-title">Manda uma mensagem e vamos marcar uma aula!</h2>
+    <p class="cta-sub">Entre em contato pelo WhatsApp para mais informações e agendamento.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/message/EGYDQ5YS6T44H1" target="_blank" class="btn btn-wa" style="font-size:.95rem;padding:.9rem 2.25rem">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.886a.75.75 0 00.943.899l6.184-1.623A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 01-4.964-1.362l-.356-.211-3.694.969.986-3.601-.232-.371A9.722 9.722 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script>
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

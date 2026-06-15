@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Samba sem Mistério – Belchior Harmonia</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--laranja:#F26522;--laranja-dark:#D9541A;--azul:#3B82F6;--azul-dark:#2563EB;--preto:#111111;--branco:#FFFFFF;--cinza:#F5F5F5;--texto:#444444;--muted:#777777}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;color:var(--texto);background:var(--branco);overflow-x:hidden;max-width:100vw}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-l{opacity:0;transform:translateX(-36px);transition:opacity .65s ease,transform .65s ease}
+.reveal-r{opacity:0;transform:translateX(36px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on,.reveal-l.on,.reveal-r.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* NAV */
+
+/* BUTTONS */
+.btn{display:inline-block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding:.8rem 2rem;border-radius:6px;transition:background .2s,transform .15s,box-shadow .2s;border:none;cursor:pointer}
+.btn-azul{background:var(--azul);color:var(--branco)}
+.btn-azul:hover{background:var(--azul-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(59,130,246,.35)}
+.btn-outline{background:transparent;color:var(--branco);border:2px solid rgba(255,255,255,.5)}
+.btn-outline:hover{border-color:var(--branco);transform:translateY(-2px)}
+.btn-laranja{background:var(--laranja);color:var(--branco)}
+.btn-laranja:hover{background:var(--laranja-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(242,101,34,.35)}
+
+/* HERO */
+.hero{background:var(--laranja);padding:3.5rem 2rem 6rem;position:relative;overflow:hidden}
+
+.hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--branco);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .9rem;border-radius:100px;margin-bottom:1.25rem}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--branco);line-height:1.15;margin-bottom:1rem}
+.hero-sub{color:rgba(255,255,255,.92);font-size:1rem;line-height:1.7;margin-bottom:.75rem;max-width:480px}
+.hero-meta{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.hero-meta-item{display:flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.85);font-size:.82rem;font-weight:600}
+.hero-meta-item span{font-size:1rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-img{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.hero-img img{width:100%;height:420px;object-fit:cover;object-position:center top}
+.hero-video-wrap{border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4);border:3px solid rgba(255,255,255,.2)}
+.hero-video-frame{position:relative;width:100%;padding-bottom:56.25%}
+.hero-video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.img-badge{position:absolute;bottom:1rem;right:1rem;background:rgba(17,17,17,.85);color:var(--branco);font-family:'Montserrat',sans-serif;font-weight:900;font-size:.68rem;text-transform:uppercase;line-height:1.4;padding:.6rem .85rem;border-radius:8px;text-align:center;border:1px solid rgba(242,101,34,.6)}
+.price-badge{position:absolute;top:1rem;left:1rem;background:var(--laranja);color:var(--branco);font-family:'Montserrat',sans-serif;font-weight:900;font-size:1rem;padding:.5rem .9rem;border-radius:8px;line-height:1.3}
+.price-badge small{font-size:.65rem;font-weight:600;display:block;opacity:.85}
+
+/* VÍDEO */
+.video-sec{background:var(--branco);padding:4rem 2rem}
+.video-sec-in{max-width:860px;margin:0 auto}
+.video-label{text-align:center;margin-bottom:1.5rem}
+.eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja);margin-bottom:.6rem}
+.sec-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:900;color:var(--preto);line-height:1.2}
+.sec-title .azul{color:var(--azul)}
+.sec-sub{color:var(--muted);font-size:.95rem;line-height:1.7;max-width:560px;margin-top:.75rem}
+.video-wrap{position:relative;width:100%;padding-bottom:56.25%;border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.15)}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+/* SEÇÕES */
+.sec{padding:5.5rem 2rem}
+.sec-in{max-width:1100px;margin:0 auto;width:100%}
+
+/* MÓDULOS */
+.modulos{background:var(--cinza)}
+.mod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:3rem}
+.mod-card{background:var(--branco);border-radius:10px;padding:1.3rem 1.5rem;display:flex;align-items:center;gap:1rem;border:1px solid #E8E8E8;transition:border-color .2s,transform .2s,box-shadow .2s}
+.mod-card:hover{border-color:var(--laranja);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.mod-info p{font-size:.78rem;color:var(--muted);line-height:1.5;margin-top:.25rem}
+.mod-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.4rem;color:var(--laranja);min-width:42px;line-height:1}
+.mod-info h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;color:var(--preto)}
+
+/* DETALHES */
+.detalhes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.det-card{border-radius:12px;padding:2rem 1.75rem;border:1px solid #E8E8E8;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s}
+.det-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.09);border-color:var(--laranja)}
+.det-icon{font-size:2.4rem;margin-bottom:1rem}
+.det-card h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:var(--preto);margin-bottom:.4rem}
+.det-card p{font-size:.87rem;color:var(--muted);line-height:1.6}
+.det-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.8rem;color:var(--laranja);margin-bottom:.25rem}
+
+/* PILARES — laranja */
+.pilares{background:var(--laranja);position:relative;padding:5.5rem 2rem;margin-top:0}
+
+
+.pilares .sec-in{position:relative;z-index:1}
+.pilares .eyebrow{color:rgba(255,255,255,.7)}
+.pilares .sec-title{color:var(--branco)}
+.pilares .sec-sub{color:rgba(255,255,255,.85)}
+.pilares-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem}
+.pilar{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:1.5rem 1rem;text-align:center;transition:background .2s,transform .2s}
+.pilar:hover{background:rgba(255,255,255,.22);transform:translateY(-4px)}
+.pilar-img{width:52px;height:52px;object-fit:contain;margin:0 auto .85rem;filter:brightness(0) invert(1) opacity(.85)}
+.pilar-emo{font-size:2rem;margin-bottom:.75rem}
+.pilar h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;color:var(--branco);margin-bottom:.35rem}
+.pilar p{font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.5}
+
+/* PROFESSOR */
+.prof-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.prof-photo{border-radius:16px;overflow:hidden;border:4px solid var(--laranja);box-shadow:0 16px 48px rgba(0,0,0,.15);aspect-ratio:3/4}
+.prof-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.prof-texto h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:900;color:var(--preto);line-height:1.2;margin-bottom:.75rem}
+.prof-texto p{font-size:.95rem;line-height:1.75;color:var(--texto);margin-bottom:1.1rem}
+.stats{display:flex;gap:2rem;margin:1.75rem 0}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:900;color:var(--laranja)}
+.stat-lbl{font-size:.73rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* DEPOIMENTOS */
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;margin-top:3rem}
+.dep-card{background:var(--cinza);border-radius:16px;padding:2rem;border:1px solid #E8E8E8;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.dep-card::before{content:'\201C';position:absolute;top:-.5rem;right:1.25rem;font-size:5rem;color:rgba(242,101,34,.1);font-family:Georgia,serif;line-height:1;pointer-events:none}
+.dep-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.08)}
+.stars{color:var(--laranja);font-size:.9rem;letter-spacing:2px;margin-bottom:1rem}
+.dep-text{font-size:.9rem;line-height:1.7;color:var(--texto);margin-bottom:1.5rem;font-style:italic}
+.dep-author{display:flex;align-items:center;gap:.75rem}
+.avatar{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--laranja),#FFAA44);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;color:var(--branco)}
+.dep-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:var(--preto)}
+.dep-role{font-size:.75rem;color:var(--muted)}
+
+/* FAQ */
+.faq-list{max-width:720px;margin:3rem auto 0;display:flex;flex-direction:column;gap:1rem}
+.faq-item{background:var(--branco);border-radius:10px;overflow:hidden;border:1px solid #E8E8E8;transition:border-color .2s}
+.faq-item.open{border-color:var(--laranja)}
+.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:1.3rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-family:'Montserrat',sans-serif;font-size:.93rem;font-weight:700;color:var(--preto);transition:color .2s}
+.faq-item.open .faq-q{color:var(--laranja)}
+.faq-icon{width:26px;height:26px;border-radius:50%;border:2px solid #DDD;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem;color:var(--muted);transition:transform .3s,border-color .2s,color .2s}
+.faq-item.open .faq-icon{transform:rotate(45deg);border-color:var(--laranja);color:var(--laranja)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 1.5rem 1.3rem;font-size:.88rem;line-height:1.75;color:var(--muted)}
+
+/* CTA FINAL */
+.cta-sec{background:var(--preto);padding:6rem 2rem;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(242,101,34,.12) 0%,transparent 70%);top:-200px;right:-100px;pointer-events:none;animation:glow 7s ease-in-out infinite}
+@keyframes glow{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.cta-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja);margin-bottom:.75rem}
+.cta-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.6rem);font-weight:900;color:var(--branco);line-height:1.2;margin-bottom:1rem;word-break:break-word}
+.cta-sub{color:rgba(255,255,255,.65);font-size:.95rem;line-height:1.7;margin-bottom:1.5rem}
+.price-box{background:rgba(242,101,34,.12);border:1px solid rgba(242,101,34,.3);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;display:inline-block}
+.price-box .price{font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:900;color:var(--branco);line-height:1}
+.price-box .price-per{font-size:.82rem;color:rgba(255,255,255,.55);margin-top:.2rem}
+.cta-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.planos{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.75rem}
+.plano-card{border-radius:14px;padding:1.75rem;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);position:relative;transition:border-color .2s,transform .2s}
+.plano-card:hover{border-color:rgba(242,101,34,.5);transform:translateY(-2px)}
+.plano-card.destaque{border-color:rgba(242,101,34,.5);background:rgba(242,101,34,.08)}
+.plano-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--laranja);color:var(--branco);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .85rem;border-radius:100px;white-space:nowrap}
+.plano-tipo{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.6rem}
+.plano-preco{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.8rem;color:var(--branco);line-height:1;margin-bottom:.25rem}
+.plano-preco small{font-size:.85rem;font-weight:600}
+.plano-detalhe{font-size:.75rem;color:rgba(255,255,255,.45);margin-bottom:1.25rem;line-height:1.5}
+.plano-btn{display:block;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:.7rem 1rem;border-radius:6px;transition:background .2s,transform .15s}
+.plano-btn-laranja{background:var(--laranja);color:var(--branco)}
+.plano-btn-laranja:hover{background:var(--laranja-dark)}
+.plano-btn-outline{background:transparent;color:var(--branco);border:1px solid rgba(255,255,255,.25)}
+.plano-btn-outline:hover{border-color:var(--branco)}
+.plano-economia{font-size:.72rem;font-weight:700;color:#4ade80;margin-bottom:1rem}
+.garantia{display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.9rem 1.1rem}
+.garantia-icon{font-size:1.4rem;flex-shrink:0}
+.garantia p{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.5}
+.garantia strong{color:var(--branco)}
+.mockup{background:rgba(255,255,255,.04);border:1px solid rgba(242,101,34,.2);border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.mock-head{background:rgba(242,101,34,.1);border-bottom:1px solid rgba(242,101,34,.15);padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.dots{display:flex;gap:5px}
+.dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.12)}
+.mock-lbl{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;color:var(--laranja)}
+.mock-body{padding:1.25rem}
+.mod-m{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:.85rem;margin-bottom:.65rem}
+.mod-m:last-child{margin-bottom:0}
+.mod-m-num{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--laranja);margin-bottom:.2rem}
+.mod-m-name{font-size:.8rem;font-weight:600;color:var(--branco)}
+
+/* FOOTER */
+.foot-links a:hover{color:var(--laranja)}
+
+.dep-video-wrap{max-width:900px;margin:3rem auto 0}
+.dep-video-inner{display:grid;grid-template-columns:1.4fr 1fr;gap:2.5rem;align-items:center;background:var(--cinza);border-radius:20px;overflow:hidden;border:1px solid #E8E8E8}
+.dep-video-frame{position:relative;width:100%;padding-bottom:56.25%;background:#000}
+.dep-video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.dep-video-info{padding:2rem 2rem 2rem 0}
+.dep-video-quote{font-size:.95rem;line-height:1.7;color:var(--texto);font-style:italic;margin-top:.75rem}
+.dep-cta{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid #E8E8E8}
+.dep-cta-text{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;color:var(--preto);margin-bottom:.85rem}
+@media(max-width:768px){.dep-video-inner{grid-template-columns:1fr}.dep-video-info{padding:1.5rem}}
+
+
+/* MOBILE */
+@media(max-width:900px){.pilares-grid{grid-template-columns:repeat(2,1fr)}.detalhes-grid{grid-template-columns:1fr 1fr}.mod-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.planos{grid-template-columns:1fr!important}.cta-grid{grid-template-columns:1fr}.hero-in{grid-template-columns:1fr}.hero-img{max-width:340px;margin:0 auto}.mod-grid{grid-template-columns:1fr}.detalhes-grid{grid-template-columns:1fr}.pilares-grid{grid-template-columns:1fr 1fr}.prof-grid{grid-template-columns:1fr;gap:2.5rem}.prof-photo{max-width:300px;margin:0 auto}.dep-grid{grid-template-columns:1fr}.cta-grid{grid-template-columns:1fr}.mockup{display:none}.foot-in{flex-direction:column;text-align:center}.stats{gap:1.25rem}}
+@media(max-width:480px){.pilares-grid{grid-template-columns:1fr}.hero-ctas,.cta-btns{flex-direction:column}.btn{text-align:center;width:100%}.planos{grid-template-columns:1fr!important}.sec{padding:4rem 1.25rem}.pilares{padding:4rem 1.25rem}.cta-sec{padding:4rem 1.25rem}}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal-l,.reveal-r{opacity:1;transform:none;transition:none}.cta-sec::before{animation:none}}
+
+/* BOTÃO WHATSAPP FLUTUANTE */
+.wa-float{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(37,211,102,.5);
+  transition:transform .2s,box-shadow .2s;
+  text-decoration:none;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(37,211,102,.6)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+</style>
+<script src="components.js" defer></script>
+</head>
+<body>
+
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></noscript>
+<div id="nav-placeholder"></div>
+<a href="https://wa.me/5521993763200?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20curso%20Samba%20sem%20Mist%C3%A9rio!%20Pode%20me%20ajudar%3F" target="_blank" class="wa-float" title="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.886a.75.75 0 00.943.899l6.184-1.623A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 01-4.964-1.362l-.356-.211-3.694.969.986-3.601-.232-.371A9.722 9.722 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+        <img src="logo.png" alt="Belchior Harmonia" style="width:48px;height:48px;object-fit:contain;flex-shrink:0"/>
+        <div class="badge" style="margin-bottom:0">🎸 57 aulas · 8h de conteúdo original</div>
+      </div>
+      <h1>Aprenda a tocar samba com qualidade no violão</h1>
+      <p class="hero-sub">Domine o braço do instrumento, as levadas rítmicas autênticas e a harmonia funcional que dá cor ao samba — mesmo sem precisar ler partituras.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><span>✅</span> Garantia de 7 dias</div>
+        <div class="hero-meta-item"><span>📱</span> Qualquer dispositivo</div>
+        <div class="hero-meta-item"><span>🎓</span> João G. Belchior</div>
+      </div>
+      <div class="hero-ctas">
+        <a href="#cta" class="btn btn-azul">Planos a partir de R$9,90/mês</a>
+        <a href="https://wa.me/5521993763200?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20curso%20Samba%20sem%20Mist%C3%A9rio!%20Pode%20me%20ajudar%3F" target="_blank" class="btn btn-outline">Tenho dúvidas</a>
+      </div>
+    </div>
+    <div>
+      <div class="hero-video-wrap">
+        <div class="hero-video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/PIRerF2Ajoo"
+            title="Samba sem Mistério – Apresentação do curso"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- MÓDULOS -->
+<section class="sec modulos" id="modulos">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Conteúdo do curso</p>
+      <h2 class="sec-title">8 módulos · 57 aulas · <span class="azul">8h de conteúdo</span></h2>
+      <p class="sec-sub" style="margin:1rem auto 0">Uma jornada do básico ao avançado: técnica, domínio do braço, harmonia funcional e repertório de samba — tudo integrado.</p>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card reveal d1">
+        <div class="mod-num">01</div>
+        <div class="mod-info"><h3>Orientações Iniciais</h3><p>Símbolos, diagramas, postura, afinação e o que é música.</p></div>
+      </div>
+      <div class="mod-card reveal d2">
+        <div class="mod-num">02</div>
+        <div class="mod-info"><h3>Lapidando a Técnica</h3><p>Técnica de mão direita (P I M A), mão esquerda e exercícios diários.</p></div>
+      </div>
+      <div class="mod-card reveal d1">
+        <div class="mod-num">03</div>
+        <div class="mod-info"><h3>Mapeamento e Introdução à Harmonia</h3><p>Notas, intervalos, escalas maior e menor, ciclo das quintas.</p></div>
+      </div>
+      <div class="mod-card reveal d2">
+        <div class="mod-num">04</div>
+        <div class="mod-info"><h3>Levadas de Samba</h3><p>Os principais ritmos do samba com levadas autênticas e precisão.</p></div>
+      </div>
+      <div class="mod-card reveal d1">
+        <div class="mod-num">05</div>
+        <div class="mod-info"><h3>A Formação dos Acordes no Violão</h3><p>Tríades, tétrades, Sistema CAGED, arpejos e acordes com tensão.</p></div>
+      </div>
+      <div class="mod-card reveal d2">
+        <div class="mod-num">06</div>
+        <div class="mod-info"><h3>Harmonia Funcional Aplicada ao Violão</h3><p>Campo harmônico, funções, dominantes secundários, empréstimo modal.</p></div>
+      </div>
+      <div class="mod-card reveal d1">
+        <div class="mod-num">07</div>
+        <div class="mod-info"><h3>Progressões de Acordes no Samba</h3><p>As progressões harmônicas mais usadas no samba e como aplicá-las.</p></div>
+      </div>
+      <div class="mod-card reveal d2">
+        <div class="mod-num">08</div>
+        <div class="mod-info"><h3>Repertório de Samba</h3><p>Aplicação prática de tudo que foi aprendido em músicas reais.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALHES -->
+<section class="sec" id="detalhes">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">O que está incluído</p>
+      <h2 class="sec-title">Tudo que você precisa para <span class="azul">evoluir de verdade</span></h2>
+    </div>
+    <div class="detalhes-grid" style="grid-template-columns:repeat(2,1fr)">
+      <div class="det-card reveal d1">
+        <div class="det-num">57</div>
+        <h3>Aulas em vídeo</h3>
+        <p>Aulas progressivas e práticas, do básico ao avançado, com didática que constrói fluência real.</p>
+      </div>
+      <div class="det-card reveal d2">
+        <div class="det-icon">📄</div>
+        <h3>Material de apoio em PDF</h3>
+        <p>Material em PDF dividido por capítulos e disponibilizado junto com cada aula na plataforma — para você estudar onde e como preferir.</p>
+      </div>
+      <div class="det-card reveal d3">
+        <div class="det-icon">📱</div>
+        <h3>Qualquer dispositivo</h3>
+        <p>Estude pelo computador, celular ou smart TV. Seu curso sempre com você, onde e quando quiser.</p>
+      </div>
+      <div class="det-card reveal d4">
+        <div class="det-icon">🛡️</div>
+        <h3>Garantia de 7 dias</h3>
+        <p>Teste o curso por uma semana. Se não ficar satisfeito, devolvemos 100% do valor sem burocracia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section class="pilares" id="metodo">
+  <div class="sec-in">
+    <div class="reveal">
+      <p class="eyebrow">O que você vai dominar</p>
+      <h2 class="sec-title">Teoria e prática que caminham juntas</h2>
+      <p class="sec-sub">Os tópicos priorizados são o domínio do braço do instrumento e o conhecimento de harmonia funcional na prática — integrados ao ritmo e ao repertório do samba.</p>
+    </div>
+    <div class="pilares-grid">
+      <div class="pilar reveal d1">
+        <div class="pilar-emo">🤚</div>
+        <h3>Técnica</h3>
+        <p>Postura, dedilhado e mão direita trabalhados para um toque limpo e eficiente.</p>
+      </div>
+      <div class="pilar reveal d2">
+        <div class="pilar-emo">🎼</div>
+        <h3>Harmonia</h3>
+        <p>Mapeamento do braço e harmonia funcional aplicada diretamente ao samba.</p>
+      </div>
+      <div class="pilar reveal d3">
+        <div class="pilar-emo">🥁</div>
+        <h3>Levadas de Samba</h3>
+        <p>Os principais ritmos do samba com levadas rítmicas autênticas e precisão.</p>
+      </div>
+      <div class="pilar reveal d4">
+        <div class="pilar-emo">🎵</div>
+        <h3>Progressões</h3>
+        <p>Progressões harmônicas essenciais e técnicas para dar swing à sua música.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSOR -->
+<section class="sec" style="background:var(--cinza)">
+  <div class="sec-in">
+    <div class="prof-grid">
+      <div class="prof-photo reveal-l">
+        <img src="professor.png" alt="João G. Belchior"/>
+      </div>
+      <div class="reveal-r">
+        <p class="eyebrow">Seu professor</p>
+        <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:900;color:var(--preto);line-height:1.2;margin-bottom:.75rem">João G. Belchior</h2>
+        <p style="font-size:.95rem;line-height:1.75;color:var(--texto);margin-bottom:1.1rem">João G. Belchior é professor de Violão e Harmonia com formação na Escola de Música Villa-Lobos (EMVL) e pós-graduado em docência pela AVM Educacional. Sua metodologia foi desenvolvida a partir de grandes referências da música brasileira — Ian Guest, Nelson Faria e Almir Chediak — adaptando conteúdos de alta qualidade para uma linguagem direta e acessível.</p>
+        <p style="font-size:.95rem;line-height:1.75;color:var(--texto);margin-bottom:1.1rem">A partir de 2020, elaborou o e-Book <em>O Violão pelas Lentes da Harmonia</em>, que originou o curso Samba sem Mistério. Sua abordagem prioriza dois eixos fundamentais: o domínio do braço do instrumento e a harmonia funcional aplicada — porque teoria sem prática não toca, e prática sem teoria não evolui.</p>
+
+        <a href="#cta" class="btn btn-laranja">Quero aprender com João</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="sec" id="depoimentos">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Depoimentos</p>
+      <h2 class="sec-title">O que nossos alunos <span class="azul">dizem</span></h2>
+    </div>
+    <div class="dep-video-wrap reveal">
+      <div class="dep-video-inner">
+        <div class="dep-video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/oh_PcMSTEPs"
+            title="Depoimento do aluno Rafael"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="dep-video-info">
+          <div class="stars">★★★★★</div>
+          <p class="dep-video-quote">Veja o que o Rafael, aluno do Samba sem Mistério, tem a dizer sobre a experiência com o curso.</p>
+          <div class="dep-author" style="margin-top:1.25rem">
+            <div class="avatar">R</div>
+            <div>
+              <div class="dep-name">Rafael</div>
+              <div class="dep-role">Aluno do Samba sem Mistério</div>
+            </div>
+          </div>
+          <div class="dep-cta">
+            <a href="#cta" class="btn btn-laranja" style="font-size:.82rem;padding:.7rem 1.5rem">Quero começar agora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" style="background:var(--cinza)" id="faq">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h2 class="sec-title">Ainda tem <span class="azul">dúvidas?</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal d1">
+        <button class="faq-q">Preciso saber tocar violão para começar? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Não é necessário ter experiência avançada. O curso começa com orientações iniciais e vai lapidando sua técnica progressivamente. Se você já tem o básico do violão, vai avançar mais rápido — mas iniciantes também são bem-vindos.</p></div>
+      </div>
+      <div class="faq-item reveal d2">
+        <button class="faq-q">Qual a diferença entre o plano mensal e anual? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>No plano mensal você paga R$19,90/mês e pode cancelar quando quiser. No plano anual você paga 12x de R$9,90 (ou R$95,70 à vista), economizando R$142,80 por ano. Os dois dão acesso completo às 57 aulas e 8 horas de conteúdo.</p></div>
+      </div>
+      <div class="faq-item reveal d3">
+        <button class="faq-q">Posso assistir as aulas no celular ou TV? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Sim. O curso está disponível em qualquer dispositivo — computador, smartphone ou smart TV. Estude no horário e no lugar que preferir.</p></div>
+      </div>
+      <div class="faq-item reveal d4">
+        <button class="faq-q">Como funciona a garantia de 7 dias? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Você tem 7 dias para testar o curso após a assinatura. Se por qualquer motivo não ficar satisfeito, basta solicitar o reembolso e devolvemos 100% do valor pago — sem perguntas, sem burocracia.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-sec" id="cta">
+  <div class="sec-in">
+    <div class="cta-grid">
+      <div class="reveal-l">
+        <p class="cta-eyebrow">Pronto para começar?</p>
+        <h2 class="cta-title">Toque samba com confiança e desenvolva sua musicalidade.</h2>
+        <p class="cta-sub">Escolha o plano que faz mais sentido para você. Mensal com flexibilidade total ou anual com o melhor custo-benefício — ambos com acesso completo às 57 aulas, 8 horas de conteúdo e garantia de 7 dias.</p>
+        <div class="planos">
+          <div class="plano-card destaque">
+            <div class="plano-badge">🔥 Mais econômico</div>
+            <div class="plano-tipo">Plano Anual</div>
+            <div class="plano-preco">R$9,90<small>/mês</small></div>
+            <div class="plano-detalhe">12x de R$9,90 · ou R$95,70 à vista</div>
+            <div class="plano-economia">Você economiza R$142,80 por ano</div>
+            <a href="https://pay.hotmart.com/F97826545I?off=xpluvrux" target="_blank" class="plano-btn plano-btn-laranja">Assinar anual</a>
+          </div>
+          <div class="plano-card">
+            <div class="plano-tipo">Plano Mensal</div>
+            <div class="plano-preco">R$19,90<small>/mês</small></div>
+            <div class="plano-detalhe">Cancele quando quiser<br>sem fidelidade</div>
+            <a href="https://pay.hotmart.com/F97826545I?off=aatpu6cj" target="_blank" class="plano-btn plano-btn-outline">Assinar mensal</a>
+          </div>
+        </div>
+        <div class="garantia">
+          <span class="garantia-icon">🛡️</span>
+          <p><strong>Garantia de 7 dias.</strong> Se não ficar satisfeito, devolvemos 100% do seu dinheiro — sem burocracia.</p>
+        </div>
+        <div style="margin-top:1rem;text-align:center">
+          <a href="https://wa.me/5521993763200?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20curso%20Samba%20sem%20Mist%C3%A9rio!%20Pode%20me%20ajudar%3F" target="_blank" style="color:rgba(255,255,255,.5);font-size:.82rem;text-decoration:underline;font-family:'Montserrat',sans-serif">Ainda tenho dúvidas — falar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="mockup">
+          <div class="mock-head">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="mock-lbl">Samba sem Mistério — 8 módulos</span>
+          </div>
+          <div class="mock-body">
+            <div class="mod-m"><div class="mod-m-num">01</div><div class="mod-m-name">Orientações Iniciais</div></div>
+            <div class="mod-m"><div class="mod-m-num">02</div><div class="mod-m-name">Lapidando a Técnica</div></div>
+            <div class="mod-m"><div class="mod-m-num">03</div><div class="mod-m-name">Mapeamento e Introdução à Harmonia</div></div>
+            <div class="mod-m"><div class="mod-m-num">04</div><div class="mod-m-name">Levadas de Samba</div></div>
+            <div class="mod-m"><div class="mod-m-num">05</div><div class="mod-m-name">A Formação dos Acordes no Violão</div></div>
+            <div class="mod-m"><div class="mod-m-num">06</div><div class="mod-m-name">Harmonia Funcional Aplicada</div></div>
+            <div class="mod-m"><div class="mod-m-num">07</div><div class="mod-m-name">Progressões de Acordes no Samba</div></div>
+            <div class="mod-m"><div class="mod-m-num">08</div><div class="mod-m-name">Repertório de Samba</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+<script>
+
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>io.observe(el));
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.faq-item'),ans=item.querySelector('.faq-a'),open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null;});
+    if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+  });
+});
+</script>
+</body>
+</html>
