@@ -1,4 +1,4 @@
-// ── BELCHIOR HARMONIA – Componentes compartilhados ──
+// ── BELCHIOR HARMONIA – Componentes compartilhados ──────
 
 const NAV_HTML = `
 <nav>
@@ -38,7 +38,7 @@ const FOOTER_HTML = `
 const NAV_CSS = `
 nav{background:#111111;position:sticky;top:0;z-index:999;padding:0 2rem}
 .nav-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
-.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1rem;color:#FFFFFF;text-decoration:none}
+.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1rem;color:#FFFFFF;text-decoration:none;display:flex;align-items:center;gap:.5rem}
 .logo span{color:#F26522}
 .nav-logo-img{width:32px;height:32px;object-fit:contain;flex-shrink:0}
 .nav-links{display:flex;gap:1.75rem;list-style:none}
@@ -54,7 +54,7 @@ nav{background:#111111;position:sticky;top:0;z-index:999;padding:0 2rem}
 .mclose{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#FFFFFF;font-size:1.8rem;cursor:pointer}
 footer{background:#111111;border-top:1px solid rgba(255,255,255,.06);padding:2rem}
 .foot-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.foot-brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;color:#FFFFFF}
+.foot-brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;color:#FFFFFF;display:flex;align-items:center}
 .foot-brand span{color:#F26522}
 .foot-copy{font-size:.78rem;color:rgba(255,255,255,.3)}
 .foot-links{display:flex;gap:1.25rem}
@@ -62,125 +62,8 @@ footer{background:#111111;border-top:1px solid rgba(255,255,255,.06);padding:2re
 .foot-links a:hover{color:#F26522}
 @media(max-width:768px){.nav-links{display:none}.ham{display:flex}.foot-in{flex-direction:column;text-align:center}}`;
 
-// Injetar componentes
-document.addEventListener('DOMContentLoaded', () => {
-  // Injetar CSS
-  const style = document.createElement('style');
-  style.textContent = NAV_CSS;
-  document.head.appendChild(style);
-
-  // Injetar nav
-  const navPlaceholder = document.getElementById('nav-placeholder');
-  if (navPlaceholder) navPlaceholder.innerHTML = NAV_HTML;
-
-  // Injetar footer
-  const footerPlaceholder = document.getElementById('footer-placeholder');
-  if (footerPlaceholder) footerPlaceholder.innerHTML = FOOTER_HTML;
-
-  // Mobile menu
-  const ham = document.getElementById('ham');
-  const mm = document.getElementById('mmenu');
-  const mc = document.getElementById('mclose');
-  if (ham) ham.addEventListener('click', () => mm.classList.add('open'));
-  if (mc) mc.addEventListener('click', () => mm.classList.remove('open'));
-  if (mm) mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
-
-  // Marcar link ativo
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a, #mmenu a').forEach(a => {
-    if (a.getAttribute('href') === currentPage) a.classList.add('active');
-  });
-});
-
-
-// ── META PIXEL + CAPI ────────────────────────────────
-const META_PIXEL_ID = '563576268393888';
-const CAPI_WORKER_URL = 'https://meta-capi-belchior.piresbelchior.workers.dev/';
-
-// Injetar script do Facebook Pixel no <head>
-(function() {
-  if (window.fbq) return;
-  var script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://connect.facebook.net/en_US/fbevents.js';
-  script.onload = function() {
-    fbq('init', META_PIXEL_ID);
-    initTracking();
-  };
-  document.head.appendChild(script);
-
-  window.fbq = window.fbq || function() {
-    (window.fbq.q = window.fbq.q || []).push(arguments);
-  };
-  window.fbq.loaded = true;
-  window.fbq.version = '2.0';
-  window.fbq.q = [];
-})();
-
-function initTracking() {
-  const page = window.location.pathname.split('/').pop() || 'index.html';
-
-  // PageView
-  const pageViewId = generateEventId();
-  fbq('track', 'PageView', {}, { eventID: pageViewId });
-  sendCAPI('PageView', {}, pageViewId);
-
-  // ViewContent — Samba
-  if (page === 'samba-sem-misterio.html') {
-    const sambViewId = generateEventId();
-    fbq('track', 'ViewContent', {
-      content_name: 'Samba sem Mistério',
-      content_category: 'Curso Online',
-      currency: 'BRL',
-      value: 9.90
-    }, { eventID: sambViewId });
-    sendCAPI('ViewContent', {
-      content_name: 'Samba sem Mistério',
-      value: 9.90,
-      currency: 'BRL'
-    }, sambViewId);
-  }
-
-  // ViewContent — Aulas
-  if (page === 'aulas-particulares.html') {
-    const aulasViewId = generateEventId();
-    fbq('track', 'ViewContent', {
-      content_name: 'Aulas Particulares de Violão',
-      content_category: 'Aulas',
-    }, { eventID: aulasViewId });
-    sendCAPI('ViewContent', {
-      content_name: 'Aulas Particulares de Violão'
-    }, aulasViewId);
-  }
-
-  // InitiateCheckout — Hotmart
-  document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const checkoutId = generateEventId();
-      const val = btn.href.includes('xpluvrux') ? 95.70 : 19.90;
-      fbq('track', 'InitiateCheckout', {
-        content_name: 'Samba sem Mistério',
-        currency: 'BRL',
-        value: val
-      }, { eventID: checkoutId });
-      sendCAPI('InitiateCheckout', {
-        content_name: 'Samba sem Mistério',
-        value: val,
-        currency: 'BRL'
-      }, checkoutId);
-    });
-  });
-
-  // Contact — WhatsApp
-  document.querySelectorAll('a[href*="wa.me"]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const contactId = generateEventId();
-      const cname = page === 'aulas-particulares.html' ? 'Aulas Particulares' : 'Samba sem Mistério';
-      fbq('track', 'Contact', { content_name: cname }, { eventID: contactId });
-      sendCAPI('Contact', { content_name: cname }, contactId);
-    });
-  });
-}
+// ── CAPI Worker ──────────────────────────────────────────
+const CAPI_URL = 'https://meta-capi-belchior.piresbelchior.workers.dev/';
 
 function generateEventId() {
   return 'evt_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -193,21 +76,111 @@ function getCookie(name) {
 
 function sendCAPI(event_name, extra = {}, event_id = null) {
   const eid = event_id || generateEventId();
-  const payload = {
-    event_name,
-    event_id: eid,
-    event_source_url: window.location.href,
-    client_user_agent: navigator.userAgent,
-    fbp: getCookie('_fbp'),
-    fbc: getCookie('_fbc'),
-    ...extra
-  };
-
-  fetch(CAPI_WORKER_URL, {
+  fetch(CAPI_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  }).catch(() => {}); // silencioso em caso de erro
+    body: JSON.stringify({
+      event_name,
+      event_id: eid,
+      event_source_url: window.location.href,
+      client_user_agent: navigator.userAgent,
+      fbp: getCookie('_fbp'),
+      fbc: getCookie('_fbc'),
+      ...extra
+    }),
+  }).catch(() => {});
+  return eid;
 }
 
-// ────────────────────────────────────────────────────
+// ── Injetar componentes ──────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+
+  // CSS
+  const style = document.createElement('style');
+  style.textContent = NAV_CSS;
+  document.head.appendChild(style);
+
+  // Nav
+  const navPlaceholder = document.getElementById('nav-placeholder');
+  if (navPlaceholder) navPlaceholder.innerHTML = NAV_HTML;
+
+  // Footer
+  const footerPlaceholder = document.getElementById('footer-placeholder');
+  if (footerPlaceholder) footerPlaceholder.innerHTML = FOOTER_HTML;
+
+  // Mobile menu
+  const ham = document.getElementById('ham');
+  const mm = document.getElementById('mmenu');
+  const mc = document.getElementById('mclose');
+  if (ham) ham.addEventListener('click', () => mm.classList.add('open'));
+  if (mc) mc.addEventListener('click', () => mm.classList.remove('open'));
+  if (mm) mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  // Link ativo
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a, #mmenu a').forEach(a => {
+    if (a.getAttribute('href') === currentPage) a.classList.add('active');
+  });
+
+  // ── EVENTOS META PIXEL + CAPI ──────────────────────────
+
+  // ViewContent — Samba sem Mistério
+  if (currentPage === 'samba-sem-misterio.html') {
+    const eid = generateEventId();
+    if (window.fbq) fbq('track', 'ViewContent', {
+      content_name: 'Samba sem Mistério',
+      content_category: 'Curso Online',
+      currency: 'BRL',
+      value: 9.90
+    }, { eventID: eid });
+    sendCAPI('ViewContent', {
+      content_name: 'Samba sem Mistério',
+      value: 9.90,
+      currency: 'BRL'
+    }, eid);
+  }
+
+  // ViewContent — Aulas Particulares
+  if (currentPage === 'aulas-particulares.html') {
+    const eid = generateEventId();
+    if (window.fbq) fbq('track', 'ViewContent', {
+      content_name: 'Aulas Particulares de Violão',
+      content_category: 'Aulas',
+    }, { eventID: eid });
+    sendCAPI('ViewContent', {
+      content_name: 'Aulas Particulares de Violão'
+    }, eid);
+  }
+
+  // CAPI — PageView server-side
+  sendCAPI('PageView');
+
+  // InitiateCheckout — Hotmart
+  document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = btn.href.includes('xpluvrux') ? 95.70 : 19.90;
+      const eid = generateEventId();
+      if (window.fbq) fbq('track', 'InitiateCheckout', {
+        content_name: 'Samba sem Mistério',
+        currency: 'BRL',
+        value: val
+      }, { eventID: eid });
+      sendCAPI('InitiateCheckout', {
+        content_name: 'Samba sem Mistério',
+        value: val,
+        currency: 'BRL'
+      }, eid);
+    });
+  });
+
+  // Contact — WhatsApp
+  document.querySelectorAll('a[href*="wa.me"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cname = currentPage === 'aulas-particulares.html' ? 'Aulas Particulares' : 'Samba sem Mistério';
+      const eid = generateEventId();
+      if (window.fbq) fbq('track', 'Contact', { content_name: cname }, { eventID: eid });
+      sendCAPI('Contact', { content_name: cname }, eid);
+    });
+  });
+
+});
