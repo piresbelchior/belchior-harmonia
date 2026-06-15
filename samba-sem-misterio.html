@@ -34,7 +34,7 @@ img{max-width:100%;display:block}
 /* HERO */
 .hero{background:var(--laranja);padding:3.5rem 2rem 6rem;position:relative;overflow:hidden}
 
-.hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero-in{max-width:800px;margin:0 auto;display:block}
 .badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:var(--branco);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .9rem;border-radius:100px;margin-bottom:1.25rem}
 .hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--branco);line-height:1.15;margin-bottom:1rem}
 .hero-sub{color:rgba(255,255,255,.92);font-size:1rem;line-height:1.7;margin-bottom:.75rem;max-width:480px}
@@ -232,25 +232,10 @@ src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></n
 <!-- HERO -->
 <section class="hero">
   <div class="hero-in">
-    <div>
-      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
-        <img src="logo.png" alt="Belchior Harmonia" style="width:48px;height:48px;object-fit:contain;flex-shrink:0"/>
-        <div class="badge" style="margin-bottom:0">🎸 57 aulas · 8h de conteúdo original</div>
-      </div>
-      <h1>Aprenda a tocar samba com qualidade no violão</h1>
-      <p class="hero-sub">Domine o braço do instrumento, as levadas rítmicas autênticas e a harmonia funcional que dá cor ao samba — mesmo sem precisar ler partituras.</p>
-      <div class="hero-meta">
-        <div class="hero-meta-item"><span>✅</span> Garantia de 7 dias</div>
-        <div class="hero-meta-item"><span>📱</span> Qualquer dispositivo</div>
-        <div class="hero-meta-item"><span>🎓</span> João G. Belchior</div>
-      </div>
-      <div class="hero-ctas">
-        <a href="#cta" class="btn btn-azul">Planos a partir de R$9,90/mês</a>
-        <a href="https://wa.me/5521993763200?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20curso%20Samba%20sem%20Mist%C3%A9rio!%20Pode%20me%20ajudar%3F" target="_blank" class="btn btn-outline">Tenho dúvidas</a>
-      </div>
-    </div>
-    <div>
-      <div class="hero-video-wrap">
+    <div style="max-width:700px;margin:0 auto;text-align:center">
+      <h1 style="font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--branco);line-height:1.15;margin-bottom:1rem">Aprenda a tocar samba com qualidade no violão</h1>
+      <p class="hero-sub" style="margin:0 auto 2rem;text-align:center">Domine o braço do instrumento, as levadas rítmicas autênticas e a harmonia funcional que dá cor ao samba — mesmo sem precisar ler partituras.</p>
+      <div class="hero-video-wrap" style="margin-bottom:2rem">
         <div class="hero-video-frame">
           <iframe
             src="https://www.youtube.com/embed/PIRerF2Ajoo"
@@ -259,6 +244,10 @@ src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></n
             allowfullscreen>
           </iframe>
         </div>
+      </div>
+      <div class="hero-ctas" style="justify-content:center">
+        <a href="#cta" class="btn btn-azul">Planos a partir de R$9,90/mês</a>
+        <a href="https://wa.me/5521993763200?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20curso%20Samba%20sem%20Mist%C3%A9rio!%20Pode%20me%20ajudar%3F" target="_blank" class="btn btn-outline">Tenho dúvidas</a>
       </div>
     </div>
   </div>
@@ -271,7 +260,7 @@ src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></n
   <div class="sec-in">
     <div class="reveal" style="text-align:center">
       <p class="eyebrow">Conteúdo do curso</p>
-      <h2 class="sec-title">8 módulos · 57 aulas · <span class="azul">8h de conteúdo</span></h2>
+      <h2 class="sec-title">8 módulos · +de 50 aulas · <span class="azul">8h de conteúdo</span></h2>
       <p class="sec-sub" style="margin:1rem auto 0">Uma jornada do básico ao avançado: técnica, domínio do braço, harmonia funcional e repertório de samba — tudo integrado.</p>
     </div>
     <div class="mod-grid">
@@ -320,7 +309,7 @@ src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></n
     </div>
     <div class="detalhes-grid" style="grid-template-columns:repeat(2,1fr)">
       <div class="det-card reveal d1">
-        <div class="det-num">57</div>
+        <div class="det-num">+50</div>
         <h3>Aulas em vídeo</h3>
         <p>Aulas progressivas e práticas, do básico ao avançado, com didática que constrói fluência real.</p>
       </div>
@@ -445,7 +434,7 @@ src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></n
       </div>
       <div class="faq-item reveal d2">
         <button class="faq-q">Qual a diferença entre o plano mensal e anual? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>No plano mensal você paga R$19,90/mês e pode cancelar quando quiser. No plano anual você paga 12x de R$9,90 (ou R$95,70 à vista), economizando R$142,80 por ano. Os dois dão acesso completo às 57 aulas e 8 horas de conteúdo.</p></div>
+        <div class="faq-a"><p>No plano mensal você paga R$19,90/mês e pode cancelar quando quiser. No plano anual você paga 12x de R$9,90 (ou R$95,70 à vista), economizando R$142,80 por ano. Os dois dão acesso completo às +de 50 aulas e 8 horas de conteúdo.</p></div>
       </div>
       <div class="faq-item reveal d3">
         <button class="faq-q">Posso assistir as aulas no celular ou TV? <span class="faq-icon">+</span></button>
@@ -466,7 +455,7 @@ src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></n
       <div class="reveal-l">
         <p class="cta-eyebrow">Pronto para começar?</p>
         <h2 class="cta-title">Toque samba com confiança e desenvolva sua musicalidade.</h2>
-        <p class="cta-sub">Escolha o plano que faz mais sentido para você. Mensal com flexibilidade total ou anual com o melhor custo-benefício — ambos com acesso completo às 57 aulas, 8 horas de conteúdo e garantia de 7 dias.</p>
+        <p class="cta-sub">Escolha o plano que faz mais sentido para você. Mensal com flexibilidade total ou anual com o melhor custo-benefício — ambos com acesso completo às +de 50 aulas, 8 horas de conteúdo e garantia de 7 dias.</p>
         <div class="planos">
           <div class="plano-card destaque">
             <div class="plano-badge">🔥 Mais econômico</div>
