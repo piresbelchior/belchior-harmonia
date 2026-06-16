@@ -114,6 +114,14 @@ img{max-width:100%;display:block}
 .cta-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
 
 @media(max-width:900px){.obj-grid{grid-template-columns:1fr 1fr}.met-grid{grid-template-columns:1fr}}
+
+@media(max-width:768px){
+  .hero-left-col{display:flex;flex-direction:column}
+  .hero-text-block{order:1}
+  .hero-right-col{order:2}
+  .hero-ctas-block{order:3;margin-top:1.25rem}
+  .hero-in{display:flex;flex-direction:column;gap:1.5rem}
+}
 @media(max-width:768px){.hero-in{grid-template-columns:1fr}.hero-img{max-width:340px;margin:0 auto}.prof-grid{grid-template-columns:1fr;gap:2.5rem}.prof-photo{max-width:300px;margin:0 auto}.modal-grid{grid-template-columns:1fr}.obj-grid{grid-template-columns:1fr}.ben-grid{grid-template-columns:1fr}.cta-btns{flex-direction:column;align-items:center}.stats{gap:1.25rem}}
 @media(max-width:480px){.hero-ctas{flex-direction:column}.btn{width:100%;justify-content:center}}
 @media(prefers-reduced-motion:reduce){.reveal,.reveal-l,.reveal-r{opacity:1;transform:none;transition:none}.cta-sec::before{animation:none}}
@@ -155,14 +163,17 @@ src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></n
 <!-- HERO -->
 <section class="hero">
   <div class="hero-in">
-    <div>
-      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem">
-        <img src="logo.png" alt="Belchior Harmonia" style="width:48px;height:48px;object-fit:contain;flex-shrink:0"/>
-        <p class="hero-brand" style="margin-bottom:0">Belchior Harmonia</p>
+    <div class="hero-left-col">
+      <div class="hero-text-block">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem">
+          <img src="logo.png" alt="Belchior Harmonia" style="width:48px;height:48px;object-fit:contain;flex-shrink:0"/>
+          <p class="hero-brand" style="margin-bottom:0">Belchior Harmonia</p>
+        </div>
+        <h1>Aulas Particulares de Violão</h1>
+        <p class="hero-sub">Presenciais na Barra da Tijuca e Jacarepaguá ou online para todo o Brasil — do nível zero ao avançado.</p>
       </div>
-      <h1>Aulas Particulares de Violão</h1>
-      <p class="hero-sub">Presenciais na Zona Oeste do Rio de Janeiro ou online para todo o Brasil — do nível zero ao avançado.</p>
-      <div class="hero-ctas">
+      <div class="hero-video-mobile"></div>
+      <div class="hero-ctas hero-ctas-block">
         <a href="https://wa.me/message/EGYDQ5YS6T44H1" target="_blank" class="btn btn-wa">
           <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.886a.75.75 0 00.943.899l6.184-1.623A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.726 9.726 0 01-4.964-1.362l-.356-.211-3.694.969.986-3.601-.232-.371A9.722 9.722 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
           Falar no WhatsApp
@@ -170,7 +181,7 @@ src="https://www.facebook.com/tr?id=563576268393888&ev=PageView&noscript=1"/></n
         <a href="#metodologia" class="btn btn-outline-w">Ver metodologia</a>
       </div>
     </div>
-    <div>
+    <div class="hero-right-col">
       <div class="hero-video-wrap">
         <div class="hero-video-frame">
           <iframe
