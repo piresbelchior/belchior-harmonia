@@ -313,14 +313,12 @@ function onPlayerReady(event) {
   
   // Primeiro clique: inicia o vídeo com qualidade máxima
   overlay.addEventListener('click', function startOnce() {
-    event.target.setPlaybackQuality('highres');
-    event.target.setPlaybackQualityRange('hd1080', 'highres');
+    try { event.target.setPlaybackQuality('hd1080'); } catch(e) {}
     event.target.unMute();
     event.target.setVolume(100);
     event.target.playVideo();
     overlay.classList.add('started');
     overlay.removeEventListener('click', startOnce);
-    // Depois do start, cliques alternam play/pause
     overlay.addEventListener('click', togglePlay);
   });
 }
