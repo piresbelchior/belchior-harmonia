@@ -148,7 +148,7 @@ footer p{color:rgba(255,255,255,.3);font-size:.78rem}
   </div>
   <div class="vsl-video-wrap fade-in">
     <div class="vsl-video-frame">
-      <iframe id="vslVideo" src="https://www.youtube.com/embed/BA4Gtk2yP2c?enablejsapi=1&controls=0&disablekb=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3" title="Samba sem Mistério" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      <iframe id="vslVideo" src="https://www.youtube.com/embed/BA4Gtk2yP2c?enablejsapi=1&controls=0&disablekb=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3&autoplay=1&mute=1&vq=hd1080&playsinline=1" title="Samba sem Mistério" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
       <div class="vsl-overlay" id="vslOverlay">
         <div class="vsl-play-icon" id="vslPlayIcon">▶</div>
       </div>
@@ -291,8 +291,23 @@ let isPlaying = false;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('vslVideo', { events: { 'onStateChange': onPlayerStateChange, 'onReady': onPlayerReady } });
 }
-function onPlayerReady() {
+function onPlayerReady(event) {
+  // Forçar a melhor qualidade disponível
+  event.target.setPlaybackQuality('hd1080');
+
+  // Tenta tirar o mudo automaticamente; se o navegador bloquear, mantém mudo até o 1º clique
+  try {
+    event.target.unMute();
+    event.target.setVolume(100);
+  } catch (e) {}
+
   document.getElementById('vslOverlay').addEventListener('click', togglePlay);
+
+  // No primeiro clique do usuário, garante áudio ligado
+  document.getElementById('vslOverlay').addEventListener('click', function unmuteOnce() {
+    player.unMute();
+    player.setVolume(100);
+  }, { once: true });
 }
 function togglePlay() {
   if (!player) return;
