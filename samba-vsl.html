@@ -36,6 +36,23 @@ img{max-width:100%;display:block}
 .vsl-video-wrap{width:100%;max-width:860px;border-radius:16px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.5);border:3px solid rgba(255,255,255,.12);margin-bottom:1.5rem}
 .vsl-video-frame{position:relative;width:100%;padding-bottom:56.25%}
 .vsl-video-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.vsl-video-frame{cursor:pointer}
+.vsl-overlay{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0);transition:background .2s;z-index:2;
+}
+.vsl-overlay.paused{background:rgba(0,0,0,.35)}
+.vsl-play-icon{
+  width:72px;height:72px;border-radius:50%;
+  background:rgba(255,255,255,.95);color:var(--laranja);
+  display:none;align-items:center;justify-content:center;
+  font-size:1.8rem;padding-left:6px;
+  box-shadow:0 8px 24px rgba(0,0,0,.3);
+  transition:transform .15s;
+}
+.vsl-overlay.paused .vsl-play-icon{display:flex}
+.vsl-overlay:hover .vsl-play-icon{transform:scale(1.08)}
+
 .vsl-hint{color:rgba(255,255,255,.4);font-size:.82rem;text-align:center;max-width:500px}
 
 /* ── CONTEÚDO PÓS-VÍDEO (escondido até o fim) ── */
@@ -131,7 +148,10 @@ footer p{color:rgba(255,255,255,.3);font-size:.78rem}
   </div>
   <div class="vsl-video-wrap fade-in">
     <div class="vsl-video-frame">
-      <iframe id="vslVideo" src="https://www.youtube.com/embed/BA4Gtk2yP2c?enablejsapi=1" title="Samba sem Mistério" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="vslVideo" src="https://www.youtube.com/embed/BA4Gtk2yP2c?enablejsapi=1&controls=0&disablekb=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3" title="Samba sem Mistério" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      <div class="vsl-overlay" id="vslOverlay">
+        <div class="vsl-play-icon" id="vslPlayIcon">▶</div>
+      </div>
     </div>
   </div>
 </div>
@@ -267,11 +287,28 @@ tag.src = "https://www.youtube.com/iframe_api";
 document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
 
 let player;
+let isPlaying = false;
 function onYouTubeIframeAPIReady() {
-  player = new YT.Player('vslVideo', { events: { 'onStateChange': onPlayerStateChange } });
+  player = new YT.Player('vslVideo', { events: { 'onStateChange': onPlayerStateChange, 'onReady': onPlayerReady } });
+}
+function onPlayerReady() {
+  document.getElementById('vslOverlay').addEventListener('click', togglePlay);
+}
+function togglePlay() {
+  if (!player) return;
+  if (isPlaying) { player.pauseVideo(); } else { player.playVideo(); }
 }
 function onPlayerStateChange(event) {
-  if (event.data === 0) revealContent();
+  const overlay = document.getElementById('vslOverlay');
+  if (event.data === YT.PlayerState.PLAYING) {
+    isPlaying = true;
+    overlay.classList.remove('paused');
+  } else if (event.data === YT.PlayerState.PAUSED) {
+    isPlaying = false;
+    overlay.classList.add('paused');
+  } else if (event.data === 0) {
+    revealContent();
+  }
 }
 function revealContent() {
   const el = document.getElementById('post-video');
