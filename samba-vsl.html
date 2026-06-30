@@ -39,19 +39,32 @@ img{max-width:100%;display:block}
 .vsl-video-frame{cursor:pointer}
 .vsl-overlay{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,0);transition:background .2s;z-index:2;
+  background:rgba(0,0,0,.6);transition:background .3s;z-index:2;
 }
-.vsl-overlay.paused{background:rgba(0,0,0,.35)}
-.vsl-play-icon{
+.vsl-overlay.started{background:rgba(0,0,0,0)}
+.vsl-overlay.paused{background:rgba(0,0,0,.4)}
+.vsl-start-screen{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.vsl-overlay.started .vsl-start-screen{display:none}
+.vsl-big-play{
+  width:90px;height:90px;border-radius:50%;
+  background:var(--laranja);color:var(--branco);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.2rem;padding-left:8px;
+  box-shadow:0 8px 32px rgba(242,101,34,.5);
+  transition:transform .2s,box-shadow .2s;
+  animation:pulse-play 2s ease-in-out infinite;
+}
+.vsl-big-play:hover{transform:scale(1.08);box-shadow:0 12px 40px rgba(242,101,34,.6)}
+@keyframes pulse-play{0%,100%{box-shadow:0 8px 32px rgba(242,101,34,.5)}50%{box-shadow:0 8px 48px rgba(242,101,34,.8)}}
+.vsl-start-text{color:var(--branco);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;opacity:.9}
+.vsl-pause-icon{
   width:72px;height:72px;border-radius:50%;
-  background:rgba(255,255,255,.95);color:var(--laranja);
-  display:none;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.9);color:var(--laranja);
+  align-items:center;justify-content:center;
   font-size:1.8rem;padding-left:6px;
   box-shadow:0 8px 24px rgba(0,0,0,.3);
-  transition:transform .15s;
 }
-.vsl-overlay.paused .vsl-play-icon{display:flex}
-.vsl-overlay:hover .vsl-play-icon{transform:scale(1.08)}
+.vsl-overlay.paused .vsl-pause-icon{display:flex}
 
 .vsl-hint{color:rgba(255,255,255,.4);font-size:.82rem;text-align:center;max-width:500px}
 
@@ -148,9 +161,13 @@ footer p{color:rgba(255,255,255,.3);font-size:.78rem}
   </div>
   <div class="vsl-video-wrap fade-in">
     <div class="vsl-video-frame">
-      <iframe id="vslVideo" src="https://www.youtube.com/embed/BA4Gtk2yP2c?enablejsapi=1&controls=0&disablekb=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3&autoplay=1&mute=1&vq=hd1080&playsinline=1" title="Samba sem Mistério" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      <iframe id="vslVideo" src="https://www.youtube.com/embed/BA4Gtk2yP2c?enablejsapi=1&controls=0&disablekb=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3&playsinline=1" title="Samba sem Mistério" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
       <div class="vsl-overlay" id="vslOverlay">
-        <div class="vsl-play-icon" id="vslPlayIcon">▶</div>
+        <div class="vsl-start-screen" id="vslStart">
+          <div class="vsl-big-play">▶</div>
+          <p class="vsl-start-text">Clique para assistir</p>
+        </div>
+        <div class="vsl-pause-icon" id="vslPauseIcon" style="display:none">▶</div>
       </div>
     </div>
   </div>
@@ -292,43 +309,70 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('vslVideo', { events: { 'onStateChange': onPlayerStateChange, 'onReady': onPlayerReady } });
 }
 function onPlayerReady(event) {
-  // Forçar a melhor qualidade disponível
-  event.target.setPlaybackQuality('hd1080');
-
-  // Tenta tirar o mudo automaticamente; se o navegador bloquear, mantém mudo até o 1º clique
-  try {
+  const overlay = document.getElementById('vslOverlay');
+  
+  // Primeiro clique: inicia o vídeo com qualidade máxima
+  overlay.addEventListener('click', function startOnce() {
+    event.target.setPlaybackQuality('highres');
+    event.target.setPlaybackQualityRange('hd1080', 'highres');
     event.target.unMute();
     event.target.setVolume(100);
-  } catch (e) {}
-
-  document.getElementById('vslOverlay').addEventListener('click', togglePlay);
-
-  // No primeiro clique do usuário, garante áudio ligado
-  document.getElementById('vslOverlay').addEventListener('click', function unmuteOnce() {
-    player.unMute();
-    player.setVolume(100);
-  }, { once: true });
+    event.target.playVideo();
+    overlay.classList.add('started');
+    overlay.removeEventListener('click', startOnce);
+    // Depois do start, cliques alternam play/pause
+    overlay.addEventListener('click', togglePlay);
+  });
 }
 function togglePlay() {
   if (!player) return;
   if (isPlaying) { player.pauseVideo(); } else { player.playVideo(); }
 }
+let contentRevealed = false;
+let progressInterval = null;
+
 function onPlayerStateChange(event) {
   const overlay = document.getElementById('vslOverlay');
+  const pauseIcon = document.getElementById('vslPauseIcon');
   if (event.data === YT.PlayerState.PLAYING) {
     isPlaying = true;
     overlay.classList.remove('paused');
+    if (pauseIcon) pauseIcon.style.display = 'none';
+    try { player.setPlaybackQuality('highres'); } catch(e) {}
+    // Iniciar verificação de posição a cada segundo
+    if (!progressInterval) {
+      progressInterval = setInterval(checkProgress, 1000);
+    }
   } else if (event.data === YT.PlayerState.PAUSED) {
     isPlaying = false;
     overlay.classList.add('paused');
+    if (pauseIcon) pauseIcon.style.display = 'flex';
   } else if (event.data === 0) {
+    clearInterval(progressInterval);
     revealContent();
   }
 }
+
+function checkProgress() {
+  if (contentRevealed || !player) return;
+  try {
+    const duration = player.getDuration();
+    const current = player.getCurrentTime();
+    const remaining = duration - current;
+    if (duration > 0 && remaining <= 10) {
+      revealContent();
+      clearInterval(progressInterval);
+    }
+  } catch(e) {}
+}
 function revealContent() {
+  if (contentRevealed) return;
+  contentRevealed = true;
   const el = document.getElementById('post-video');
   el.classList.add('show');
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setTimeout(() => {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 300);
 }
 
 const io = new IntersectionObserver((entries) => {
