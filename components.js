@@ -27,7 +27,7 @@ const FOOTER_HTML = `
 <footer>
   <div class="foot-in">
     <div class="foot-brand"><img src="logo.png" alt="Belchior Harmonia" style="width:28px;height:28px;object-fit:contain;vertical-align:middle;margin-right:.5rem"/><span>Belchior</span> Harmonia</div>
-    <div class="foot-copy">© 2025 Belchior Harmonia · João G. Belchior · Rio de Janeiro – RJ</div>
+    <div class="foot-copy">© 2026 Belchior Harmonia · João G. Belchior · Rio de Janeiro – RJ</div>
     <div class="foot-links">
       <a href="https://www.instagram.com/belchiorharmonia/" target="_blank">📷 Instagram</a>
       <a href="https://www.youtube.com/@belchiorharmonia" target="_blank">▶️ YouTube</a>
