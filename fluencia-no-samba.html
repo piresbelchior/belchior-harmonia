@@ -150,11 +150,47 @@ footer p{color:rgba(255,255,255,.3);font-size:.78rem}
 @media(max-width:600px){[style*="grid-template-columns:1fr 1.6fr"]{grid-template-columns:1fr!important}}
 @media(max-width:768px){.mod-grid{grid-template-columns:1fr}.prof-grid{grid-template-columns:1fr;gap:2rem}.prof-photo{max-width:280px;margin:0 auto}.planos{grid-template-columns:1fr}.vsl-top{padding:2rem 1.25rem 3rem}.sec{padding:3.5rem 1.25rem}}
 @media(prefers-reduced-motion:reduce){.fade-in,.reveal{opacity:1;transform:none;transition:none}}
+.reveal-l{opacity:0;transform:translateX(-36px);transition:opacity .65s ease,transform .65s ease}
+.reveal-r{opacity:0;transform:translateX(36px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on,.reveal-l.on,.reveal-r.on{opacity:1;transform:none}
+.btn-outline{background:transparent;color:var(--branco);border:2px solid rgba(255,255,255,.5)}
+.detalhes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.det-card{border-radius:12px;padding:2rem 1.75rem;border:1px solid #E8E8E8;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s}
+.det-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.09);border-color:var(--laranja)}
+.det-icon{font-size:2.4rem;margin-bottom:1rem}
+.det-card h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:var(--preto);margin-bottom:.4rem}
+.det-card p{font-size:.87rem;color:var(--muted);line-height:1.6}
+.det-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.8rem;color:var(--laranja);margin-bottom:.25rem}
+.stats{display:flex;gap:2rem;margin:1.75rem 0}
+.dep-author{display:flex;align-items:center;gap:.75rem}
+.avatar{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--laranja),#FFAA44);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;color:var(--branco)}
+.dep-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:var(--preto)}
+.dep-role{font-size:.75rem;color:var(--muted)}
+.cta-sec{background:var(--preto);padding:6rem 2rem;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(242,101,34,.12) 0%,transparent 70%);top:-200px;right:-100px;pointer-events:none;animation:glow 7s ease-in-out infinite}
+.cta-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja);margin-bottom:.75rem}
+.cta-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.6rem);font-weight:900;color:var(--branco);line-height:1.2;margin-bottom:1rem;word-break:break-word}
+.cta-sub{color:rgba(255,255,255,.65);font-size:.95rem;line-height:1.7;margin-bottom:1.5rem}
+.mockup{background:rgba(255,255,255,.04);border:1px solid rgba(242,101,34,.2);border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.dep-video-wrap{max-width:900px;margin:3rem auto 0}
+.dep-video-inner{display:grid;grid-template-columns:1.4fr 1fr;gap:2.5rem;align-items:center;background:var(--cinza);border-radius:20px;overflow:hidden;border:1px solid #E8E8E8}
+.dep-cta{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid #E8E8E8}
+.dep-cta-text{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;color:var(--preto);margin-bottom:.85rem}
+@media(max-width:768px){.dep-video-inner{grid-template-columns:1fr}.dep-video-info{padding:1.5rem}}
+@media(max-width:900px){.pilares-grid{grid-template-columns:repeat(2,1fr)}.detalhes-grid{grid-template-columns:1fr 1fr}.mod-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.planos{grid-template-columns:1fr!important}.cta-grid{grid-template-columns:1fr}.hero-in{grid-template-columns:1fr}.hero-img{max-width:340px;margin:0 auto}.mod-grid{grid-template-columns:1fr}.detalhes-grid{grid-template-columns:1fr}.pilares-grid{grid-template-columns:1fr 1fr}.prof-grid{grid-template-columns:1fr;gap:2.5rem}.prof-photo{max-width:300px;margin:0 auto}.dep-grid{grid-template-columns:1fr}.cta-grid{grid-template-columns:1fr}.mockup{display:none}.foot-in{flex-direction:column;text-align:center}.stats{gap:1.25rem}}
+@media(max-width:480px){.pilares-grid{grid-template-columns:1fr}.hero-ctas,.cta-btns{flex-direction:column}.btn{text-align:center;width:100%}.planos{grid-template-columns:1fr!important}.sec{padding:4rem 1.25rem}.pilares{padding:4rem 1.25rem}.cta-sec{padding:4rem 1.25rem}}
+@media(max-width:768px){.reveal-l ~ .reveal-r{margin-top:0}[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}
+.avaliacoes-google{margin-top:2.5rem}
+@media(max-width:768px){.avaliacoes-google [style*="repeat(3,1fr)"]{grid-template-columns:1fr 1fr!important}}
+@media(max-width:480px){.avaliacoes-google [style*="repeat(3,1fr)"]{grid-template-columns:1fr!important}}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal-l,.reveal-r{opacity:1;transform:none;transition:none}.cta-sec::before{animation:none}}
 </style>
 </head>
 <body>
 
 <!-- VÍDEO -->
+<div id="nav-placeholder"></div>
 <div class="vsl-top">
   <div class="vsl-header fade-in">
     <p class="eyebrow">Samba sem Mistério</p>
@@ -177,162 +213,309 @@ footer p{color:rgba(255,255,255,.3);font-size:.78rem}
 <!-- CONTEÚDO PÓS-VÍDEO -->
 <div id="post-video">
 
-<!-- PAINEL CAPA -->
-<div style="background:var(--preto);padding:3rem 1.5rem 0">
-  <div style="max-width:960px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:2.5rem;align-items:center;background:linear-gradient(135deg,#1a1008 0%,#2a1800 100%);border-radius:16px;overflow:hidden;border:1px solid rgba(242,101,34,.2);padding:2.5rem">
-      <div>
-        <img src="samba-capa.png" alt="Samba sem Mistério" style="width:100%;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.4)"/>
+<!-- CAPA DO CURSO -->
+<section style="background:var(--branco);padding:4rem 2rem">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
+    <div class="reveal-l">
+      <img src="samba-capa.png" alt="Samba sem Mistério" style="width:100%;border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,.15)"/>
+    </div>
+    <div class="reveal-r">
+      <p class="eyebrow">O curso</p>
+      <h2 class="sec-title">Aprenda a tocar samba com <span class="azul">qualidade e consciência</span></h2>
+      <p style="font-size:.95rem;line-height:1.75;color:var(--muted);margin-top:.75rem">Tocar samba é como construir uma laje: você precisa de uma fundação sólida (técnica e teoria), pilares firmes (levada e acordes) e vigas que dão sustentação (harmonia funcional). Só assim o repertório de samba fica de pé — e você toca com confiança de verdade.</p>
+    </div>
+  </div>
+</section>
+<!-- FIM CAPA DO CURSO -->
+
+<!-- MÓDULOS -->
+<section class="sec modulos" id="modulos">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Samba sem Mistério</p>
+      <h2 class="sec-title">8 módulos · +de 55 aulas · <span class="azul">8h de conteúdo</span></h2>
+      <p class="sec-sub" style="margin:1rem auto 0">Uma jornada do básico ao avançado: técnica, domínio do braço, harmonia funcional e repertório de samba — tudo integrado.</p>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card reveal d1">
+        <div class="mod-num">01</div>
+        <div class="mod-info"><h3>Orientações Iniciais</h3><p>Símbolos, diagramas, postura, afinação e o que é música.</p></div>
       </div>
-      <div>
-        <p style="font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja);margin-bottom:.6rem">Samba sem Mistério</p>
-        <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:900;color:var(--branco);line-height:1.25;margin-bottom:.85rem">Aprenda a tocar samba com qualidade e consciência</h2>
-        <p style="font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.65);margin-bottom:1.5rem">Tocar samba é como construir uma laje: você precisa de uma fundação sólida (técnica e teoria), pilares firmes (levada e acordes) e vigas que dão sustentação (harmonia funcional). Só assim o repertório fica de pé — e você toca com confiança de verdade.</p>
-        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-          <div style="display:flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.7);font-size:.8rem"><span>✅</span> Garantia de 7 dias</div>
-          <div style="display:flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.7);font-size:.8rem"><span>📱</span> Qualquer dispositivo</div>
-          <div style="display:flex;align-items:center;gap:.4rem;color:rgba(255,255,255,.7);font-size:.8rem"><span>🎓</span> João G. Belchior</div>
+      <div class="mod-card reveal d2">
+        <div class="mod-num">02</div>
+        <div class="mod-info"><h3>Lapidando a Técnica</h3><p>Técnica de mão direita (P I M A), mão esquerda e exercícios diários.</p></div>
+      </div>
+      <div class="mod-card reveal d1">
+        <div class="mod-num">03</div>
+        <div class="mod-info"><h3>Mapeamento e Introdução à Harmonia</h3><p>Notas, intervalos, escalas maior e menor, ciclo das quintas.</p></div>
+      </div>
+      <div class="mod-card reveal d2">
+        <div class="mod-num">04</div>
+        <div class="mod-info"><h3>Levadas de Samba</h3><p>Os principais ritmos do samba com levadas autênticas e precisão.</p></div>
+      </div>
+      <div class="mod-card reveal d1">
+        <div class="mod-num">05</div>
+        <div class="mod-info"><h3>A Formação dos Acordes no Violão</h3><p>Tríades, tétrades, Sistema CAGED, arpejos e acordes com tensão.</p></div>
+      </div>
+      <div class="mod-card reveal d2">
+        <div class="mod-num">06</div>
+        <div class="mod-info"><h3>Harmonia Funcional Aplicada ao Violão</h3><p>Campo harmônico, funções, dominantes secundários, empréstimo modal.</p></div>
+      </div>
+      <div class="mod-card reveal d1">
+        <div class="mod-num">07</div>
+        <div class="mod-info"><h3>Progressões de Acordes no Samba</h3><p>As progressões harmônicas mais usadas no samba e como aplicá-las.</p></div>
+      </div>
+      <div class="mod-card reveal d2">
+        <div class="mod-num">08</div>
+        <div class="mod-info"><h3>Repertório de Samba</h3><p>Aplicação prática de tudo que foi aprendido em músicas reais.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALHES -->
+<section class="sec" id="detalhes">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">O que está incluído</p>
+      <h2 class="sec-title">Tudo que você precisa para <span class="azul">evoluir de verdade</span></h2>
+    </div>
+    <div class="detalhes-grid" style="grid-template-columns:repeat(2,1fr)">
+      <div class="det-card reveal d1">
+        <div class="det-icon">🎬</div>
+        <h3>+de 55 Aulas em vídeo</h3>
+        <p>Aulas progressivas e práticas, do básico ao avançado, com didática que constrói fluência real.</p>
+      </div>
+      <div class="det-card reveal d2">
+        <div class="det-icon">📄</div>
+        <h3>Material de apoio em PDF</h3>
+        <p>Material em PDF dividido por capítulos e disponibilizado junto com cada aula na plataforma — para você estudar onde e como preferir.</p>
+      </div>
+      <div class="det-card reveal d3">
+        <div class="det-icon">📱</div>
+        <h3>Qualquer dispositivo</h3>
+        <p>Estude pelo computador, celular ou smart TV. Seu curso sempre com você, onde e quando quiser.</p>
+      </div>
+      <div class="det-card reveal d4">
+        <div class="det-icon">🛡️</div>
+        <h3>Garantia de 7 dias</h3>
+        <p>Teste o curso por uma semana. Se não ficar satisfeito, devolvemos 100% do valor sem burocracia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section class="pilares" id="metodo">
+  <div class="sec-in">
+    <div class="reveal">
+      <p class="eyebrow">O que você vai dominar</p>
+      <h2 class="sec-title">Teoria e prática que caminham juntas</h2>
+      <p class="sec-sub">Fundação, pilares e vigas — como na construção de uma laje. Técnica e teoria formam a base, levada e acordes são os pilares, e a harmonia funcional dá firmeza para você chegar no repertório que quer tocar.</p>
+    </div>
+    <div class="pilares-grid">
+      <div class="pilar reveal d1">
+        <div class="pilar-emo">🤚</div>
+        <h3>Técnica</h3>
+        <p>Postura, unhas, economia de movimentos e coordenação entre mão direita e esquerda para um toque limpo e eficiente.</p>
+      </div>
+      <div class="pilar reveal d2">
+        <div class="pilar-emo">🎼</div>
+        <h3>Harmonia</h3>
+        <p>Mapeamento do braço e harmonia funcional aplicada diretamente ao samba.</p>
+      </div>
+      <div class="pilar reveal d3">
+        <div class="pilar-emo">🥁</div>
+        <h3>Levadas de Samba</h3>
+        <p>Os principais ritmos do samba com levadas rítmicas autênticas e precisão.</p>
+      </div>
+      <div class="pilar reveal d4">
+        <div class="pilar-emo">🎵</div>
+        <h3>Progressões</h3>
+        <p>Progressões harmônicas essenciais para tocar um bom repertório de samba.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSOR -->
+<section class="sec" style="background:var(--cinza)">
+  <div class="sec-in">
+    <div class="prof-grid">
+      <div class="prof-photo reveal-l">
+        <img src="professor.png" alt="João G. Belchior"/>
+      </div>
+      <div class="reveal-r">
+        <p class="eyebrow">Seu professor</p>
+        <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:900;color:var(--preto);line-height:1.2;margin-bottom:.75rem">João G. Belchior</h2>
+        <p style="font-size:.95rem;line-height:1.8;color:var(--texto);margin-bottom:1rem">João G. Belchior é professor de violão com formação na Escola de Música Villa-Lobos (EMVL) e pós-graduado em docência pela AVM Educacional. Inspirado em grandes referências como Ian Guest e Nelson Faria, desenvolveu uma metodologia que traduz conteúdos de alta qualidade em linguagem direta e acessível.</p>
+        <p style="font-size:.95rem;line-height:1.8;color:var(--texto);margin-bottom:1.5rem">A partir de 2020, elaborou o e-Book <em>O Violão pelas Lentes da Harmonia</em>, que originou o curso Samba sem Mistério. Sua abordagem prioriza dois eixos fundamentais: o domínio do braço do instrumento e a harmonia funcional aplicada — porque teoria sem prática não toca, e prática sem teoria não evolui.</p>
+        <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.75rem">
+          <div style="display:flex;align-items:center;gap:1rem;background:#FFF5F0;border-radius:10px;padding:1rem 1.25rem;border-left:4px solid #F26522">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;color:#F26522;min-width:48px">EMVL</div>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:#111">Escola de Música Villa-Lobos</div>
+              <div style="font-size:.75rem;color:#D9541A;margin-top:.15rem">Curso básico de guitarra</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;background:#FFF5F0;border-radius:10px;padding:1rem 1.25rem;border-left:4px solid #F26522">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.1rem;color:#F26522;min-width:48px">AVM</div>
+            <div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:#111">AVM Educacional</div>
+              <div style="font-size:.75rem;color:#D9541A;margin-top:.15rem">Pós-graduação em Docência</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#cta" class="btn btn-laranja" style="margin-top:1.75rem;display:inline-block">Quero aprender com João</a>
+      </div>
+    </div>
+    <!-- AVALIAÇÕES GOOGLE -->
+    <div class="avaliacoes-google">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        <div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:#111">Avaliações no Google</div>
+          <div style="display:flex;align-items:center;gap:.3rem">
+            <span style="color:#F26522;font-size:.85rem">★★★★★</span>
+            <span style="font-size:.75rem;color:#777">5.0</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem">
+        <div style="background:#F8F8F8;border-radius:10px;padding:1.1rem;border:1px solid #E8E8E8"><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#F26522,#FFAA44);display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0">W</div><div><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;color:#111">Waldir J. Pereira Junior</div><div style="color:#F26522;font-size:.7rem">★★★★★</div></div></div><p style="font-size:.78rem;color:#555;line-height:1.55">Excelente professor! João é super paciente, atencioso e excelente tecnicamente. Tem ótima didática!</p></div>
+        <div style="background:#F8F8F8;border-radius:10px;padding:1.1rem;border:1px solid #E8E8E8"><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#F26522,#FFAA44);display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0">G</div><div><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;color:#111">Genivaldo Sousa</div><div style="color:#F26522;font-size:.7rem">★★★★★</div></div></div><p style="font-size:.78rem;color:#555;line-height:1.55">É o cara — te escuta pra depois dar o veredito, sempre aberto a perguntas e debates. Maior calma do mundo. Excelente!</p></div>
+        <div style="background:#F8F8F8;border-radius:10px;padding:1.1rem;border:1px solid #E8E8E8"><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#F26522,#FFAA44);display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0">F</div><div><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;color:#111">Fabio Cid</div><div style="color:#F26522;font-size:.7rem">★★★★★</div></div></div><p style="font-size:.78rem;color:#555;line-height:1.55">Excelente didática. Contratei as aulas para minha filha e em poucos meses ela já tocava várias músicas. Recomendo!</p></div>
+        <div style="background:#F8F8F8;border-radius:10px;padding:1.1rem;border:1px solid #E8E8E8"><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#F26522,#FFAA44);display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0">J</div><div><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;color:#111">Jorge Azevedo</div><div style="color:#F26522;font-size:.7rem">★★★★★</div></div></div><p style="font-size:.78rem;color:#555;line-height:1.55">Professor maravilhoso, paciente e muito habilidoso. Por conta dele evolui muito no violão!</p></div>
+        <div style="background:#F8F8F8;border-radius:10px;padding:1.1rem;border:1px solid #E8E8E8"><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#F26522,#FFAA44);display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0">R</div><div><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;color:#111">Rosane Manfrinato</div><div style="color:#F26522;font-size:.7rem">★★★★★</div></div></div><p style="font-size:.78rem;color:#555;line-height:1.55">A experiência foi maravilhosa. Meu filho não tinha base alguma e hoje é autônomo no instrumento.</p></div>
+        <div style="background:#F8F8F8;border-radius:10px;padding:1.1rem;border:1px solid #E8E8E8"><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#F26522,#FFAA44);display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0">L</div><div><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;color:#111">Luis Fernando Fernandes</div><div style="color:#F26522;font-size:.7rem">★★★★★</div></div></div><p style="font-size:.78rem;color:#555;line-height:1.55">Ótimo professor. Pontual, paciente e sempre atento à evolução do aluno. Recomendo muito.</p></div>
+      </div>
+    </div>
+    <!-- FIM AVALIAÇÕES GOOGLE -->
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="sec" id="depoimentos">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Depoimentos</p>
+      <h2 class="sec-title">O que nossos alunos <span class="azul">dizem</span></h2>
+    </div>
+    <div class="dep-video-wrap reveal">
+      <div class="dep-video-inner">
+        <div class="dep-video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/oh_PcMSTEPs"
+            title="Depoimento do aluno Rafael"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="dep-video-info">
+          <div class="stars">★★★★★</div>
+          <p class="dep-video-quote">Veja o que o Rafael, aluno do Samba sem Mistério, tem a dizer sobre a experiência com o curso.</p>
+          <div class="dep-author" style="margin-top:1.25rem">
+            <div class="avatar">R</div>
+            <div>
+              <div class="dep-name">Rafael</div>
+              <div class="dep-role">Aluno do Samba sem Mistério</div>
+            </div>
+          </div>
+          <div class="dep-cta">
+            <a href="#cta" class="btn btn-laranja" style="font-size:.82rem;padding:.7rem 1.5rem">Quero começar agora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" style="background:var(--cinza)" id="faq">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h2 class="sec-title">Ainda tem <span class="azul">dúvidas?</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal d1">
+        <button class="faq-q">Preciso saber tocar violão para começar? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Não é necessário ter experiência avançada. O curso começa com orientações iniciais e vai lapidando sua técnica progressivamente. Se você já tem o básico do violão, vai avançar mais rápido — mas iniciantes também são bem-vindos.</p></div>
+      </div>
+      <div class="faq-item reveal d2">
+        <button class="faq-q">Qual a diferença entre o plano mensal e anual? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>No plano mensal você paga R$27,00/mês e pode cancelar quando quiser. No plano anual você paga 12x de R$20,37 (ou R$197,00 à vista), economizando R$127,00 por ano. Os dois dão acesso completo às +de 55 aulas e 8 horas de conteúdo.</p></div>
+      </div>
+      <div class="faq-item reveal d3">
+        <button class="faq-q">Posso assistir as aulas no celular ou TV? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Sim. O curso está disponível em qualquer dispositivo — computador, smartphone ou smart TV. Estude no horário e no lugar que preferir.</p></div>
+      </div>
+      <div class="faq-item reveal d4">
+        <button class="faq-q">Como funciona a garantia de 7 dias? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Você tem 7 dias para testar o curso após a assinatura. Se por qualquer motivo não ficar satisfeito, basta solicitar o reembolso e devolvemos 100% do valor pago — sem perguntas, sem burocracia.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-sec" id="cta">
+  <div class="sec-in">
+    <div class="cta-grid">
+      <div class="reveal-l">
+        <p class="cta-eyebrow">Samba sem Mistério</p>
+        <h2 class="cta-title">Toque samba com confiança e desenvolva sua musicalidade.</h2>
+        <p class="cta-sub">Escolha o plano que faz mais sentido para você. Mensal com flexibilidade total ou anual com o melhor custo-benefício — ambos com acesso completo às +de 55 aulas, 8 horas de conteúdo e garantia de 7 dias.</p>
+        <div class="planos">
+          <div class="plano-card destaque">
+            <div class="plano-badge">🔥 Mais econômico</div>
+            <div class="plano-tipo">Plano Anual</div>
+            <div class="plano-preco">R$20,37<small>/mês</small></div>
+            <div class="plano-detalhe">12x de R$20,37 · ou R$197,00 à vista</div>
+            <div class="plano-economia">Você economiza R$127,00 por ano</div>
+            <a href="https://pay.hotmart.com/F97826545I?off=xpluvrux" target="_blank" class="plano-btn plano-btn-laranja">Assinar anual</a>
+          </div>
+          <div class="plano-card">
+            <div class="plano-tipo">Plano Mensal</div>
+            <div class="plano-preco">R$27,00<small>/mês</small></div>
+            <div class="plano-detalhe">Cancele quando quiser<br>sem fidelidade</div>
+            <a href="https://pay.hotmart.com/F97826545I?off=aatpu6cj" target="_blank" class="plano-btn plano-btn-outline">Assinar mensal</a>
+          </div>
+        </div>
+        <div class="garantia">
+          <span class="garantia-icon">🛡️</span>
+          <p><strong>Garantia de 7 dias.</strong> Se não ficar satisfeito, devolvemos 100% do seu dinheiro — sem burocracia.</p>
+        </div>
+        <div style="margin-top:1rem;text-align:center">
+          <a href="https://wa.me/5521993763200?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20curso%20Samba%20sem%20Mist%C3%A9rio!%20Pode%20me%20ajudar%3F" target="_blank" style="color:rgba(255,255,255,.5);font-size:.82rem;text-decoration:underline;font-family:'Montserrat',sans-serif">Ainda tenho dúvidas — falar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="mockup">
+          <div class="mock-head">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="mock-lbl">Samba sem Mistério — 8 módulos</span>
+          </div>
+          <div class="mock-body">
+            <div class="mod-m"><div class="mod-m-num">01</div><div class="mod-m-name">Orientações Iniciais</div></div>
+            <div class="mod-m"><div class="mod-m-num">02</div><div class="mod-m-name">Lapidando a Técnica</div></div>
+            <div class="mod-m"><div class="mod-m-num">03</div><div class="mod-m-name">Mapeamento e Introdução à Harmonia</div></div>
+            <div class="mod-m"><div class="mod-m-num">04</div><div class="mod-m-name">Levadas de Samba</div></div>
+            <div class="mod-m"><div class="mod-m-num">05</div><div class="mod-m-name">A Formação dos Acordes no Violão</div></div>
+            <div class="mod-m"><div class="mod-m-num">06</div><div class="mod-m-name">Harmonia Funcional Aplicada</div></div>
+            <div class="mod-m"><div class="mod-m-num">07</div><div class="mod-m-name">Progressões de Acordes no Samba</div></div>
+            <div class="mod-m"><div class="mod-m-num">08</div><div class="mod-m-name">Repertório de Samba</div></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- FIM PAINEL CAPA -->
+</section>
 
-  <!-- MÓDULOS -->
-  <section class="sec modulos">
-    <div class="sec-in">
-      <div class="reveal" style="text-align:center">
-        <p class="eyebrow">Conteúdo do curso</p>
-        <h2 class="sec-title">8 módulos · +de 55 aulas · <span class="azul">8h de conteúdo</span></h2>
-      </div>
-      <div class="mod-grid">
-        <div class="mod-card reveal d1"><div class="mod-num">01</div><div class="mod-info"><h3>Orientações Iniciais</h3></div></div>
-        <div class="mod-card reveal d1"><div class="mod-num">02</div><div class="mod-info"><h3>Lapidando a Técnica</h3></div></div>
-        <div class="mod-card reveal d2"><div class="mod-num">03</div><div class="mod-info"><h3>Mapeamento e Harmonia</h3></div></div>
-        <div class="mod-card reveal d2"><div class="mod-num">04</div><div class="mod-info"><h3>Levadas de Samba</h3></div></div>
-        <div class="mod-card reveal d3"><div class="mod-num">05</div><div class="mod-info"><h3>Formação dos Acordes</h3></div></div>
-        <div class="mod-card reveal d3"><div class="mod-num">06</div><div class="mod-info"><h3>Harmonia Funcional</h3></div></div>
-        <div class="mod-card reveal d4"><div class="mod-num">07</div><div class="mod-info"><h3>Progressões no Samba</h3></div></div>
-        <div class="mod-card reveal d4"><div class="mod-num">08</div><div class="mod-info"><h3>Repertório de Samba</h3></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PILARES -->
-  <section class="pilares">
-    <div class="sec-in">
-      <div class="reveal" style="text-align:center">
-        <p class="eyebrow">O método</p>
-        <h2 class="sec-title">Teoria e prática que <span class="azul">caminham juntas</span></h2>
-        <p class="sec-sub">Técnica e teoria formam a base, levada e acordes são os pilares, e a harmonia funcional dá firmeza para você chegar no repertório que quer tocar.</p>
-      </div>
-      <div class="pilares-grid">
-        <div class="pilar reveal d1"><div class="pilar-emo">🤚</div><h3>Técnica</h3><p>Postura, dedilhado e economia de movimentos.</p></div>
-        <div class="pilar reveal d2"><div class="pilar-emo">🎼</div><h3>Teoria Musical</h3><p>Notas, intervalos e ciclo das quintas.</p></div>
-        <div class="pilar reveal d3"><div class="pilar-emo">🥁</div><h3>Levadas de Samba</h3><p>Da bossa nova ao samba, com segurança.</p></div>
-        <div class="pilar reveal d4"><div class="pilar-emo">🎵</div><h3>Acordes</h3><p>As cinco tétrades principais do repertório.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROFESSOR -->
-  <section class="sec" style="background:var(--branco)">
-    <div class="sec-in">
-      <div class="prof-grid">
-        <div class="reveal" style="text-align:center">
-          <div class="prof-photo" style="margin:0 auto"><img src="professor.png" alt="João G. Belchior"/></div>
-        </div>
-        <div class="prof-texto reveal d1">
-          <p class="eyebrow">Seu professor</p>
-          <h2 class="sec-title" style="margin-bottom:.85rem">João G. Belchior</h2>
-          <p style="font-size:.9rem;line-height:1.8;color:var(--texto);margin-bottom:1rem">João G. Belchior é professor de violão com formação na Escola de Música Villa-Lobos (EMVL) e pós-graduado em docência pela AVM Educacional. Inspirado em grandes referências como Ian Guest e Nelson Faria, desenvolveu uma metodologia que traduz conteúdos de alta qualidade em linguagem direta e acessível.</p>
-          <p style="font-size:.9rem;line-height:1.8;color:var(--texto);margin-bottom:1.25rem">A partir de 2020, elaborou o e-Book <em>O Violão pelas Lentes da Harmonia</em>, que originou o curso Samba sem Mistério. Sua abordagem prioriza dois eixos fundamentais: o domínio do braço do instrumento e a harmonia funcional aplicada — porque teoria sem prática não toca, e prática sem teoria não evolui.</p>
-          <div style="display:flex;flex-direction:column;gap:.65rem">
-            <div style="display:flex;align-items:center;gap:.85rem;background:#FFF5F0;border-radius:8px;padding:.85rem 1rem;border-left:3px solid #F26522"><div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1rem;color:#F26522;min-width:44px">EMVL</div><div><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:.82rem;color:#111">Escola de Música Villa-Lobos</div><div style="font-size:.72rem;color:#D9541A;margin-top:.1rem">Curso básico de guitarra</div></div></div>
-            <div style="display:flex;align-items:center;gap:.85rem;background:#FFF5F0;border-radius:8px;padding:.85rem 1rem;border-left:3px solid #F26522"><div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1rem;color:#F26522;min-width:44px">AVM</div><div><div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:.82rem;color:#111">AVM Educacional</div><div style="font-size:.72rem;color:#D9541A;margin-top:.1rem">Pós-graduação em Docência</div></div></div>
-
-          <div style="margin-top:1.5rem">
-            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
-              <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-              <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;color:#111">Avaliações no Google <span style="color:#F26522">★★★★★</span> <span style="font-size:.72rem;color:#777">5.0</span></div>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem">
-              <div style="background:#F5F5F5;border-radius:8px;padding:.9rem;border:1px solid #E8E8E8"><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;color:#111;margin-bottom:.3rem">Waldir J. Pereira Junior <span style="color:#F26522">★★★★★</span></div><p style="font-size:.74rem;color:#555;line-height:1.5">Excelente professor! Paciente, atencioso e excelente tecnicamente. Ótima didática!</p></div>
-              <div style="background:#F5F5F5;border-radius:8px;padding:.9rem;border:1px solid #E8E8E8"><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;color:#111;margin-bottom:.3rem">Fabio Cid <span style="color:#F26522">★★★★★</span></div><p style="font-size:.74rem;color:#555;line-height:1.5">Excelente didática. Minha filha em poucos meses já tocava várias músicas. Recomendo!</p></div>
-              <div style="background:#F5F5F5;border-radius:8px;padding:.9rem;border:1px solid #E8E8E8"><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;color:#111;margin-bottom:.3rem">Jorge Azevedo <span style="color:#F26522">★★★★★</span></div><p style="font-size:.74rem;color:#555;line-height:1.5">Paciente e muito habilidoso. Por conta dele eu consegui evoluir muito no violão!</p></div>
-              <div style="background:#F5F5F5;border-radius:8px;padding:.9rem;border:1px solid #E8E8E8"><div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;color:#111;margin-bottom:.3rem">Luis Fernando Fernandes <span style="color:#F26522">★★★★★</span></div><p style="font-size:.74rem;color:#555;line-height:1.5">Ótimo professor. Pontual, paciente e sempre atento à evolução do aluno.</p></div>
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEPOIMENTO -->
-  <section class="sec" style="background:var(--cinza)">
-    <div class="sec-in">
-      <div class="reveal" style="text-align:center">
-        <p class="eyebrow">Depoimento</p>
-        <h2 class="sec-title">O que nossos alunos <span class="azul">dizem</span></h2>
-      </div>
-      <div class="dep-wrap reveal">
-        <div class="dep-video-frame">
-          <iframe src="https://www.youtube.com/embed/oh_PcMSTEPs" title="Depoimento" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="dep-info">
-          <div class="stars">★★★★★</div>
-          <p>Veja o que o Rafael, aluno do Samba sem Mistério, tem a dizer sobre a experiência com o curso.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- OFERTA -->
-  <section class="oferta-sec">
-    <div class="sec-in">
-      <p class="eyebrow">Pronto para começar?</p>
-      <h2 class="oferta-title">Toque samba com confiança e desenvolva sua musicalidade.</h2>
-      <p style="color:rgba(255,255,255,.6);font-size:.88rem;max-width:500px;margin:0 auto 2rem;line-height:1.7">Escolha o plano que faz mais sentido para você. Mensal com flexibilidade total ou anual com o melhor custo-benefício — ambos com acesso completo às +de 55 aulas, 8 horas de conteúdo e garantia de 7 dias.</p>
-      <div class="planos">
-        <div class="plano-card destaque">
-          <div class="plano-badge">🔥 Mais econômico</div>
-          <div class="plano-tipo">Plano Anual</div>
-          <div class="plano-preco">R$20,37<small>/mês</small></div>
-          <div class="plano-detalhe">12x de R$20,37 · ou R$197,00 à vista</div>
-          <div class="plano-economia">Você economiza R$127,00 por ano</div>
-          <a href="https://pay.hotmart.com/F97826545I?off=xpluvrux" target="_blank" class="plano-btn plano-btn-laranja">Assinar anual</a>
-        </div>
-        <div class="plano-card">
-          <div class="plano-tipo">Plano Mensal</div>
-          <div class="plano-preco">R$27,00<small>/mês</small></div>
-          <div class="plano-detalhe">Cancele quando quiser<br>sem fidelidade</div>
-          <a href="https://pay.hotmart.com/F97826545I?off=aatpu6cj" target="_blank" class="plano-btn plano-btn-outline">Assinar mensal</a>
-        </div>
-      </div>
-      <div class="garantia">
-        <span class="garantia-icon">🛡️</span>
-        <p><strong>Garantia de 7 dias.</strong> Se não ficar satisfeito, devolvemos 100% do seu dinheiro.</p>
-      </div>
-
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-q">Preciso saber tocar violão para começar? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Não. O curso começa do zero e vai lapidando sua técnica progressivamente.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Como funciona a assinatura? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Acesso completo enquanto a assinatura estiver ativa. Cancele quando quiser, sem burocracia.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q">Existe garantia? <span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Sim, 7 dias para testar. Reembolso de 100% sem perguntas.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
 </div>
 
 <footer>
