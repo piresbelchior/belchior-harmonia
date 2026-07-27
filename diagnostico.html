@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico no Violão · Samba sem Mistério</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --roxo:#4a2f6b; --roxo-esc:#3a2456; --dourado:#edc14a; --laranja:#F26522; --laranja-esc:#D9541A;
+    --creme:#faf7f2; --card:#ffffff; --tinta:#2b2b30; --cinza:#6b6b73; --linha:#ece6de;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Montserrat',system-ui,sans-serif; color:var(--tinta);
+    background:var(--creme); line-height:1.55; -webkit-font-smoothing:antialiased;
+    display:flex; align-items:flex-start; justify-content:center; min-height:100dvh; padding:24px 20px 40px;
+  }
+  @media (min-height:820px){ body{ align-items:center; } }
+  .app{ width:100%; max-width:600px; }
+
+  /* CARD */
+  .card{ background:var(--card); border-radius:18px; box-shadow:0 20px 60px -20px rgba(74,47,107,.35); overflow:hidden; }
+  .top{ background:var(--roxo); color:#fff; padding:22px 30px; position:relative; }
+  .top .kick{ font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--dourado); font-weight:700; }
+  .top h1{ font-size:22px; font-weight:800; margin-top:3px; line-height:1.1; }
+  .body{ padding:30px; }
+  @media(max-width:480px){ .body{padding:22px} .top{padding:18px 22px} }
+
+  /* LAJE progress (assinatura) */
+  .laje{ display:flex; gap:4px; margin-top:14px; }
+  .laje .tijolo{ flex:1; height:6px; border-radius:3px; background:rgba(255,255,255,.22); transition:background .35s ease; }
+  .laje .tijolo.on{ background:var(--dourado); }
+
+  /* INTRO */
+  .intro-hero{ text-align:center; }
+  .intro-hero .big{ font-size:34px; font-weight:800; color:var(--roxo); line-height:1.05; letter-spacing:-.5px; }
+  .intro-hero .big em{ color:var(--laranja); font-style:normal; }
+  .intro-hero p{ margin-top:14px; color:var(--cinza); font-size:15px; }
+  .meta-row{ display:flex; gap:10px; justify-content:center; margin-top:20px; flex-wrap:wrap; }
+  .chip{ font-size:12px; color:var(--roxo); background:#f2ecf8; border:1px solid #e0d3f0; border-radius:20px; padding:5px 12px; font-weight:600; }
+
+  /* QUESTIONS */
+  .qnum{ font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--laranja); font-weight:700; }
+  .qtext{ font-size:19px; font-weight:700; color:var(--tinta); margin-top:6px; line-height:1.3; }
+  .opts{ margin-top:20px; display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; width:100%; background:#fbf9f6; border:1.5px solid var(--linha); border-radius:12px;
+        padding:14px 16px; font-size:15px; font-family:inherit; color:var(--tinta); cursor:pointer;
+        transition:all .15s ease; line-height:1.4; }
+  .opt:hover{ border-color:var(--laranja); background:#fff6f0; transform:translateY(-1px); }
+  .opt:focus-visible{ outline:3px solid var(--dourado); outline-offset:2px; }
+  .opt .oi{ font-size:12.5px; color:var(--cinza); display:block; margin-top:3px; font-weight:500; }
+
+  .field{ margin-top:18px; }
+  .field label{ font-size:13px; font-weight:600; color:var(--roxo); display:block; margin-bottom:6px; }
+  .field input{ width:100%; padding:13px 15px; border:1.5px solid var(--linha); border-radius:12px; font-size:15px;
+                font-family:inherit; color:var(--tinta); background:#fbf9f6; }
+  .field input:focus{ outline:none; border-color:var(--laranja); }
+
+  .btn{ display:inline-block; width:100%; text-align:center; background:var(--laranja); color:#fff; border:none;
+        border-radius:12px; padding:15px; font-size:16px; font-weight:800; font-family:inherit; cursor:pointer;
+        margin-top:22px; transition:background .15s ease; text-decoration:none; }
+  .btn:hover{ background:var(--laranja-esc); }
+  .btn.gold{ background:var(--dourado); color:var(--roxo); }
+  .btn.gold:hover{ background:#e0b02f; }
+  .btn.ghost{ background:transparent; color:var(--roxo); border:1.5px solid #d9c7ea; margin-top:10px; }
+  .btn.ghost:hover{ background:#f2ecf8; }
+  .back{ background:none; border:none; color:var(--cinza); font-family:inherit; font-size:13px; cursor:pointer; margin-top:14px; }
+  .back:hover{ color:var(--roxo); }
+
+  /* RESULT */
+  .r-niv{ width:100%; border-collapse:collapse; margin-top:6px; }
+  .r-niv td{ padding:8px 4px; border-bottom:1px solid var(--linha); vertical-align:middle; }
+  .r-comp{ font-weight:700; font-size:14px; width:88px; }
+  .r-desc{ font-size:12px; color:var(--cinza); }
+  .dots{ white-space:nowrap; text-align:right; width:104px; }
+  .dot{ display:inline-block; width:26px; height:19px; line-height:19px; text-align:center; font-size:9px; font-weight:700;
+        border-radius:3px; margin-left:2px; color:#c3b8b2; background:#f0ece8; }
+  .dot.on{ color:#fff; background:#8a6bb0; }
+  .dot.on.gap{ background:var(--laranja); }
+  .sec-h{ font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--roxo); font-weight:700; margin:24px 0 8px; padding-bottom:5px; border-bottom:2px solid var(--dourado); }
+  .aha-box{ background:#f7f2fb; border-left:4px solid #8a6bb0; padding:14px 16px; border-radius:0 8px 8px 0; font-size:14.5px; color:#3a3540; }
+  .aha-box .hl{ color:var(--laranja-esc); font-weight:700; }
+  .step-box{ background:#FFF5F0; border:1px solid #f5c9b3; border-radius:10px; padding:14px 16px; margin-top:8px; }
+  .step-box .lbl{ display:inline-block; background:var(--laranja); color:#fff; font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 8px; border-radius:4px; }
+  .step-box h4{ font-size:15px; color:var(--laranja-esc); margin-top:8px; }
+  .step-box p{ font-size:13.5px; color:#4a4048; margin-top:5px; }
+  .proof{ text-align:center; font-size:12.5px; color:#b8860b; font-weight:600; margin-top:18px; }
+  .cta-block{ background:var(--roxo); color:#fff; border-radius:12px; padding:20px; text-align:center; margin-top:12px; }
+  .cta-block h3{ color:var(--dourado); font-size:17px; font-weight:800; }
+  .cta-block p{ font-size:13.5px; color:#e6ddf0; margin-top:6px; }
+
+
+  /* DEGRAUS (o que falta) */
+  .degraus{ display:flex; flex-direction:column; gap:8px; margin-top:4px; }
+  .degrau{ padding:12px 14px; border-radius:10px; background:#fbf9f6; border:1px solid var(--linha); }
+  .degrau.foco{ background:#FFF5F0; border:1.5px solid var(--laranja); }
+  .degrau.done{ background:#f3f8f3; border:1px solid #d9e8d9; display:flex; align-items:center; justify-content:space-between; }
+  .dg-head{ display:flex; align-items:center; gap:8px; }
+  .dg-comp{ font-weight:700; font-size:14px; color:var(--tinta); }
+  .dg-lvl{ font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:#fff; background:#8a6bb0; padding:2px 8px; border-radius:20px; }
+  .degrau.foco .dg-lvl{ background:var(--laranja); }
+  .dg-next{ font-size:13px; color:var(--cinza); margin-top:5px; }
+  .dg-next b{ color:var(--tinta); font-weight:600; }
+  .degrau.foco .dg-next b{ color:var(--laranja-esc); }
+  .dg-done{ font-size:12.5px; font-weight:700; color:#3f8a4f; }
+  .degraus-intro{ font-size:12.5px; color:var(--cinza); margin-bottom:10px; }
+  .oferta-mod{ background:#fff6ef; border:1px solid #f5c9b3; border-radius:10px; padding:12px 14px; margin-bottom:12px; font-size:13.5px; color:#4a4048; }
+  .oferta-mod b{ color:var(--laranja-esc); }
+  /* PLANO DO ALUNO / PRÉVIA BLOQUEADA */
+  .plano-lock{ position:relative; border:1.5px dashed #d9c7ea; border-radius:12px; padding:16px; margin-top:8px; background:#faf8fc; }
+  .plano-lock .cad{ text-align:center; }
+  .plano-lock .cad .ico{ font-size:26px; }
+  .plano-lock .cad h4{ color:var(--roxo); font-size:15px; margin-top:4px; }
+  .plano-lock .cad p{ font-size:13px; color:var(--cinza); margin-top:4px; }
+  .etapa-blur{ display:flex; align-items:center; gap:10px; padding:9px 12px; margin-top:8px; background:#fff; border:1px solid var(--linha); border-radius:9px; filter:blur(.4px); opacity:.55; }
+  .etapa-blur .en{ width:20px;height:20px;line-height:20px;text-align:center;background:var(--roxo);color:#fff;border-radius:50%;font-size:11px;font-weight:700; }
+  .etapa-blur .et{ font-weight:600; font-size:13px; }
+  .code-field{ margin-top:14px; display:flex; gap:8px; }
+  .code-field input{ flex:1; padding:12px 14px; border:1.5px solid var(--linha); border-radius:10px; font-family:inherit; font-size:14px; text-transform:uppercase; }
+  .code-field input:focus{ outline:none; border-color:var(--laranja); }
+  .code-field button{ background:var(--roxo); color:#fff; border:none; border-radius:10px; padding:0 18px; font-family:inherit; font-weight:700; font-size:14px; cursor:pointer; }
+  .code-field button:hover{ background:var(--roxo-esc); }
+  .code-err{ color:#c0392b; font-size:12px; margin-top:6px; min-height:14px; }
+  .code-toggle{ text-align:center; margin-top:12px; }
+  .code-toggle button{ background:none;border:none;color:var(--roxo);font-family:inherit;font-size:12.5px;text-decoration:underline;cursor:pointer; }
+  .plano-etapa{ border:1px solid var(--linha); border-radius:9px; padding:10px 13px; margin-top:7px; }
+  .plano-etapa.foco{ border:1.5px solid var(--laranja); background:#FFF5F0; }
+  .pe-head{ display:flex; align-items:center; gap:8px; }
+  .pe-num{ width:20px;height:20px;line-height:20px;text-align:center;background:var(--roxo);color:#fff;border-radius:50%;font-size:11px;font-weight:700; }
+  .pe-name{ font-weight:700; font-size:13.5px; }
+  .pe-comp{ font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#8a6bb0;font-weight:700; }
+  .pe-time{ margin-left:auto; font-size:10px; color:#b09a90; font-weight:700; }
+  .pe-body{ font-size:12.5px; color:#4a4048; margin-top:4px; }
+  .pe-foco{ display:inline-block;background:var(--laranja);color:#fff;font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-left:4px; }
+  .plano-ok-banner{ background:#eef7ee;border:1px solid #cfe6cf;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#2e6b3a;text-align:center;font-weight:600; }
+  .hidden{ display:none !important; }
+  .fade{ animation:fade .35s ease; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
+  @media (prefers-reduced-motion: reduce){ .fade{animation:none} .laje .tijolo{transition:none} }
+  .footer-note{ text-align:center; font-size:11px; color:#b3aaa0; margin-top:18px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="card">
+    <div class="top">
+      <div class="kick">Samba sem Mistério · Método da Laje</div>
+      <h1 id="topTitle">Descubra seu momento no violão</h1>
+      <div class="laje" id="laje">
+        <div class="tijolo"></div><div class="tijolo"></div><div class="tijolo"></div>
+        <div class="tijolo"></div><div class="tijolo"></div><div class="tijolo"></div>
+      </div>
+    </div>
+    <div class="body" id="screen"></div>
+  </div>
+  <div class="footer-note">Belchior Harmonia · leva menos de 2 minutos</div>
+</div>
+
+<script>
+/* ====== CONFIG: troque estes links ====== */
+const LINK_CURSO = "https://belchiorharmonia.com.br/samba-sem-misterio";
+const LINK_AULAS = "https://belchiorharmonia.com.br/aulas-particulares"; // <-- confirmar URL real
+const CODIGO_ALUNO = "SAMBANDONALAJE"; // <-- código único entregue na aula de boas-vindas (troque quando quiser)
+
+/* ====== LÓGICA (validada) ====== */
+const ORDEM=['tecnica','teoria','levada','acordes','harmonia'];
+function moduloPrioritario(n){
+  const vals=Object.values(n), mn=Math.min(...vals), soma=vals.reduce((a,b)=>a+b,0);
+  const n1=vals.filter(v=>v===1).length;
+  if(mn===3) return null;
+  if(new Set(vals).size===1) return soma<=7?'levada':'harmonia';
+  if(mn===1 && n1>=3) return 'levada';
+  return ORDEM.find(c=>n[c]===mn);
+}
+function aha(n){
+  const mod=moduloPrioritario(n), L=n.levada, A=n.acordes;
+  const n1=Object.values(n).filter(v=>v===1).length;
+  if(mod===null) return "Você já domina os cinco componentes — seu crescimento agora vem de repertório mais desafiador e refinamento.";
+  if(mod==='levada'){
+    if(n1>=4) return "Você está montando as primeiras bases — e é assim que todo mundo começa. O caminho é construir de baixo pra cima, começando pela <span class='hl'>levada</span>.";
+    if(L===1 && A>=2) return "Você forma os acordes, mas <span class='hl'>nada soa samba de verdade</span>. O que falta não é acorde — é a mão direita: a levada é o que transforma acordes parados em samba.";
+    return "A <span class='hl'>levada</span> é o coração do samba, e é onde seu tempo rende mais agora. Firme ela e o resto do que você já sabe ganha vida.";
+  }
+  if(mod==='tecnica') return "Você entende e já toca, mas a <span class='hl'>mecânica da mão</span> ainda trava no andamento — a mão precisa alcançar o que a cabeça já sabe.";
+  if(mod==='teoria') return "Você já toca bem, mas a <span class='hl'>base teórica</span> ficou para trás — e é ela que segura sua harmonia. Firme a teoria e a harmonia se abre.";
+  if(mod==='acordes') return "Sua mão direita e leitura já andam — o próximo degrau é ampliar o <span class='hl'>vocabulário de acordes</span> pra enriquecer o que você toca.";
+  if(mod==='harmonia') return "Você já tem base sólida e parelha. O próximo salto é a <span class='hl'>harmonia funcional</span> — passar de 'toco as músicas' para 'entendo o que toco'.";
+}
+function musicaPartida(n){ return n.levada===1 ? {nome:'Onde Anda Você',tom:'Dó Maior',estilo:'bossa'} : {nome:'Trem das Onze',tom:'Lá menor',estilo:'samba'}; }
+const MOD_NOME={tecnica:'02 — Lapidando a Técnica',teoria:'03 — Mapeamento e Introdução à Harmonia',levada:'04 — Levadas de Samba',acordes:'05 — A Formação dos Acordes',harmonia:'06/07 — Harmonia Funcional e Progressões'};
+
+/* ====== PERGUNTAS ====== */
+const GATE={
+  key:'gate',
+  text:"Pensando no violão de maneira geral e considerando qualquer estilo musical, o que você já consegue fazer hoje?",
+  opts:[
+    {t:"Ainda não consigo formar acordes nem manter uma batida", v:0},
+    {t:"Estou começando — formo alguns acordes, mas ainda não toco músicas do início ao fim sem travar", v:0},
+    {t:"Já toco músicas inteiras do início ao fim sem travar, trocando os acordes no tempo", v:1},
+  ]
+};
+const NIVEIS=[
+  {key:'levada', text:"Como está a sua levada de samba no violão?",
+   opts:[["Ainda não consigo fazer a levada de samba",1],["Consigo fazer a levada de samba com segurança",2],["Faço com segurança e ainda crio variações",3]]},
+  {key:'tecnica', text:"Como está a sua técnica (dedos, coordenação da mão)?",
+   opts:[["Meus dedos travam, o som sai sujo ou com esforço",1],["Toco os padrões básicos com coordenação e limpeza",2],["Tenho ligados, velocidade e fluidez; a técnica não me trava",3]]},
+  {key:'acordes', text:"Quais acordes você domina?",
+   opts:[["Acordes básicos / tríades",1],["As tétrades principais (com sétima), em mais de uma posição",2],["Inversões, tensões (9,11,13) e acordes mais complexos",3]]},
+  {key:'teoria', text:"Qual seu conhecimento de teoria aplicada ao braço?",
+   opts:[["Sei pouco ou nada sobre notas e escalas no braço",1],["Entendo a escala maior e sei montá-la no braço",2],["Domino o ciclo das quintas e faço a escala em todos os tons",3]]},
+  {key:'harmonia', text:"Como está seu entendimento de harmonia?",
+   opts:[["Não sei montar campo harmônico nem entendo as funções",1],["Monto o campo e entendo por que um acorde puxa o outro",2],["Uso dominantes secundários e reconheço caminhos entre músicas",3]]},
+];
+const NIV_DESC={
+  levada:{1:"Ainda construindo a levada de samba.",2:"Faz o samba com segurança.",3:"Faz, encaixa e varia."},
+  tecnica:{1:"Mecânica ainda em construção.",2:"Coordenação limpa nos básicos.",3:"Ligados, velocidade e fluidez."},
+  acordes:{1:"Trabalhando as tríades.",2:"Domina as tétrades principais.",3:"Inversões e tensões."},
+  teoria:{1:"Base inicial de escala/braço.",2:"Monta a escala maior no braço.",3:"Ciclo das quintas e todos os tons."},
+  harmonia:{1:"Enxergando as funções.",2:"Monta campo e entende a cadência.",3:"Recursos e caminhos entre músicas."},
+};
+const COMP_LABEL={levada:'Levada',tecnica:'Técnica',acordes:'Acordes',teoria:'Teoria',harmonia:'Harmonia'};
+
+/* ====== ESTADO / FLUXO ====== */
+const state={ apto:null, niveis:{}, musica:'', nome:'', aluno:false };
+let step=0; // 0 intro, 1 gate, 2..6 níveis, 7 música, 8 resultado
+const screen=document.getElementById('screen');
+const laje=document.getElementById('laje').children;
+const topTitle=document.getElementById('topTitle');
+
+function setLaje(k){ for(let i=0;i<laje.length;i++) laje[i].classList.toggle('on', i<k); }
+function render(html){ screen.innerHTML=html; screen.classList.remove('fade'); void screen.offsetWidth; screen.classList.add('fade'); }
+
+function go(s){ step=s; draw(); }
+
+function draw(){
+  // intro
+  if(step===0){
+    setLaje(0); topTitle.textContent="Descubra seu momento no violão";
+    render(`
+      <div class="intro-hero">
+        <div class="big">Onde você está<br>no <em>samba</em> — e o que<br>falta pra destravar</div>
+        <p>Responda 6 perguntas rápidas e receba na hora um retrato do seu momento no violão, com o próximo passo certo pra evoluir.</p>
+        <div class="meta-row">
+          <span class="chip">⏱ menos de 2 min</span>
+          <span class="chip">🎯 diagnóstico na hora</span>
+          <span class="chip">🎸 método da laje</span>
+        </div>
+      </div>
+      <button class="btn" onclick="go(1)">Começar meu diagnóstico</button>
+    `);
+    return;
+  }
+  // gate
+  if(step===1){
+    setLaje(1); topTitle.textContent="Primeiro, o básico";
+    render(`
+      <div class="qnum">Ponto de partida</div>
+      <div class="qtext">${GATE.text}</div>
+      <div class="opts">
+        ${GATE.opts.map((o,i)=>`<button class="opt" onclick="answerGate(${o.v})">${o.t}</button>`).join('')}
+      </div>
+      <button class="back" onclick="go(0)">← voltar</button>
+    `);
+    return;
+  }
+  // níveis (steps 2..6)
+  if(step>=2 && step<=6){
+    const idx=step-2; const q=NIVEIS[idx];
+    setLaje(1+step); topTitle.textContent="Seu nível, componente a componente";
+    render(`
+      <div class="qnum">Pergunta ${idx+1} de 5</div>
+      <div class="qtext">${q.text}</div>
+      <div class="opts">
+        ${q.opts.map(o=>`<button class="opt" onclick="answerNivel('${q.key}',${o[1]})">${o[0]}</button>`).join('')}
+      </div>
+      <button class="back" onclick="go(${step-1})">← voltar</button>
+    `);
+    return;
+  }
+  // música
+  if(step===7){
+    setLaje(6); topTitle.textContent="Quase lá";
+    render(`
+      <div class="qnum">Última pergunta</div>
+      <div class="qtext">Qual música de samba você mais sonha em tocar no violão?</div>
+      <div class="field">
+        <input id="inpMusica" type="text" placeholder="Ex.: Trem das Onze, O Que Será, Coração Vagabundo..." value="${state.musica||''}">
+      </div>
+      <div class="field">
+        <label>Seu primeiro nome (para personalizar o diagnóstico)</label>
+        <input id="inpNome" type="text" placeholder="Como você se chama?" value="${state.nome||''}">
+      </div>
+      <button class="btn" onclick="finishMusica()">Ver meu diagnóstico</button>
+      <button class="back" onclick="go(6)">← voltar</button>
+    `);
+    return;
+  }
+  // resultado
+  if(step===8){ setLaje(6); drawResultado(); return; }
+}
+
+/* ====== HANDLERS ====== */
+function answerGate(v){
+  state.apto = (v===1);
+  if(!state.apto){ topTitle.textContent="Seu momento"; drawBase(); step=99; return; }
+  go(2);
+}
+function answerNivel(key,val){ state.niveis[key]=val; go(step+1); }
+function finishMusica(){
+  state.musica=(document.getElementById('inpMusica').value||'').trim();
+  state.nome=(document.getElementById('inpNome').value||'').trim();
+  go(8);
+}
+
+/* ====== RESULTADO: APTO ====== */
+/* ====== CIRCUITO DO ALUNO (mesmo dos PDFs) ====== */
+const FOCO_ETAPA={levada:3,tecnica:2,teoria:2,acordes:4,harmonia:5};
+function et2(tec,teo){
+  const T={1:'só o polegar',2:'combinações I-M, I-A, M-A',3:'ligados e desafio de velocidade'};
+  const O={1:'em 1 região',2:'em pelo menos 2 regiões',3:'em todas as regiões'};
+  return `Escala natural do tom, no metrônomo e em <b>andamento confortável</b>: mão direita usando <b>${T[tec]}</b>, percorrendo a escala <b>${O[teo]}</b> do braço.`;
+}
+function et3(l){return {
+  1:'Levada de <b>bossa nova</b> no acorde do 1º grau, em andamento confortável, firmando a mão direita (POU/CÁ/TU).',
+  2:'Levada de <b>samba simples</b> no acorde do 1º grau, em andamento confortável, buscando deixá-la mais fluida e natural.',
+  3:'<b>Variações de levada</b> no acorde do 1º grau, em andamento confortável, além do POU/CÁ/TU, ampliando a consciência rítmica.'}[l];}
+function et4(a){return {
+  1:'Montar o campo harmônico do tom: <b>tentar as tétrades</b>, ou ao menos identificar as tríades de I, IV e V.',
+  2:'Montar o campo com as <b>tétrades</b> em pelo menos 2 regiões do braço.',
+  3:'Montar o campo com <b>tensões e inversões</b> em 2 ou mais regiões.'}[a];}
+function et5(harm){return {
+  1:'Cadências II-V-I e IV-V-I no tom, em andamento confortável, da forma mais fácil no braço, <b>percebendo as funções</b>. Com a levada no seu nível.',
+  2:'Cadências II-V-I e IV-V-I em andamento confortável, <b>em pelo menos 2 regiões</b>, sentindo a cadência. Com a levada no seu nível.',
+  3:'Cadências em andamento confortável, <b>em todas as regiões</b>, usando <b>substituições</b>. Com a levada no seu nível.'}[harm];}
+
+function renderCircuito(n){
+  const mus=musicaPartida(n); const mod=moduloPrioritario(n);
+  const foco = mod? FOCO_ETAPA[mod] : 0;
+  const passos=[
+    {num:1,name:'Música e tom',comp:'',time:'~1 min',body:`${mus.nome}, em <b>${mus.tom}</b>. Afine e comece.`},
+    {num:2,name:'Aquecimento',comp:'técnica + teoria',time:'2-5 min',body:et2(n.tecnica,n.teoria)},
+    {num:3,name:'Levada',comp:'levada',time:'2-5 min',body:et3(n.levada)},
+    {num:4,name:'Campo harmônico',comp:'acordes',time:'2-5 min',body:et4(n.acordes)},
+    {num:5,name:'Progressões e troca de acordes',comp:'harmonia + levada',time:'2-5 min',body:et5(n.harmonia)},
+    {num:6,name:'Toque a música',comp:'',time:'resto',body:`Toque ${mus.nome} <b>sozinho</b> primeiro; depois <b>com a gravação</b> ou <b>com uma base de batucada</b>. Em seguida, siga tocando o <b>repertório acumulado</b>.`},
+  ];
+  return passos.map(pp=>`
+    <div class="plano-etapa ${pp.num===foco?'foco':''}">
+      <div class="pe-head"><span class="pe-num">${pp.num}</span><span class="pe-name">${pp.name}</span>
+        ${pp.comp?`<span class="pe-comp">${pp.comp}</span>`:''}${pp.num===foco?'<span class="pe-foco">foco</span>':''}
+        <span class="pe-time">${pp.time}</span></div>
+      <div class="pe-body">${pp.body}</div>
+    </div>`).join('');
+}
+
+/* ====== SEÇÃO DO PLANO: bloqueada (lead) ou completa (aluno) ====== */
+function secaoPlano(n){
+  if(state.aluno){
+    return `<div class="sec-h">Seu plano prático de estudo</div>
+      <div class="plano-ok-banner">✓ Plano desbloqueado — este é seu circuito diário, calibrado pro seu nível</div>
+      ${renderCircuito(n)}`;
+  }
+  // prévia bloqueada
+  const titulos=['Música e tom','Aquecimento','Levada','Campo harmônico','Progressões e troca de acordes','Toque a música'];
+  const blur=titulos.map((t,i)=>`<div class="etapa-blur"><span class="en">${i+1}</span><span class="et">${t}</span></div>`).join('');
+  return `<div class="sec-h">Seu plano prático de estudo</div>
+    <div class="plano-lock">
+      <div class="cad">
+        <div class="ico">🔒</div>
+        <h4>Seu plano prático personalizado está pronto</h4>
+        <p>São 6 etapas diárias, já calibradas pro seu nível exato. Ele te espera dentro do método — é o "como fazer" do seu diagnóstico.</p>
+      </div>
+      ${blur}
+      <div class="code-toggle"><button onclick="mostrarCampoCodigo()">Já sou aluno · tenho um código de acesso</button></div>
+      <div id="codeArea" class="hidden">
+        <div class="code-field">
+          <input id="inpCodigo" type="text" placeholder="Digite seu código" onkeydown="if(event.key==='Enter')tentarCodigo()">
+          <button onclick="tentarCodigo()">Desbloquear</button>
+        </div>
+        <div class="code-err" id="codeErr"></div>
+      </div>
+    </div>`;
+}
+function mostrarCampoCodigo(){ document.getElementById('codeArea').classList.remove('hidden'); document.getElementById('inpCodigo').focus(); }
+function tentarCodigo(){
+  const v=(document.getElementById('inpCodigo').value||'').trim().toUpperCase();
+  if(v===CODIGO_ALUNO.toUpperCase()){ state.aluno=true; drawResultado(); }
+  else{ document.getElementById('codeErr').textContent='Código não reconhecido. Confira na sua aula de boas-vindas.'; }
+}
+
+function drawResultado(){
+  const n=state.niveis;
+  const mn=Math.min(...Object.values(n));
+  const mod=moduloPrioritario(n);
+  const nome=state.nome? state.nome : "";
+  topTitle.textContent = nome? `${nome}, aqui está seu retrato` : "Aqui está seu retrato";
+
+  const linhas=['levada','tecnica','acordes','teoria','harmonia'].map(c=>{
+    const lv=n[c]; const gap=(lv===mn && lv<3);
+    const dots=[1,2,3].map(k=>`<span class="dot ${k===lv?'on':''} ${(k===lv&&gap)?'gap':''}">N${k}</span>`).join('');
+    return `<tr><td class="r-comp">${COMP_LABEL[c]}</td><td class="r-desc">${NIV_DESC[c][lv]}</td><td class="dots">${dots}</td></tr>`;
+  }).join('');
+
+  // metas (destino de cada nível — o que a pessoa CONSEGUE fazer, sem ensinar o como)
+  const META={
+    levada:{2:'fazer a levada de samba com segurança',3:'criar variações e encaixar na percussão'},
+    tecnica:{2:'tocar os padrões básicos com coordenação e limpeza',3:'ter ligados, velocidade e fluidez na mão'},
+    acordes:{2:'dominar as tétrades principais em várias posições',3:'usar inversões, tensões e acordes mais ricos'},
+    teoria:{2:'entender e montar a escala maior no braço',3:'dominar o ciclo das quintas e todos os tons'},
+    harmonia:{2:'montar o campo e entender por que um acorde puxa o outro',3:'usar recursos avançados e reconhecer caminhos entre músicas'},
+  };
+  const degraus=['levada','tecnica','acordes','teoria','harmonia'].map(c=>{
+    const lv=n[c]; const foco=(c===mod);
+    if(lv===3){
+      return `<div class="degrau done"><span class="dg-comp">${COMP_LABEL[c]}</span><span class="dg-done">✓ você já domina</span></div>`;
+    }
+    return `<div class="degrau ${foco?'foco':''}">
+      <div class="dg-head"><span class="dg-comp">${COMP_LABEL[c]}</span><span class="dg-lvl">Nível ${lv}</span>${foco?'<span class="dg-lvl" style="background:var(--dourado);color:var(--roxo)">comece aqui</span>':''}</div>
+      <div class="dg-next">Próximo passo: <b>${META[c][lv+1]}</b></div>
+    </div>`;
+  }).join('');
+
+  const modTxt = mod
+    ? `Seu ponto de partida é o <b>Módulo ${MOD_NOME[mod]}</b> — é exatamente essa peça que o método destrava primeiro pra você, na ordem certa.`
+    : `Você já percorreu a laje inteira — o método te leva ao refinamento e ao repertório avançado.`;
+  const sonho = state.musica ? ` — como <b>${escapeHtml(state.musica)}</b>` : '';
+
+  render(`
+    <div class="sec-h">Onde você está hoje</div>
+    <table class="r-niv">${linhas}</table>
+
+    <div class="sec-h">O que esse retrato revela</div>
+    <div class="aha-box">${aha(n)}</div>
+
+    <div class="sec-h">O que falta pra evoluir</div>
+    <div class="degraus-intro">O objetivo é chegar ao <b>Nível 3</b> em todos os componentes. Veja seu próximo passo em cada um:</div>
+    <div class="degraus">${degraus}</div>
+
+    ${secaoPlano(n)}
+
+    ${ state.aluno ? `
+    <div class="cta-block" style="background:#eef7ee">
+      <h3 style="color:#2e6b3a">Bom estudo! 🎸</h3>
+      <p style="color:#3a5a40">Faça o circuito todos os dias, mesmo que rápido — é a constância que constrói a laje. Qualquer dúvida em algum passo, me chama.</p>
+    </div>` : `
+    <div class="proof">★ 5,0 no Google · alunos que saíram do mesmo ponto e hoje tocam com confiança</div>
+    <div class="cta-block">
+      <h3>Veja o caminho completo</h3>
+      <div class="oferta-mod">${modTxt}</div>
+      <p>O método te leva por cada um desses passos, na ordem certa — do seu ponto de partida ao repertório que você sonha tocar${sonho}.</p>
+      <a class="btn gold" href="${LINK_CURSO}" target="_blank" rel="noopener" style="margin-top:14px">Conhecer o método completo →</a>
+    </div>`}
+    <button class="back" onclick="restart()">↻ refazer diagnóstico</button>
+  `);
+}
+
+/* ====== RESULTADO: ABAIXO DO PISO ====== */
+function drawBase(){
+  setLaje(2);
+  render(`
+    <div class="sec-h">Seu momento</div>
+    <div class="aha-box">
+      Pelo que você respondeu, você está <b>construindo suas primeiras bases no violão</b> — formando acordes, pegando as primeiras batidas. Esse momento é importante e merece atenção especial.
+    </div>
+    <div class="step-box" style="background:#f7f2fb;border-color:#e0d3f0">
+      <span class="lbl" style="background:var(--roxo)">O caminho certo pra você</span>
+      <h4 style="color:var(--roxo)">Firmar a base antes do samba</h4>
+      <p>O <b>Samba sem Mistério</b> parte de quem já toca um repertório básico — se você entrar agora, corre o risco de se frustrar. O caminho ideal pro seu momento é construir a base primeiro, com acompanhamento de perto.</p>
+    </div>
+    <div class="cta-block">
+      <h3>Vamos começar do jeito certo</h3>
+      <p>Nas aulas particulares, eu te acompanho passo a passo pra você firmar a base — e logo estar pronto pro método completo.</p>
+      <a class="btn gold" href="${LINK_AULAS}" target="_blank" rel="noopener" style="margin-top:14px">Quero aulas particulares →</a>
+    </div>
+    <button class="back" onclick="restart()">↻ refazer diagnóstico</button>
+  `);
+}
+
+function restart(){ state.apto=null; state.niveis={}; state.musica=''; state.nome=''; state.aluno=false; go(0); }
+function escapeHtml(s){ return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+draw();
+</script>
+</body>
+</html>
