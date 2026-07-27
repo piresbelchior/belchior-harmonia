@@ -82,6 +82,7 @@
         border-radius:3px; margin-left:2px; color:#c3b8b2; background:#f0ece8; }
   .dot.on{ color:#fff; background:#8a6bb0; }
   .dot.on.gap{ background:var(--laranja); }
+  .dot.on.top{ background:#3f9a52; }
   .sec-h{ font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--roxo); font-weight:700; margin:24px 0 8px; padding-bottom:5px; border-bottom:2px solid var(--dourado); }
   .aha-box{ background:#f7f2fb; border-left:4px solid #8a6bb0; padding:14px 16px; border-radius:0 8px 8px 0; font-size:14.5px; color:#3a3540; }
   .aha-box .hl{ color:var(--laranja-esc); font-weight:700; }
@@ -138,6 +139,12 @@
   .pe-body{ font-size:12.5px; color:#4a4048; margin-top:4px; }
   .pe-foco{ display:inline-block;background:var(--laranja);color:#fff;font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-left:4px; }
   .plano-ok-banner{ background:#eef7ee;border:1px solid #cfe6cf;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#2e6b3a;text-align:center;font-weight:600; }
+  .mentoria-box{ background:#f7f2fb; border:1.5px solid #d9c7ea; border-radius:12px; padding:18px; text-align:center; margin-top:14px; }
+  .mentoria-box .mb-tag{ font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--laranja-esc); font-weight:700; }
+  .mentoria-box h3{ color:var(--roxo); font-size:17px; font-weight:800; margin-top:5px; }
+  .mentoria-box p{ font-size:13.5px; color:#4a4048; margin-top:6px; }
+  .btn.whats{ background:#25D366; color:#0b3d2e; }
+  .btn.whats:hover{ background:#1eb257; }
   .hidden{ display:none !important; }
   .fade{ animation:fade .35s ease; }
   @keyframes fade{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
@@ -165,7 +172,8 @@
 /* ====== CONFIG: troque estes links ====== */
 const LINK_CURSO = "https://belchiorharmonia.com.br/samba-sem-misterio";
 const LINK_AULAS = "https://belchiorharmonia.com.br/aulas-particulares"; // <-- confirmar URL real
-const CODIGO_ALUNO = "SAMBANDONALAJE"; // <-- código único entregue na aula de boas-vindas (troque quando quiser)
+const CODIGO_ALUNO = "SAMBANDONALAJE";
+const WHATS_JOAO = "5521993763200"; // número com DDI 55 + DDD, sem símbolos // <-- código único entregue na aula de boas-vindas (troque quando quiser)
 
 /* ====== LÓGICA (validada) ====== */
 const ORDEM=['tecnica','teoria','levada','acordes','harmonia'];
@@ -226,7 +234,7 @@ const NIV_DESC={
 const COMP_LABEL={levada:'Levada',tecnica:'Técnica',acordes:'Acordes',teoria:'Teoria',harmonia:'Harmonia'};
 
 /* ====== ESTADO / FLUXO ====== */
-const state={ apto:null, niveis:{}, musica:'', nome:'', aluno:false };
+const state={ apto:null, niveis:{}, musica:'', nome:'', whats:'', aluno:false };
 let step=0; // 0 intro, 1 gate, 2..6 níveis, 7 música, 8 resultado
 const screen=document.getElementById('screen');
 const laje=document.getElementById('laje').children;
@@ -282,20 +290,26 @@ function draw(){
     `);
     return;
   }
-  // música
+  // captura (nome + whatsapp obrigatórios, música opcional)
   if(step===7){
-    setLaje(6); topTitle.textContent="Quase lá";
+    setLaje(6); topTitle.textContent="Falta pouco!";
     render(`
-      <div class="qnum">Última pergunta</div>
-      <div class="qtext">Qual música de samba você mais sonha em tocar no violão?</div>
+      <div class="qnum">Seu diagnóstico está pronto</div>
+      <div class="qtext">Deixe seus dados para ver seu diagnóstico completo</div>
       <div class="field">
-        <input id="inpMusica" type="text" placeholder="Ex.: Trem das Onze, O Que Será, Coração Vagabundo..." value="${state.musica||''}">
+        <label>Nome e sobrenome <span style="color:var(--laranja)">*</span></label>
+        <input id="inpNome" type="text" placeholder="Ex.: Maria Silva" value="${state.nome||''}" autocomplete="name">
       </div>
       <div class="field">
-        <label>Seu primeiro nome (para personalizar o diagnóstico)</label>
-        <input id="inpNome" type="text" placeholder="Como você se chama?" value="${state.nome||''}">
+        <label>Seu WhatsApp <span style="color:var(--laranja)">*</span></label>
+        <input id="inpWhats" type="tel" inputmode="numeric" placeholder="(21) 99999-9999" value="${state.whats||''}" autocomplete="tel" oninput="maskWhats(this)">
       </div>
-      <button class="btn" onclick="finishMusica()">Ver meu diagnóstico</button>
+      <div class="field">
+        <label>Qual música de samba você sonha em tocar? <span style="color:var(--cinza);font-weight:500">(opcional)</span></label>
+        <input id="inpMusica" type="text" placeholder="Ex.: Trem das Onze, Coração Vagabundo..." value="${state.musica||''}">
+      </div>
+      <div class="code-err" id="capErr"></div>
+      <button class="btn" onclick="finishCaptura()">Ver meu diagnóstico →</button>
       <button class="back" onclick="go(6)">← voltar</button>
     `);
     return;
@@ -311,10 +325,40 @@ function answerGate(v){
   go(2);
 }
 function answerNivel(key,val){ state.niveis[key]=val; go(step+1); }
-function finishMusica(){
+function maskWhats(el){
+  const d=el.value.replace(/\D/g,'').slice(0,11);
+  let out='';
+  if(d.length>0) out='('+d.slice(0,2);
+  if(d.length>=3) out+=') '+d.slice(2, d.length>10?7:6);
+  if(d.length>6){ out+= '-' + (d.length>10 ? d.slice(7) : d.slice(6)); }
+  el.value=out;
+}
+function whatsValido(v){ const d=v.replace(/\D/g,''); return d.length===10||d.length===11; }
+function finishCaptura(){
+  const nome=(document.getElementById('inpNome').value||'').trim();
+  const whats=(document.getElementById('inpWhats').value||'').trim();
+  const err=document.getElementById('capErr');
+  if(nome.split(' ').filter(Boolean).length<2){ err.textContent='Por favor, digite nome e sobrenome.'; return; }
+  if(!whatsValido(whats)){ err.textContent='Digite um WhatsApp válido com DDD.'; return; }
+  err.textContent='';
+  state.nome=nome; state.whats=whats;
   state.musica=(document.getElementById('inpMusica').value||'').trim();
-  state.nome=(document.getElementById('inpNome').value||'').trim();
+  enviarLead();   // grava na planilha (via Apps Script) — configurar ENDPOINT
   go(8);
+}
+/* Envio do lead para a planilha (Google Apps Script). Cole a URL do Web App em ENDPOINT_LEADS. */
+const ENDPOINT_LEADS = "https://script.google.com/macros/s/AKfycbxVkEtzExsV0dgwBb6PLfJ5iZaCGWToB6PUfibKz1n_VJM_9xoEy-Bfc98wA46-9qHkdA/exec"; // Apps Script (planilha de leads)
+function enviarLead(){
+  if(!ENDPOINT_LEADS) return; // ainda não configurado
+  const n=state.niveis;
+  const payload={
+    nome:state.nome, whatsapp:state.whats, musica:state.musica,
+    apto:state.apto, levada:n.levada, tecnica:n.tecnica, acordes:n.acordes, teoria:n.teoria, harmonia:n.harmonia,
+    modulo:(moduloPrioritario(n)||'formado'), data:new Date().toISOString()
+  };
+  try{
+    fetch(ENDPOINT_LEADS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+  }catch(e){ /* silencioso: não trava o lead */ }
 }
 
 /* ====== RESULTADO: APTO ====== */
@@ -402,7 +446,7 @@ function drawResultado(){
 
   const linhas=['levada','tecnica','acordes','teoria','harmonia'].map(c=>{
     const lv=n[c]; const gap=(lv===mn && lv<3);
-    const dots=[1,2,3].map(k=>`<span class="dot ${k===lv?'on':''} ${(k===lv&&gap)?'gap':''}">N${k}</span>`).join('');
+    const dots=[1,2,3].map(k=>`<span class="dot ${k===lv?'on':''} ${(k===lv&&gap)?'gap':''} ${(k===lv&&lv===3)?'top':''}">N${k}</span>`).join('');
     return `<tr><td class="r-comp">${COMP_LABEL[c]}</td><td class="r-desc">${NIV_DESC[c][lv]}</td><td class="dots">${dots}</td></tr>`;
   }).join('');
 
@@ -429,6 +473,7 @@ function drawResultado(){
     ? `Seu ponto de partida é o <b>Módulo ${MOD_NOME[mod]}</b> — é exatamente essa peça que o método destrava primeiro pra você, na ordem certa.`
     : `Você já percorreu a laje inteira — o método te leva ao refinamento e ao repertório avançado.`;
   const sonho = state.musica ? ` — como <b>${escapeHtml(state.musica)}</b>` : '';
+  const waMentoria = `https://wa.me/${WHATS_JOAO}?text=`+encodeURIComponent(`Oi João! Desbloqueei meu plano de estudo${state.nome? ' ('+state.nome+')':''} e quero agendar minha mentoria experimental gratuita.`);
 
   render(`
     <div class="sec-h">Onde você está hoje</div>
@@ -444,9 +489,15 @@ function drawResultado(){
     ${secaoPlano(n)}
 
     ${ state.aluno ? `
-    <div class="cta-block" style="background:#eef7ee">
+    <div class="mentoria-box">
+      <div class="mb-tag">É sua primeira vez por aqui?</div>
+      <h3>Vamos calibrar seu plano ao vivo</h3>
+      <p>Se você acabou de fazer seu nivelamento, tem direito a uma <b>mentoria experimental gratuita</b> comigo — a gente revisa seu plano juntos e ajusta o que for preciso pro seu momento.</p>
+      <a class="btn whats" href="${waMentoria}" target="_blank" rel="noopener" style="margin-top:14px">Agendar minha mentoria experimental →</a>
+    </div>
+    <div class="cta-block" style="background:#eef7ee;margin-top:12px">
       <h3 style="color:#2e6b3a">Bom estudo! 🎸</h3>
-      <p style="color:#3a5a40">Faça o circuito todos os dias, mesmo que rápido — é a constância que constrói a laje. Qualquer dúvida em algum passo, me chama.</p>
+      <p style="color:#3a5a40">Faça o circuito todos os dias, mesmo que rápido — é a constância que constrói a laje.</p>
     </div>` : `
     <div class="proof">★ 5,0 no Google · alunos que saíram do mesmo ponto e hoje tocam com confiança</div>
     <div class="cta-block">
@@ -481,7 +532,7 @@ function drawBase(){
   `);
 }
 
-function restart(){ state.apto=null; state.niveis={}; state.musica=''; state.nome=''; state.aluno=false; go(0); }
+function restart(){ state.apto=null; state.niveis={}; state.musica=''; state.nome=''; state.whats=''; state.aluno=false; go(0); }
 function escapeHtml(s){ return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 draw();
