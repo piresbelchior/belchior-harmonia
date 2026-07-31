@@ -91,21 +91,48 @@ img{max-width:100%;display:block}
 .det-card p{font-size:.87rem;color:var(--muted);line-height:1.6}
 .det-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.8rem;color:var(--laranja);margin-bottom:.25rem}
 
-/* PILARES — laranja */
-.pilares{background:var(--laranja);position:relative;padding:5.5rem 2rem;margin-top:0}
-
-
+/* DIFERENCIAL — Sistema de Prática Direcionada (faixa escura, no estilo da seção final) */
+.pilares{background:var(--preto);position:relative;padding:5.5rem 2rem;margin-top:0;overflow:hidden}
+.pilares::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(242,101,34,.12) 0%,transparent 70%);top:-220px;left:-120px;pointer-events:none;animation:glow 7s ease-in-out infinite}
 .pilares .sec-in{position:relative;z-index:1}
-.pilares .eyebrow{color:rgba(255,255,255,.7)}
+.pilares .eyebrow{color:var(--laranja)}
 .pilares .sec-title{color:var(--branco)}
-.pilares .sec-sub{color:rgba(255,255,255,.85)}
-.pilares-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem}
-.pilar{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:1.5rem 1rem;text-align:center;transition:background .2s,transform .2s}
-.pilar:hover{background:rgba(255,255,255,.22);transform:translateY(-4px)}
-.pilar-img{width:52px;height:52px;object-fit:contain;margin:0 auto .85rem;filter:brightness(0) invert(1) opacity(.85)}
-.pilar-emo{font-size:2rem;margin-bottom:.75rem}
-.pilar h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;color:var(--branco);margin-bottom:.35rem}
-.pilar p{font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.5}
+.pilares .sec-sub{color:rgba(255,255,255,.65)}
+.passos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.passo{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.6rem 1.35rem;transition:border-color .2s,transform .2s}
+.passo:hover{border-color:rgba(242,101,34,.5);transform:translateY(-4px)}
+.passo-emo{font-size:1.85rem;line-height:1;margin-bottom:.6rem}
+.passo h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:var(--branco);margin-bottom:.4rem}
+.passo p{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.55}
+/* Painel: prévia da tela real do diagnóstico (cartão claro sobre o preto) */
+.dgx{--roxo:#4a2f6b;--roxo-claro:#8a6bb0;--dourado:#edc14a;--verde:#3f9a52;--creme:#faf7f2;--tinta:#2b2b30;--dg-cinza:#6b6b73;--linha:#ece6de;max-width:520px;margin:3rem auto 0;background:var(--creme);border-radius:18px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5);text-align:left}
+.dgx-top{background:var(--roxo);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.dgx-top h4{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#fff}
+.dgx-chip{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--roxo);background:var(--dourado);padding:.28rem .6rem;border-radius:100px;white-space:nowrap}
+.dgx-body{padding:1.25rem}
+.dgx-intro{font-size:.78rem;color:var(--dg-cinza);line-height:1.5;margin-bottom:.9rem}
+.dgx-intro b{color:var(--tinta)}
+.dgx .degrau{padding:.7rem .85rem;border-radius:10px;background:#fbf9f6;border:1px solid var(--linha)}
+.dgx .degrau+.degrau{margin-top:.5rem}
+.dgx .degrau.foco{background:#FFF5F0;border:1.5px solid var(--laranja)}
+.dgx .degrau.done{background:#f3f8f3;border:1px solid #d9e8d9;display:flex;align-items:center;justify-content:space-between}
+.dg-head{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem}
+.dg-comp{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;color:var(--tinta)}
+.dg-lvl{font-size:.58rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--roxo-claro);padding:.18rem .55rem;border-radius:100px}
+.dg-aqui{font-size:.58rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--roxo);background:var(--dourado);padding:.18rem .55rem;border-radius:100px}
+.dg-dots{display:flex;gap:.25rem;margin-left:auto}
+.dg-dot{width:24px;height:16px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.52rem;font-weight:700;color:#c3b8b2;background:#f0ece8}
+.dg-dot.on{color:#fff;background:var(--roxo-claro)}
+.dg-dot.on.foco{background:var(--laranja)}
+.dg-dot.on.top{background:var(--verde)}
+.dg-next{font-size:.74rem;color:var(--dg-cinza);margin-top:.45rem;line-height:1.45}
+.dg-next b{color:var(--laranja-dark);font-weight:700}
+.dg-done{font-size:.75rem;font-weight:700;color:var(--verde)}
+.dgx-step{background:#FFF5F0;border:1px solid #f5c9b3;border-radius:10px;padding:.9rem 1rem;margin-top:.9rem}
+.dgx-step .lbl{display:inline-block;background:var(--laranja);color:#fff;font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .5rem;border-radius:4px}
+.dgx-step h5{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;color:var(--laranja-dark);margin-top:.5rem}
+.dgx-step p{font-size:.76rem;color:#4a4048;line-height:1.5;margin-top:.3rem}
+.metodo-cta{text-align:center;margin-top:3rem}
 
 /* PROFESSOR */
 .prof-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
@@ -139,6 +166,28 @@ img{max-width:100%;display:block}
 .faq-item.open .faq-icon{transform:rotate(45deg);border-color:var(--laranja);color:var(--laranja)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
 .faq-a p{padding:0 1.5rem 1.3rem;font-size:.88rem;line-height:1.75;color:var(--muted)}
+/* SEÇÃO "Esse curso é pra você?" — qualificação (fit) */
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:900px;margin:3rem auto 0}
+.fit-card{background:var(--branco);border:1px solid #E8E8E8;border-radius:14px;padding:1.6rem 1.6rem 1.7rem;box-shadow:0 4px 18px rgba(0,0,0,.05)}
+.fit-card.is-sim{border-top:4px solid #2e9e4f}
+.fit-card.is-nao{border-top:4px solid #cf5a4c}
+.fit-card h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.02rem;margin-bottom:1.1rem}
+.is-sim h3{color:#237a3d}
+.is-nao h3{color:#b0463a}
+.fit-list{display:flex;flex-direction:column;gap:.9rem}
+.fit-item{display:flex;gap:.7rem;font-size:.9rem;line-height:1.55;color:var(--texto)}
+.fit-item .ic{flex-shrink:0;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;color:#fff;margin-top:.1rem}
+.is-sim .ic{background:#2e9e4f}
+.is-nao .ic{background:#cf5a4c}
+.fit-fecho{max-width:900px;margin:1.5rem auto 0;background:rgba(242,101,34,.08);border:1px solid rgba(242,101,34,.22);border-radius:14px;padding:1.4rem 1.7rem;text-align:center;font-size:.95rem;line-height:1.7;color:var(--texto)}
+.fit-fecho b{color:var(--laranja-dark)}
+/* BENEFÍCIOS — o que "tocar com fluência" quer dizer */
+.benef-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:3rem}
+.benef-card{background:var(--branco);border:1px solid #E8E8E8;border-radius:12px;padding:1.6rem 1.4rem;transition:border-color .2s,transform .2s,box-shadow .2s}
+.benef-card:hover{border-color:var(--laranja);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.benef-emo{font-size:1.9rem;line-height:1;margin-bottom:.8rem}
+.benef-card h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:var(--preto);margin-bottom:.4rem;line-height:1.3}
+.benef-card p{font-size:.83rem;color:var(--muted);line-height:1.55}
 
 /* CTA FINAL */
 .cta-sec{background:var(--preto);padding:6rem 2rem;position:relative;overflow:hidden}
@@ -213,7 +262,7 @@ img{max-width:100%;display:block}
 
 /* MOBILE */
 @media(max-width:900px){.pilares-grid{grid-template-columns:repeat(2,1fr)}.detalhes-grid{grid-template-columns:1fr 1fr}.mod-grid{grid-template-columns:1fr}}
-@media(max-width:768px){.planos{grid-template-columns:1fr!important}.cta-grid{grid-template-columns:1fr}.hero-in{grid-template-columns:1fr}.hero-img{max-width:340px;margin:0 auto}.mod-grid{grid-template-columns:1fr}.detalhes-grid{grid-template-columns:1fr}.pilares-grid{grid-template-columns:1fr 1fr}.prof-grid{grid-template-columns:1fr;gap:2.5rem}.prof-photo{max-width:300px;margin:0 auto}.dep-grid{grid-template-columns:1fr}.cta-grid{grid-template-columns:1fr}.mockup{display:none}.foot-in{flex-direction:column;text-align:center}.stats{gap:1.25rem}}
+@media(max-width:768px){.planos{grid-template-columns:1fr!important}.cta-grid{grid-template-columns:1fr}.hero-in{grid-template-columns:1fr}.hero-img{max-width:340px;margin:0 auto}.mod-grid{grid-template-columns:1fr}.detalhes-grid{grid-template-columns:1fr}.fit-grid{grid-template-columns:1fr}.pilares-grid{grid-template-columns:1fr 1fr}.passos-grid{grid-template-columns:1fr}.prof-grid{grid-template-columns:1fr;gap:2.5rem}.prof-photo{max-width:300px;margin:0 auto}.dep-grid{grid-template-columns:1fr}.cta-grid{grid-template-columns:1fr}.mockup{display:none}.foot-in{flex-direction:column;text-align:center}.stats{gap:1.25rem}}
 @media(max-width:480px){.pilares-grid{grid-template-columns:1fr}.hero-ctas,.cta-btns{flex-direction:column}.btn{text-align:center;width:100%}.planos{grid-template-columns:1fr!important}.sec{padding:4rem 1.25rem}.pilares{padding:4rem 1.25rem}.cta-sec{padding:4rem 1.25rem}}
 
 @media(max-width:768px){.reveal-l ~ .reveal-r{margin-top:0}[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}
@@ -253,7 +302,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-in">
     <div style="max-width:700px;margin:0 auto;text-align:center">
       <p style="font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:.6rem">Samba sem Mistério</p>
-      <h1 style="font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--branco);line-height:1.15;margin-bottom:1rem">Aprenda a tocar samba com qualidade no violão</h1>
+      <h1 style="font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--branco);line-height:1.15;margin-bottom:1rem">Aprenda a tocar samba com fluência no violão</h1>
       <p class="hero-sub" style="margin:0 auto 2rem;text-align:center">Domine as levadas rítmicas autênticas e a harmonia que dá cor ao estilo — construindo um acompanhamento sólido e expressivo, mesmo sem precisar ler partituras.</p>
       <div class="hero-video-wrap" style="margin-bottom:2rem">
         <div class="hero-video-frame">
@@ -273,9 +322,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-
-
-
 <!-- CAPA DO CURSO -->
 <section style="background:var(--branco);padding:4rem 2rem">
   <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
@@ -289,7 +335,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
-<!-- FIM CAPA DO CURSO -->
 
 <!-- MÓDULOS -->
 <section class="sec modulos" id="modulos">
@@ -336,7 +381,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- DETALHES -->
+<!-- O QUE ESTÁ INCLUÍDO -->
 <section class="sec" id="detalhes">
   <div class="sec-in">
     <div class="reveal" style="text-align:center">
@@ -347,22 +392,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="det-card reveal d1">
         <div class="det-icon">🎬</div>
         <h3>Trilha em vídeo — Método da Laje</h3>
-        <p>O caminho completo, na ordem certa: técnica, levada, acordes, harmonia e repertório — do primeiro acorde ao samba tocado por inteiro. 8 módulos, +de 55 aulas, 8 horas.</p>
+        <p>O caminho completo, na ordem da construção: da fundação ao repertório tocado por inteiro. 8 módulos, +de 55 aulas, 8 horas.</p>
       </div>
       <div class="det-card reveal d2">
         <div class="det-icon">🎯</div>
         <h3>Sistema de Prática Direcionada</h3>
-        <p>O diferencial: um diagnóstico que mostra onde você está nas 5 frentes e diz exatamente o que praticar pro seu nível — mais o encontro ao vivo comigo pra ler o seu mapa e apontar o próximo passo.</p>
+        <p>O diagnóstico mostra seu nível em cada frente e te dá um plano diário pro seu momento. Na aula de boas-vindas ao vivo, ensino a usar o sistema. Chega de estudar no escuro!</p>
       </div>
       <div class="det-card reveal d3">
         <div class="det-icon">💬</div>
-        <h3>Canal oficial dos alunos</h3>
-        <p>Seu ponto de contato: acesso, avisos, lembretes de estudo e a convivência com quem trilha o mesmo caminho.</p>
+        <h3>Canal dos alunos</h3>
+        <p>O grupo oficial no WhatsApp: avisos do curso, dúvidas, sugestões e troca de experiência com quem está trilhando o mesmo caminho.</p>
       </div>
       <div class="det-card reveal d4">
         <div class="det-icon">📄</div>
-        <h3>Material de Estudo (PDF)</h3>
-        <p>Material digital em PDF que acompanha as aulas, pra fixar e revisar cada conteúdo enquanto você estuda.</p>
+        <h3>Material de apoio das aulas</h3>
+        <p>Um PDF de complemento em cada aula, pra fixar e revisar cada conteúdo enquanto você estuda.</p>
       </div>
       <div class="det-card reveal d5">
         <div class="det-icon">📱</div>
@@ -378,40 +423,157 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- PILARES -->
+<!-- DIAGNÓSTICO / DIFERENCIAL -->
 <section class="pilares" id="metodo">
   <div class="sec-in">
     <div class="reveal">
-      <p class="eyebrow">O que você vai dominar</p>
-      <h2 class="sec-title">Teoria e prática que caminham juntas</h2>
-      <p class="sec-sub">Fundação, pilares e vigas — como na construção de uma laje. Técnica e teoria formam a base, levada e acordes são os pilares, e a harmonia funcional dá firmeza para você chegar no repertório que quer tocar.</p>
+      <p class="eyebrow">O diferencial</p>
+      <h2 class="sec-title">Saiba exatamente o que praticar hoje</h2>
+      <p class="sec-sub">A maioria pratica no escuro, sem saber o que priorizar. O Sistema de Prática Direcionada faz um diagnóstico da sua construção e aponta, no seu nível exato, qual tijolo firmar primeiro.</p>
     </div>
-    <div class="pilares-grid">
-      <div class="pilar reveal d1">
-        <div class="pilar-emo">🤚</div>
-        <h3>Técnica</h3>
-        <p>Postura, unhas, economia de movimentos e coordenação entre mão direita e esquerda para um toque limpo e eficiente.</p>
+
+    <div class="passos-grid">
+      <div class="passo reveal d1">
+        <div class="passo-emo">🔍</div>
+        <h3>Diagnóstico</h3>
+        <p>Um retrato da sua laje em cinco frentes: levada, técnica, acordes, teoria e harmonia. Você vê, camada por camada, o que já está firme e o que está frouxo.</p>
       </div>
-      <div class="pilar reveal d2">
-        <div class="pilar-emo">🎼</div>
-        <h3>Harmonia</h3>
-        <p>Mapeamento do braço e harmonia funcional aplicada diretamente ao samba.</p>
+      <div class="passo reveal d2">
+        <div class="passo-emo">🎯</div>
+        <h3>Prioridade</h3>
+        <p>O método aponta a camada mais fraca e diz por onde começar — sem chutar, sem pular etapa.</p>
       </div>
-      <div class="pilar reveal d3">
-        <div class="pilar-emo">🥁</div>
-        <h3>Levadas de Samba</h3>
-        <p>Os principais ritmos do samba com levadas rítmicas autênticas e precisão.</p>
+      <div class="passo reveal d3">
+        <div class="passo-emo">🗓️</div>
+        <h3>Plano diário</h3>
+        <p>Um circuito de prática calibrado pro seu nível: o que fazer hoje, em poucos minutos, pra firmar o próximo tijolo.</p>
       </div>
-      <div class="pilar reveal d4">
-        <div class="pilar-emo">🎵</div>
-        <h3>Progressões</h3>
-        <p>Progressões harmônicas essenciais para tocar um bom repertório de samba.</p>
+    </div>
+
+    <div class="dgx reveal">
+      <div class="dgx-top">
+        <h4>Seu diagnóstico</h4>
+        <span class="dgx-chip">prévia</span>
+      </div>
+      <div class="dgx-body">
+        <p class="dgx-intro">O objetivo é chegar ao <b>Nível 3</b> em cada frente. Veja seu próximo passo:</p>
+
+        <div class="degrau">
+          <div class="dg-head">
+            <span class="dg-comp">Levada</span>
+            <span class="dg-lvl">Nível 2</span>
+            <span class="dg-dots"><span class="dg-dot on">N1</span><span class="dg-dot on">N2</span><span class="dg-dot">N3</span></span>
+          </div>
+        </div>
+
+        <div class="degrau done">
+          <span class="dg-comp">Técnica</span>
+          <span class="dg-done">✓ você já domina</span>
+        </div>
+
+        <div class="degrau foco">
+          <div class="dg-head">
+            <span class="dg-comp">Acordes</span>
+            <span class="dg-lvl">Nível 1</span>
+            <span class="dg-aqui">comece aqui</span>
+            <span class="dg-dots"><span class="dg-dot on foco">N1</span><span class="dg-dot">N2</span><span class="dg-dot">N3</span></span>
+          </div>
+          <p class="dg-next">Próximo: as <b>tétrades principais</b> (com sétima), em mais de uma posição.</p>
+        </div>
+
+        <div class="degrau">
+          <div class="dg-head">
+            <span class="dg-comp">Teoria</span>
+            <span class="dg-lvl">Nível 2</span>
+            <span class="dg-dots"><span class="dg-dot on">N1</span><span class="dg-dot on">N2</span><span class="dg-dot">N3</span></span>
+          </div>
+        </div>
+
+        <div class="degrau">
+          <div class="dg-head">
+            <span class="dg-comp">Harmonia</span>
+            <span class="dg-lvl">Nível 2</span>
+            <span class="dg-dots"><span class="dg-dot on">N1</span><span class="dg-dot on">N2</span><span class="dg-dot">N3</span></span>
+          </div>
+        </div>
+
+        <div class="dgx-step">
+          <span class="lbl">Ponto de partida</span>
+          <h5>Módulo 05 — A Formação dos Acordes</h5>
+          <p>Sua mão direita e leitura já andam — o próximo degrau é ampliar o vocabulário de acordes pra enriquecer o que você toca.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="metodo-cta reveal">
+      <a href="#cta" class="btn btn-azul">Quero ter fluência no samba</a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="sec" style="background:var(--cinza)" id="beneficios">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Fluência na prática</p>
+      <h2 class="sec-title">O que "tocar com fluência" quer dizer</h2>
+    </div>
+    <div class="benef-grid">
+      <div class="benef-card reveal d1">
+        <div class="benef-emo">🥁</div>
+        <h3>A levada que balança</h3>
+        <p>As levadas autênticas no tempo certo, pro seu samba sambar.</p>
+      </div>
+      <div class="benef-card reveal d2">
+        <div class="benef-emo">🎨</div>
+        <h3>A harmonia que faz sentido</h3>
+        <p>Entenda por que um acorde puxa o outro.</p>
+      </div>
+      <div class="benef-card reveal d3">
+        <div class="benef-emo">🎸</div>
+        <h3>O braço todo dominado</h3>
+        <p>Saia do "sei uns acordes" e enxergue o instrumento inteiro.</p>
+      </div>
+      <div class="benef-card reveal d4">
+        <div class="benef-emo">✅</div>
+        <h3>O samba de pé</h3>
+        <p>Toque músicas do começo ao fim, com confiança.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROFESSOR -->
+<!-- ESSE CURSO É PRA VOCÊ? -->
+<section class="sec" id="pra-voce">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">Antes de entrar</p>
+      <h2 class="sec-title">Esse curso é <span class="azul">pra você?</span></h2>
+      <p class="sec-sub" style="margin:1rem auto 0">Vou ser direto — porque samba no violão é um caminho, e prefiro que você entre na hora certa a comprar frustrado. O Samba sem Mistério parte de quem já toca um repertório básico. Veja onde você está:</p>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-card is-sim reveal d1">
+        <h3>É pra você se:</h3>
+        <div class="fit-list">
+          <div class="fit-item"><span class="ic">✓</span><span>Você já toca outros estilos do início ao fim, sem travar, trocando os acordes no tempo — mas ainda não sabe tocar samba.</span></div>
+          <div class="fit-item"><span class="ic">✓</span><span>Você já arranha um samba, mas se sente travado por um desses motivos: a levada, os acordes ou a harmonia.</span></div>
+        </div>
+      </div>
+      <div class="fit-card is-nao reveal d2">
+        <h3>Ainda não é a sua hora se:</h3>
+        <div class="fit-list">
+          <div class="fit-item"><span class="ic">✕</span><span>Você ainda não consegue formar acordes nem manter uma batida.</span></div>
+          <div class="fit-item"><span class="ic">✕</span><span>Você está começando: forma alguns acordes, mas ainda não toca músicas do início ao fim sem travar.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="fit-fecho reveal">
+      Se você ainda não chegou no piso, tudo bem — comece por aí primeiro, e volta quando estiver tocando suas primeiras músicas inteiras. <b>O samba te espera.</b>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSOR + AVALIAÇÕES -->
 <section class="sec" style="background:var(--cinza)">
   <div class="sec-in">
     <div class="prof-grid">
@@ -514,18 +676,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="faq-list">
       <div class="faq-item reveal d1">
-        <button class="faq-q">Preciso saber tocar violão para começar? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>Não é necessário ter experiência avançada. O curso começa com orientações iniciais e vai lapidando sua técnica progressivamente. Se você já tem o básico do violão, vai avançar mais rápido — mas iniciantes também são bem-vindos.</p></div>
-      </div>
-      <div class="faq-item reveal d2">
         <button class="faq-q">O que está incluído na assinatura? <span class="faq-icon">+</span></button>
         <div class="faq-a"><p>Tudo: a trilha em vídeo completa (8 módulos, +de 55 aulas, 8 horas), o Sistema de Prática Direcionada com encontro ao vivo, o canal oficial dos alunos e o Material de Estudo em PDF. Você paga R$297,00 à vista (ou 12x de R$30,72) e ainda tem 7 dias de garantia.</p></div>
       </div>
-      <div class="faq-item reveal d3">
+      <div class="faq-item reveal d2">
         <button class="faq-q">Posso assistir as aulas no celular ou TV? <span class="faq-icon">+</span></button>
         <div class="faq-a"><p>Sim. O curso está disponível em qualquer dispositivo — computador, smartphone ou smart TV. Estude no horário e no lugar que preferir.</p></div>
       </div>
-      <div class="faq-item reveal d4">
+      <div class="faq-item reveal d3">
         <button class="faq-q">Como funciona a garantia de 7 dias? <span class="faq-icon">+</span></button>
         <div class="faq-a"><p>Você tem 7 dias para testar o curso após a assinatura. Se por qualquer motivo não ficar satisfeito, basta solicitar o reembolso e devolvemos 100% do valor pago — sem perguntas, sem burocracia.</p></div>
       </div>
