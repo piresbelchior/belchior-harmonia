@@ -166,6 +166,13 @@ img{max-width:100%;display:block}
 .faq-item.open .faq-icon{transform:rotate(45deg);border-color:var(--laranja);color:var(--laranja)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
 .faq-a p{padding:0 1.5rem 1.3rem;font-size:.88rem;line-height:1.75;color:var(--muted)}
+.faq-a .faq-intro{padding-bottom:.7rem}
+.faq-steps{list-style:none;margin:0;padding:0 1.5rem 1.1rem}
+.faq-steps li{display:flex;gap:.6rem;font-size:.88rem;line-height:1.6;color:var(--muted)}
+.faq-steps li+li{margin-top:.5rem}
+.faq-steps .n{flex-shrink:0;font-family:'Montserrat',sans-serif;font-weight:800;color:var(--laranja)}
+.faq-a a{color:var(--azul);font-weight:600;text-decoration:none}
+.faq-a a:hover{text-decoration:underline}
 /* SEÇÃO "Esse curso é pra você?" — qualificação (fit) */
 .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:900px;margin:3rem auto 0}
 .fit-card{background:var(--branco);border:1px solid #E8E8E8;border-radius:14px;padding:1.6rem 1.6rem 1.7rem;box-shadow:0 4px 18px rgba(0,0,0,.05)}
@@ -185,7 +192,10 @@ img{max-width:100%;display:block}
 .benef-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:3rem}
 .benef-card{background:var(--branco);border:1px solid #E8E8E8;border-radius:12px;padding:1.6rem 1.4rem;transition:border-color .2s,transform .2s,box-shadow .2s}
 .benef-card:hover{border-color:var(--laranja);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
-.benef-emo{font-size:1.9rem;line-height:1;margin-bottom:.8rem}
+.benef-ic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.benef-ic svg{width:26px;height:26px}
+.benef-ic.laranja{background:rgba(242,101,34,.12);color:var(--laranja)}
+.benef-ic.azul{background:rgba(59,130,246,.12);color:var(--azul)}
 .benef-card h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:var(--preto);margin-bottom:.4rem;line-height:1.3}
 .benef-card p{font-size:.83rem;color:var(--muted);line-height:1.55}
 
@@ -520,22 +530,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="benef-grid">
       <div class="benef-card reveal d1">
-        <div class="benef-emo">🥁</div>
+        <div class="benef-ic laranja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="9" rx="7" ry="2.5"/><path d="M5 9v5c0 1.38 3.13 2.5 7 2.5s7-1.12 7-2.5V9"/><path d="M8.5 7.2 4.5 3.2"/><path d="M15.5 7.2 19.5 3.2"/></svg></div>
         <h3>A levada que balança</h3>
-        <p>As levadas autênticas no tempo certo, pro seu samba sambar.</p>
+        <p>As levadas autênticas no tempo certo.</p>
       </div>
       <div class="benef-card reveal d2">
-        <div class="benef-emo">🎨</div>
+        <div class="benef-ic azul"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="18" r="2.3"/><circle cx="17" cy="16" r="2.3"/><path d="M9.3 18V6"/><path d="M19.3 16V4"/><path d="M9.3 6 19.3 4"/></svg></div>
         <h3>A harmonia que faz sentido</h3>
         <p>Entenda por que um acorde puxa o outro.</p>
       </div>
       <div class="benef-card reveal d3">
-        <div class="benef-emo">🎸</div>
+        <div class="benef-ic laranja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8.5" y="2.5" width="7" height="19" rx="2.2"/><path d="M8.5 7.5h7M8.5 12h7M8.5 16.5h7"/><path d="M11 2.6v18.8M13 2.6v18.8" stroke-width="1"/></svg></div>
         <h3>O braço todo dominado</h3>
         <p>Saia do "sei uns acordes" e enxergue o instrumento inteiro.</p>
       </div>
       <div class="benef-card reveal d4">
-        <div class="benef-emo">✅</div>
+        <div class="benef-ic azul"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M8 12.2 11 15.2 16 9"/></svg></div>
         <h3>O samba de pé</h3>
         <p>Toque músicas do começo ao fim, com confiança.</p>
       </div>
@@ -680,10 +690,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="faq-a"><p>Tudo: a trilha em vídeo completa (8 módulos, +de 55 aulas, 8 horas), o Sistema de Prática Direcionada com encontro ao vivo, o canal oficial dos alunos e o Material de Estudo em PDF. Você paga R$297,00 à vista (ou 12x de R$30,72) e ainda tem 7 dias de garantia.</p></div>
       </div>
       <div class="faq-item reveal d2">
+        <button class="faq-q">Como acesso o curso depois de comprar? <span class="faq-icon">+</span></button>
+        <div class="faq-a">
+          <p class="faq-intro">O Samba sem Mistério é um curso 100% online. Assim que a compra é confirmada, você recebe o acesso por e-mail. Lá dentro, além das videoaulas, você tem acesso ao material de apoio em PDF. Vai receber também o link para o grupo de WhatsApp dos alunos e o código para usar o Sistema de Prática Direcionada. Você também pode acessar direto por aqui:</p>
+          <ol class="faq-steps">
+            <li><span class="n">01</span><span>Faça login clicando em <a href="https://app-vlc.hotmart.com/login?redirect=hotmart.com/pt-br/marketplace/produtos/hagsxd-violao-no-samba-zsewh/F97826545I" target="_blank" rel="noopener">Entrar</a>.</span></li>
+            <li><span class="n">02</span><span>Acesse o menu lateral e clique em <a href="https://app-vlc.hotmart.com/login?redirect=hotmart.com/pt-br/marketplace/produtos/hagsxd-violao-no-samba-zsewh/F97826545I" target="_blank" rel="noopener">Minha conta</a>.</span></li>
+            <li><span class="n">03</span><span>Clique em <a href="https://consumer.hotmart.com/purchase?itm_medium=internal&amp;itm_source=mktplace&amp;itm_campaign=all_traffic_first-access_button_my_purchases" target="_blank" rel="noopener">Minhas compras</a>.</span></li>
+          </ol>
+          <p class="faq-fim">Em "Minhas compras" estarão todos os produtos que você já comprou!</p>
+        </div>
+      </div>
+      <div class="faq-item reveal d3">
         <button class="faq-q">Posso assistir as aulas no celular ou TV? <span class="faq-icon">+</span></button>
         <div class="faq-a"><p>Sim. O curso está disponível em qualquer dispositivo — computador, smartphone ou smart TV. Estude no horário e no lugar que preferir.</p></div>
       </div>
-      <div class="faq-item reveal d3">
+      <div class="faq-item reveal d4">
         <button class="faq-q">Como funciona a garantia de 7 dias? <span class="faq-icon">+</span></button>
         <div class="faq-a"><p>Você tem 7 dias para testar o curso após a assinatura. Se por qualquer motivo não ficar satisfeito, basta solicitar o reembolso e devolvemos 100% do valor pago — sem perguntas, sem burocracia.</p></div>
       </div>
