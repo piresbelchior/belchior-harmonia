@@ -172,7 +172,7 @@
 /* ====== CONFIG: troque estes links ====== */
 const LINK_CURSO = "https://belchiorharmonia.com.br/samba-sem-misterio";
 const LINK_AULAS = "https://belchiorharmonia.com.br/aulas-particulares"; // <-- confirmar URL real
-const CODIGO_ALUNO = "SAMBANDONALAJE";
+const CODIGO_ALUNO = "PARTIDOALTO";
 const WHATS_JOAO = "5521993763200"; // número com DDI 55 + DDD, sem símbolos // <-- código único entregue na aula de boas-vindas (troque quando quiser)
 
 /* ====== LÓGICA (validada) ====== */
@@ -473,7 +473,7 @@ function drawResultado(){
     ? `Seu ponto de partida é o <b>Módulo ${MOD_NOME[mod]}</b> — é exatamente essa peça que o método destrava primeiro pra você, na ordem certa.`
     : `Você já percorreu a laje inteira — o método te leva ao refinamento e ao repertório avançado.`;
   const sonho = state.musica ? ` — como <b>${escapeHtml(state.musica)}</b>` : '';
-  const waMentoria = `https://wa.me/${WHATS_JOAO}?text=`+encodeURIComponent(`Oi João! Desbloqueei meu plano de estudo${state.nome? ' ('+state.nome+')':''} e quero agendar minha mentoria experimental gratuita.`);
+  const waMentoria = `https://wa.me/${WHATS_JOAO}?text=`+encodeURIComponent(`Oi João! Desbloqueei meu plano de estudo e quero garantir minha vaga no encontro de boas-vindas ao vivo.`);
 
   render(`
     <div class="sec-h">Onde você está hoje</div>
@@ -490,16 +490,15 @@ function drawResultado(){
 
     ${ state.aluno ? `
     <div class="mentoria-box">
-      <div class="mb-tag">É sua primeira vez por aqui?</div>
-      <h3>Vamos calibrar seu plano ao vivo</h3>
-      <p>Se você acabou de fazer seu nivelamento, tem direito a uma <b>mentoria experimental gratuita</b> comigo — a gente revisa seu plano juntos e ajusta o que for preciso pro seu momento.</p>
-      <a class="btn whats" href="${waMentoria}" target="_blank" rel="noopener" style="margin-top:14px">Agendar minha mentoria experimental →</a>
+      <div class="mb-tag">Primeira vez por aqui?</div>
+      <h3>Seu plano está pronto — vem aprender a usar</h3>
+      <p>No <b>encontro de boas-vindas ao vivo em grupo</b>, eu ensino a rodar o seu plano de estudo do jeito certo.</p>
+      <a class="btn whats" href="${waMentoria}" target="_blank" rel="noopener" style="margin-top:14px">Garantir minha vaga no encontro →</a>
     </div>
     <div class="cta-block" style="background:#eef7ee;margin-top:12px">
       <h3 style="color:#2e6b3a">Bom estudo! 🎸</h3>
       <p style="color:#3a5a40">Faça o circuito todos os dias, mesmo que rápido — é a constância que constrói a laje.</p>
     </div>` : `
-    <div class="proof">★ 5,0 no Google · alunos que saíram do mesmo ponto e hoje tocam com confiança</div>
     <div class="cta-block">
       <h3>Veja o caminho completo</h3>
       <div class="oferta-mod">${modTxt}</div>
