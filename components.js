@@ -92,8 +92,52 @@ function sendCAPI(event_name, extra = {}, event_id = null) {
   return eid;
 }
 
+// ── Rastreamento de leads: origem + GCLID → planilha ─────
+const LEADS_ENDPOINT = 'https://script.google.com/macros/s/AKfycby9CWyVatI_542994ATqsbNMOdp_UXtz6Ei3ppBcUZrmsQHuyVUcoXwAiNSQUn02X9h4g/exec';
+
+function setCookie(name, value, dias) {
+  const d = new Date(); d.setTime(d.getTime() + dias * 864e5);
+  document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+}
+
+function capturarOrigem() {
+  const q = new URLSearchParams(window.location.search);
+  if (q.get('gclid')) setCookie('bh_gclid', q.get('gclid'), 90);
+  if (q.get('utm_campaign')) setCookie('bh_campanha', q.get('utm_campaign'), 90);
+  if (!getCookie('bh_referrer')) setCookie('bh_referrer', document.referrer || '(direto)', 90);
+}
+
+function leadOrigem() {
+  if (getCookie('bh_gclid')) return 'Google Ads';
+  const r = (getCookie('bh_referrer') || '').toLowerCase();
+  if (!r || r.indexOf('(direto)') > -1) return 'Direto';
+  if (r.indexOf('instagram') > -1 || r.indexOf('facebook') > -1) return 'Instagram/Meta';
+  if (r.indexOf('google') > -1) return 'Google Orgânico';
+  if (r.indexOf('belchiorharmonia') > -1) return 'Interno';
+  try { return new URL(getCookie('bh_referrer')).hostname; } catch (e) { return 'Outro'; }
+}
+
+function registrarLead() {
+  if (sessionStorage.getItem('bh_wa_logado')) return;
+  const dados = {
+    gclid: getCookie('bh_gclid') || '',
+    origem: leadOrigem(),
+    campanha: getCookie('bh_campanha') || '',
+    pagina: window.location.pathname,
+    referrer: getCookie('bh_referrer') || ''
+  };
+  try {
+    navigator.sendBeacon(LEADS_ENDPOINT, new Blob([JSON.stringify(dados)], { type: 'text/plain' }));
+    sessionStorage.setItem('bh_wa_logado', '1');
+  } catch (e) {
+    fetch(LEADS_ENDPOINT, { method: 'POST', body: JSON.stringify(dados), keepalive: true });
+  }
+}
+
 // ── Injetar componentes ──────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+
+  capturarOrigem();
 
   // CSS
   const style = document.createElement('style');
@@ -180,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const eid = generateEventId();
       if (window.fbq) fbq('track', 'Contact', { content_name: cname }, { eventID: eid });
       sendCAPI('Contact', { content_name: cname }, eid);
+      registrarLead();
     });
   });
 
