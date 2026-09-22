@@ -100,21 +100,48 @@ function setCookie(name, value, dias) {
   document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
 }
 
+function decodeSafe(s) { try { return decodeURIComponent(s || ''); } catch (e) { return s || ''; } }
+
 function capturarOrigem() {
   const q = new URLSearchParams(window.location.search);
   if (q.get('gclid')) setCookie('bh_gclid', q.get('gclid'), 90);
   if (q.get('utm_campaign')) setCookie('bh_campanha', q.get('utm_campaign'), 90);
+  if (q.get('utm_source')) setCookie('bh_utm_source', q.get('utm_source'), 90);
   if (!getCookie('bh_referrer')) setCookie('bh_referrer', document.referrer || '(direto)', 90);
 }
 
 function leadOrigem() {
+  // 1) Google pago
   if (getCookie('bh_gclid')) return 'Google Ads';
+
+  // utm_source tem prioridade sobre o referrer (ex.: utm_source=chatgpt.com)
+  const utm = (getCookie('bh_utm_source') || '').toLowerCase();
+  const alvo = utm || (getCookie('bh_referrer') || '').toLowerCase();
+
+  // 2) Busca por IA / GEO
+  if (/chatgpt|openai/.test(alvo)) return 'ChatGPT/IA';
+  if (/perplexity/.test(alvo)) return 'Perplexity/IA';
+  if (/gemini|bard/.test(alvo)) return 'Gemini/IA';
+  if (/copilot|\bbing\b/.test(alvo)) return 'Copilot/IA';
+  if (/claude|anthropic/.test(alvo)) return 'Claude/IA';
+
+  // 3) Redes / canais
+  if (/youtube|youtu\.be/.test(alvo)) return 'YouTube';
+  if (/instagram/.test(alvo)) return 'Instagram';
+  if (/facebook|fb\.com|fb\.me/.test(alvo)) return 'Facebook';
+  if (/tiktok/.test(alvo)) return 'TikTok';
+
+  // 4) Busca orgânica do Google
+  if (/google\./.test(alvo)) return 'Google Orgânico';
+
+  // 5) Qualquer outro utm_source explícito
+  if (utm) return utm;
+
+  // 6) Fallback pelo referrer
   const r = (getCookie('bh_referrer') || '').toLowerCase();
   if (!r || r.indexOf('(direto)') > -1) return 'Direto';
-  if (r.indexOf('instagram') > -1 || r.indexOf('facebook') > -1) return 'Instagram/Meta';
-  if (r.indexOf('google') > -1) return 'Google Orgânico';
   if (r.indexOf('belchiorharmonia') > -1) return 'Interno';
-  try { return new URL(getCookie('bh_referrer')).hostname; } catch (e) { return 'Outro'; }
+  try { return new URL(decodeSafe(getCookie('bh_referrer'))).hostname.replace(/^www\./, ''); } catch (e) { return 'Outro'; }
 }
 
 function registrarLead() {
@@ -124,7 +151,7 @@ function registrarLead() {
     origem: leadOrigem(),
     campanha: getCookie('bh_campanha') || '',
     pagina: window.location.pathname,
-    referrer: getCookie('bh_referrer') || ''
+    referrer: decodeSafe(getCookie('bh_referrer'))
   };
   try {
     navigator.sendBeacon(LEADS_ENDPOINT, new Blob([JSON.stringify(dados)], { type: 'text/plain' }));
