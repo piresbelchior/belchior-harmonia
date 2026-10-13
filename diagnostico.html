@@ -359,13 +359,36 @@ function finishCaptura(){
 }
 /* Envio do lead para a planilha (Google Apps Script). Cole a URL do Web App em ENDPOINT_LEADS. */
 const ENDPOINT_LEADS = "https://script.google.com/macros/s/AKfycbxVkEtzExsV0dgwBb6PLfJ5iZaCGWToB6PUfibKz1n_VJM_9xoEy-Bfc98wA46-9qHkdA/exec"; // Apps Script (planilha de leads)
+/* Origem da visita: mesmos cookies bh_* gravados pelo components.js nas outras páginas (mesmo domínio). */
+function ckGet(k){ const m=document.cookie.match(new RegExp('(^| )'+k+'=([^;]+)')); try{ return m?decodeURIComponent(m[2]):''; }catch(e){ return m?m[2]:''; } }
+function ckSet(k,v){ const d=new Date(); d.setTime(d.getTime()+90*864e5); document.cookie=k+'='+encodeURIComponent(v)+';expires='+d.toUTCString()+';path=/;SameSite=Lax'; }
+(function capturarOrigem(){
+  const q=new URLSearchParams(window.location.search);
+  if(q.get('gclid')) ckSet('bh_gclid',q.get('gclid'));
+  if(q.get('utm_source')) ckSet('bh_utm_source',q.get('utm_source'));
+  if(q.get('utm_medium')) ckSet('bh_utm_medium',q.get('utm_medium'));
+  if(q.get('utm_campaign')) ckSet('bh_campanha',q.get('utm_campaign'));
+  if(q.get('utm_content')) ckSet('bh_utm_content',q.get('utm_content'));
+  if(!ckGet('bh_referrer')) ckSet('bh_referrer',document.referrer||'(direto)');
+})();
+function origemLead(){
+  if(ckGet('bh_gclid')) return 'Google Ads';
+  if(ckGet('bh_utm_source')) return ckGet('bh_utm_source');
+  const r=ckGet('bh_referrer');
+  if(!r||r.indexOf('(direto)')>-1) return 'Direto';
+  if(r.indexOf('belchiorharmonia')>-1) return 'Interno';
+  try{ return new URL(r).hostname.replace(/^www\./,''); }catch(e){ return 'Outro'; }
+}
 function enviarLead(){
   if(!ENDPOINT_LEADS) return; // ainda não configurado
   const n=state.niveis;
   const payload={
     nome:state.nome, whatsapp:state.whats, musica:state.musica,
     apto:state.apto, levada:n.levada, tecnica:n.tecnica, acordes:n.acordes, teoria:n.teoria, harmonia:n.harmonia,
-    modulo:(moduloPrioritario(n)||'formado'), data:new Date().toISOString()
+    modulo:(moduloPrioritario(n)||'formado'), data:new Date().toISOString(),
+    origem:origemLead(), utm_source:ckGet('bh_utm_source'), utm_medium:ckGet('bh_utm_medium'),
+    utm_campaign:ckGet('bh_campanha'), utm_content:ckGet('bh_utm_content'),
+    gclid:ckGet('bh_gclid'), referrer:ckGet('bh_referrer')
   };
   try{
     fetch(ENDPOINT_LEADS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});

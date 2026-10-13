@@ -62,6 +62,9 @@ footer{background:#111111;border-top:1px solid rgba(255,255,255,.06);padding:2re
 .foot-links a:hover{color:#F26522}
 @media(max-width:768px){.nav-links{display:none}.ham{display:flex}.foot-in{flex-direction:column;text-align:center}}`;
 
+// Preço do curso enviado nos eventos do Meta (único lugar pra trocar)
+const PRECO_CURSO = 297;
+
 // ── CAPI Worker ──────────────────────────────────────────
 const CAPI_URL = 'https://meta-capi-belchior.piresbelchior.workers.dev/';
 
@@ -107,6 +110,8 @@ function capturarOrigem() {
   if (q.get('gclid')) setCookie('bh_gclid', q.get('gclid'), 90);
   if (q.get('utm_campaign')) setCookie('bh_campanha', q.get('utm_campaign'), 90);
   if (q.get('utm_source')) setCookie('bh_utm_source', q.get('utm_source'), 90);
+  if (q.get('utm_medium')) setCookie('bh_utm_medium', q.get('utm_medium'), 90);
+  if (q.get('utm_content')) setCookie('bh_utm_content', q.get('utm_content'), 90);
   if (!getCookie('bh_referrer')) setCookie('bh_referrer', document.referrer || '(direto)', 90);
 }
 
@@ -142,6 +147,25 @@ function leadOrigem() {
   if (!r || r.indexOf('(direto)') > -1) return 'Direto';
   if (r.indexOf('belchiorharmonia') > -1) return 'Interno';
   try { return new URL(decodeSafe(getCookie('bh_referrer'))).hostname.replace(/^www\./, ''); } catch (e) { return 'Outro'; }
+}
+
+// Texto curto e seguro pra URL (ex.: "Google Ads" → "google-ads")
+function slugOrigem(s) {
+  return decodeSafe(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+}
+
+// Leva a origem da visita pro checkout da Hotmart: src = canal, sck = campanha
+function marcarOrigemCheckout() {
+  document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(btn => {
+    try {
+      const u = new URL(btn.href);
+      u.searchParams.set('src', slugOrigem(leadOrigem()) || 'direto');
+      const camp = slugOrigem(getCookie('bh_campanha'));
+      if (camp) u.searchParams.set('sck', camp);
+      btn.href = u.toString();
+    } catch (e) {}
+  });
 }
 
 function registrarLead() {
@@ -188,7 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mm) mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
 
   // Link ativo
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  // O site serve as páginas sem ".html" (/samba-sem-misterio): normaliza pra comparação
+  let currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  if (!currentPage.includes('.')) currentPage += '.html';
   document.querySelectorAll('.nav-links a, #mmenu a').forEach(a => {
     if (a.getAttribute('href') === currentPage) a.classList.add('active');
   });
@@ -202,11 +228,11 @@ document.addEventListener('DOMContentLoaded', () => {
       content_name: 'Samba sem Mistério',
       content_category: 'Curso Online',
       currency: 'BRL',
-      value: 9.90
+      value: PRECO_CURSO
     }, { eventID: eid });
     sendCAPI('ViewContent', {
       content_name: 'Samba sem Mistério',
-      value: 9.90,
+      value: PRECO_CURSO,
       currency: 'BRL'
     }, eid);
   }
@@ -227,9 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
   sendCAPI('PageView');
 
   // InitiateCheckout — Hotmart
+  marcarOrigemCheckout();
   document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const val = btn.href.includes('xpluvrux') ? 95.70 : 19.90;
+      const val = PRECO_CURSO;
       const eid = generateEventId();
       if (window.fbq) fbq('track', 'InitiateCheckout', {
         content_name: 'Samba sem Mistério',
