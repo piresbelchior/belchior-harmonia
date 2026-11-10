@@ -396,6 +396,23 @@ img{max-width:100%;display:block}
 #post-video{display:none}
 #post-video.show{display:block;animation:fadeUpReveal .6s ease forwards}
 @keyframes fadeUpReveal{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+/* doc 40 (10/11) */
+.recebe{max-width:640px;margin:2.5rem auto 0;background:var(--branco);border:1px solid #E8E8E8;border-radius:14px;padding:1.6rem 1.8rem;box-shadow:0 4px 18px rgba(0,0,0,.05)}
+.recebe h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:var(--preto)}
+.recebe .pontos{max-width:none}
+.treino-etapas{list-style:none;margin:1rem 0 .25rem;display:flex;flex-direction:column;gap:.45rem;max-width:480px}
+.treino-etapas li{font-size:.92rem;line-height:1.5;color:var(--texto);padding:.55rem .85rem;background:var(--branco);border-left:3px solid var(--laranja);border-radius:6px}
+.treino-etapas b{color:var(--laranja-dark)}
+.laje-txt p.mods{margin-top:.9rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.laje-fecho{text-align:center;margin-top:2rem;font-family:'Montserrat',sans-serif;font-size:1.1rem;color:var(--texto)}
+.laje-fecho b{color:var(--laranja)}
+.fit-link{display:inline-block;margin-top:1.2rem;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:#2e9e4f;text-decoration:none}
+.fit-link:hover{text-decoration:underline}
+.aval-intro{font-size:.92rem;color:var(--texto);margin-bottom:1rem}
+.comprou{margin-top:1.5rem;padding:1.2rem 1.4rem;border:1px solid rgba(255,255,255,.15);border-radius:12px}
+.comprou h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:#fff;margin-bottom:.6rem}
+.comprou ol{padding-left:1.2rem;display:flex;flex-direction:column;gap:.35rem}
+.comprou li{font-size:.85rem;line-height:1.5;color:rgba(255,255,255,.75)}
 </style>
 <script src="components.js" defer></script>
 
@@ -438,7 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="bf-hero-txt">
       <span class="bf-selo">Curso online · acesso vitalício</span>
       <h2 class="bf-h">Desenvolva fluência no samba.</h2>
-      <p class="bf-hero-sub">O curso completo de samba no violão, numa área de membros só sua que abre no celular como um aplicativo.</p>
+      <p class="bf-hero-sub">As minhas aulas em vídeo e o seu treino do dia, num aplicativo no seu celular.</p>
       <p class="bf-preco-curto"><b>R$97</b> · ou 12x de R$10,03 · acesso vitalício</p>
       <div class="bf-ctas">
         <a href="#cta" class="btn btn-laranja">Quero começar agora</a>
@@ -449,69 +466,115 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- POR DENTRO: a área de membros -->
-<section class="sec" style="background:var(--cinza)" id="por-dentro">
+<!-- CONHEÇA O CURSO: a definição + o que você recebe -->
+<section class="sec" style="background:var(--cinza)" id="curso">
   <div class="sec-in">
     <div class="reveal" style="text-align:center">
-      <p class="eyebrow">Por dentro</p>
-      <h2 class="sec-title">O curso mora numa <span class="azul">área de membros só sua</span></h2>
-      <p class="sec-sub" style="margin:1rem auto 0">Você compra e entra com o seu e-mail. Não tem senha pra decorar: chega um código no seu e-mail e pronto. No celular, ela abre como um aplicativo, com ícone na tela e tudo. Lá dentro está o curso inteiro, organizado do jeito que eu ensino.</p>
+      <p class="eyebrow">Conheça o curso</p>
+      <h2 class="sec-title">Um curso de samba no violão em forma de aplicativo: <span class="azul">as minhas aulas e o seu treino no mesmo lugar</span></h2>
+      <p class="sec-sub" style="margin:1rem auto 0">Dentro dele estão as minhas aulas em vídeo, comigo explicando e tocando. E, junto com as aulas, ele descobre onde você trava e monta o seu treino do dia, no tom da música que você está tocando. Abre no celular, pelo navegador, sem baixar nada na loja.</p>
     </div>
-    <div class="telas">
-      <figure class="tela reveal d1"><div class="celular"><img src="img/app/roda.webp" alt="" loading="lazy" width="420" height="909"/></div><figcaption><b>Seu repertório</b>A música que você está tocando e a sua escada de músicas.</figcaption></figure>
-      <figure class="tela reveal d2"><div class="celular"><img src="img/app/musica.webp" alt="" loading="lazy" width="420" height="909"/></div><figcaption><b>A música aberta</b>Eu tocando, os acordes no tom e a levada.</figcaption></figure>
-      <figure class="tela reveal d3"><div class="celular"><img src="img/app/pratica.webp" alt="" loading="lazy" width="420" height="909"/></div><figcaption><b>Seu caminho de hoje</b>O treino do dia, no seu nível.</figcaption></figure>
-      <figure class="tela reveal d4"><div class="celular"><img src="img/app/aulas.webp" alt="" loading="lazy" width="420" height="909"/></div><figcaption><b>As aulas</b>Na ordem da laje: fundação, pilares e vigas.</figcaption></figure>
+    <div class="recebe reveal">
+      <h3>O que você recebe</h3>
+      <ul class="pontos">
+        <li><b>As aulas em vídeo</b>, na ordem da laje: técnica, levada, acordes, harmonia e repertório</li>
+        <li><b>O diagnóstico:</b> onde você está em cada parte do samba</li>
+        <li><b>O treino do dia</b>, já montado no tom da música que você está tocando</li>
+        <li><b>A escada de músicas</b>, cada uma comigo tocando, com os acordes e a levada</li>
+        <li><b>O grupo dos alunos</b>, pra avisos do que entrou de novo e troca entre a turma (não é aula comigo)</li>
+        <li><b>Acesso pra sempre</b> e 30 dias de garantia</li>
+      </ul>
     </div>
-    <p class="nota-centro reveal">Não precisa baixar nada em loja de aplicativo. Abre no navegador e você coloca o ícone na tela do celular.</p>
   </div>
 </section>
 
-<!-- COMO FUNCIONA, PASSO A PASSO -->
-<section class="sec" id="como-funciona">
+<!-- O DIAGNÓSTICO -->
+<section class="sec" id="diagnostico">
   <div class="sec-in">
-    <div class="reveal" style="text-align:center">
-      <p class="eyebrow">Como funciona</p>
-      <h2 class="sec-title">Do dia da compra até a <span class="azul">música inteira</span></h2>
-      <p class="sec-sub" style="margin:1rem auto 0">Aula de violão na internet tem de sobra. O problema é que ninguém te diz por onde começar, aí você pula de vídeo em vídeo e não sai do lugar. Aqui é assim:</p>
+    <div class="rep-grid">
+      <div class="reveal-l">
+        <p class="eyebrow">O diagnóstico</p>
+        <h2 class="sec-title">Primeiro, a gente descobre <span class="azul">onde você trava</span></h2>
+        <p class="sec-sub">São umas perguntas rápidas. O app mostra o seu nível nas cinco partes da laje: técnica, teoria, levada, acordes e harmonia. Você vê o que já está firme, o que está frouxo e por onde começar.</p>
+        <ul class="pontos">
+          <li>Por onde começar, sem chute</li>
+          <li>O próximo passo em cada parte</li>
+          <li>Refaz quando quiser e vê o quanto andou</li>
+        </ul>
+      </div>
+      <div class="rep-cels um reveal-r">
+        <div class="celular"><img src="img/app/retrato.webp" alt="Seu retrato no app: o seu nível em cada parte do samba e o próximo passo" loading="lazy" width="420" height="909"/></div>
+      </div>
     </div>
-    <ol class="passos">
-      <li class="passo-l reveal">
-        <span class="passo-n">1</span>
-        <div><h3>Você entra</h3><p>Comprou, chega um e-mail. Você abre a área de membros com o mesmo e-mail da compra e recebe um link pra entrar, sem senha. No celular, coloca o ícone na tela e pronto: o curso fica ali, do lado dos seus outros apps.</p></div>
-      </li>
-      <li class="passo-l reveal">
-        <span class="passo-n">2</span>
-        <div><h3>Faz o diagnóstico</h3><p>Umas perguntas rápidas sobre o que você já toca. Ele mostra o seu nível em cinco partes: levada, técnica, acordes, teoria e harmonia. Fica claro o que já está firme e o que ainda está frouxo. De tempos em tempos você refaz e vê o quanto andou.</p></div>
-      </li>
-      <li class="passo-l reveal">
-        <span class="passo-n">3</span>
-        <div><h3>Vai pro repertório</h3><p>O app te dá a sua música e a sua escada, da mais fácil pra mais difícil. Abriu a música, está tudo lá: eu tocando ela inteira, os acordes no tom certo e a levada com partitura e áudio.</p></div>
-      </li>
-      <li class="passo-l reveal">
-        <span class="passo-n">4</span>
-        <div><h3>Treina o caminho de hoje</h3><p>Um treino curto, montado pro seu nível e no tom da sua música: aquecimento, levada, campo harmônico, progressões e, no fim, a música. Você faz um passo de cada vez. Acabou o "o que eu estudo hoje?".</p></div>
-      </li>
-      <li class="passo-l reveal">
-        <span class="passo-n">5</span>
-        <div><h3>Assiste às aulas quando quiser entender o porquê</h3><p>As aulas estão organizadas como uma laje: fundação, pilares e vigas. Travou num acorde, numa levada, numa passagem? A aula que explica aquilo está a um toque.</p></div>
-      </li>
-      <li class="passo-l reveal">
-        <span class="passo-n">6</span>
-        <div><h3>Marca "Já toco essa" e sobe a escada</h3><p>Pegou a música, marca. A escada mostra a próxima. E sempre que tiver música ou aula nova, aparece pra você no app.</p></div>
-      </li>
-    </ol>
   </div>
 </section>
 
-<!-- A CENA DO REPERTÓRIO -->
+<!-- O TREINO DO DIA -->
+<section class="sec" style="background:var(--cinza)" id="treino">
+  <div class="sec-in">
+    <div class="rep-grid inverte">
+      <div class="reveal-r">
+        <p class="eyebrow">O treino do dia</p>
+        <h2 class="sec-title">Depois, todo dia, <span class="azul">uma laje pequena</span></h2>
+        <p class="sec-sub">O treino do dia já vem pronto, no tom da música que você está tocando. E ele sobe na ordem da laje:</p>
+        <ul class="treino-etapas">
+          <li><b>Fundação:</b> acha o acorde do tom e aquece (técnica e teoria)</li>
+          <li><b>Pilares:</b> a levada e o campo harmônico</li>
+          <li><b>Vigas:</b> as progressões</li>
+          <li><b>Laje:</b> a música, comigo tocando, com os acordes e a levada do lado</li>
+        </ul>
+        <p class="sec-sub">Cada etapa leva poucos minutos. Num dia corrido, faz uma parte. Num dia livre, faz tudo.</p>
+        <ul class="pontos">
+          <li>Metrônomo e batucada de fundo pra tocar junto</li>
+          <li>A aula que explica está a um toque, quando você quiser entender o porquê</li>
+        </ul>
+      </div>
+      <div class="rep-cels reveal-l">
+        <div class="celular"><img src="img/app/pratica.webp" alt="O treino de hoje no app, um passo de cada vez" loading="lazy" width="420" height="909"/></div>
+        <div class="celular"><img src="img/app/musica.webp" alt="Insensato Destino aberta no app: vídeo, levada e partitura" loading="lazy" width="420" height="909"/></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AS AULAS: A LAJE -->
+<section class="sec modulos" id="modulos">
+  <div class="sec-in">
+    <div class="reveal" style="text-align:center">
+      <p class="eyebrow">As aulas</p>
+      <h2 class="sec-title">As aulas, na ordem <span class="azul">da laje</span></h2>
+      <p class="sec-sub" style="margin:1rem auto 0">As aulas são em vídeo, comigo explicando e tocando, divididas em módulos. Elas seguem a laje do vídeo: primeiro a fundação, depois os pilares, depois as vigas. Aí a laje aguenta a festa. Se pular etapa, racha. O diagnóstico te diz em que ponto você está, e você assiste no seu ritmo, quantas vezes quiser.</p>
+    </div>
+    <div class="laje-grid">
+      <div class="laje-card reveal d1">
+        <img src="img/laje/p-fundacao.webp" alt="Fundação: técnica e teoria musical" loading="lazy" width="840" height="473"/>
+        <div class="laje-txt"><h3>Fundação</h3><p>Técnica e teoria. É o que te dá o braço do violão inteiro, sem depender dos cinco acordes de sempre.</p><p class="mods">Módulos de aula:</p><p><b>Lapidando a Técnica</b></p><p><b>Mapeamento e Introdução à Harmonia</b></p></div>
+      </div>
+      <div class="laje-card reveal d2">
+        <img src="img/laje/p-pilares.webp" alt="Pilares: levada e acordes" loading="lazy" width="840" height="473"/>
+        <div class="laje-txt"><h3>Pilares</h3><p>Levada e acordes. O samba balançando sem atravessar, e os acordes na mão.</p><p class="mods">Módulos de aula:</p><p><b>Levadas de Samba</b></p><p><b>A Formação dos Acordes no Violão</b></p></div>
+      </div>
+      <div class="laje-card reveal d3">
+        <img src="img/laje/p-vigas.webp" alt="Vigas: harmonia funcional" loading="lazy" width="840" height="473"/>
+        <div class="laje-txt"><h3>Vigas</h3><p>Harmonia. Você entende por que um acorde chama o outro.</p><p class="mods">Módulo de aula:</p><p><b>Harmonia Funcional Aplicada ao Violão</b></p></div>
+      </div>
+      <div class="laje-card reveal d4">
+        <img src="img/laje/p-laje.webp" alt="A laje: o repertório" loading="lazy" width="840" height="473"/>
+        <div class="laje-txt"><h3>Laje</h3><p>O repertório. A música inteira, do começo ao fim. É aqui que acontece a festa.</p><p class="mods">Módulo de aula:</p><p><b>Repertório de Samba</b></p></div>
+      </div>
+    </div>
+    <p class="laje-fecho reveal">Fluência no samba é isso: <b>os quatro de pé.</b></p>
+  </div>
+</section>
+
+<!-- EM CIMA DA LAJE: O REPERTÓRIO -->
 <section class="pilares" id="repertorio">
   <div class="sec-in">
     <div class="rep-grid">
       <div class="reveal-l">
-        <p class="eyebrow">O repertório</p>
+        <p class="eyebrow">Em cima da laje</p>
         <h2 class="sec-title">Uma música de cada vez, até a roda</h2>
-        <p class="sec-sub">Abriu o app, a música está lá. Eu toco ela inteira com você, os acordes estão no tom certo e a levada tem partitura e áudio. Treinou, pegou, marca "Já toco essa". Aí a escada mostra a próxima.</p>
+        <p class="sec-sub">É aqui que você usa a laje. A escada sobe da mais fácil pra mais difícil. Pegou uma, marca "Já toco essa" e aparece a próxima. As que você já toca continuam no treino, porque repertório se acumula.</p>
         <ol class="escada">
           <li>Músicas em ritmo de bossa</li>
           <li>Onde Anda Você</li>
@@ -521,67 +584,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>Não Deixe o Samba Morrer</li>
           <li>Insensato Destino</li>
         </ol>
-        <p class="sec-sub" style="margin-top:1.25rem"><b style="color:#fff">E toda hora tem música nova chegando.</b></p>
       </div>
-      <div class="rep-cels reveal-r">
+      <div class="rep-cels um reveal-r">
         <div class="celular"><img src="img/app/roda.webp" alt="A escada de músicas no app" loading="lazy" width="420" height="909"/></div>
-        <div class="celular"><img src="img/app/musica.webp" alt="Insensato Destino aberta no app: vídeo, levada e partitura" loading="lazy" width="420" height="909"/></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- O MÉTODO DA LAJE -->
-<section class="sec modulos" id="modulos">
-  <div class="sec-in">
-    <div class="reveal" style="text-align:center">
-      <p class="eyebrow">O método</p>
-      <h2 class="sec-title">Samba é que nem <span class="azul">laje</span></h2>
-      <p class="sec-sub" style="margin:1rem auto 0">Primeiro vem a fundação: técnica e teoria. Em cima dela, os pilares: levada e acordes. Depois as vigas, que é a harmonia. Com isso de pé, a laje aguenta o repertório. Se pular etapa, racha. Por isso o curso vai nessa ordem.</p>
-      <p class="novidade">8 módulos · mais de 60 aulas · mais de 8h · compra única, acesso vitalício</p>
-    </div>
-    <div class="laje-grid">
-      <div class="laje-card reveal d1">
-        <img src="img/laje/p-fundacao.webp" alt="Fundação: técnica e teoria musical" loading="lazy" width="840" height="473"/>
-        <div class="laje-txt"><h3>Fundação</h3>
-          <p><b>Lapidando a Técnica.</b> Mão direita (P I M A), mão esquerda e os exercícios do dia a dia.</p>
-          <p><b>Mapeamento e Introdução à Harmonia.</b> Notas, intervalos, escala maior e menor, ciclo das quintas.</p></div>
-      </div>
-      <div class="laje-card reveal d2">
-        <img src="img/laje/p-pilares.webp" alt="Pilares: levada e acordes" loading="lazy" width="840" height="473"/>
-        <div class="laje-txt"><h3>Pilares</h3>
-          <p><b>Levadas de Samba.</b> As levadas que todo violonista de samba precisa ter na mão.</p>
-          <p><b>A Formação dos Acordes no Violão.</b> Tríades, tétrades, sistema CAGED, arpejos e acordes com tensão.</p></div>
-      </div>
-      <div class="laje-card reveal d3">
-        <img src="img/laje/p-vigas.webp" alt="Vigas: harmonia funcional" loading="lazy" width="840" height="473"/>
-        <div class="laje-txt"><h3>Vigas</h3>
-          <p><b>Harmonia Funcional Aplicada ao Violão.</b> Campo harmônico, funções, dominantes secundários, empréstimo modal.</p>
-          <p><b>Progressões de Acordes no Samba.</b> As sequências que aparecem em quase todo samba, e como usar cada uma.</p></div>
-      </div>
-      <div class="laje-card reveal d4">
-        <img src="img/laje/p-laje.webp" alt="A laje: o repertório" loading="lazy" width="840" height="473"/>
-        <div class="laje-txt"><h3>Laje</h3>
-          <p><b>O repertório.</b> Aqui junta tudo: as músicas da escada, tocadas do começo ao fim.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- O QUE VEM NO CURSO -->
-<section class="sec" id="detalhes">
-  <div class="sec-in">
-    <div class="reveal" style="text-align:center">
-      <p class="eyebrow">O que vem no curso</p>
-      <h2 class="sec-title">Tudo isso, <span class="azul">numa compra só</span></h2>
-    </div>
-    <div class="detalhes-grid">
-      <div class="det-card reveal d1"><div class="det-icon">🎬</div><h3>As aulas em vídeo</h3><p>O curso inteiro, na ordem da laje, dentro da área de membros. Comprou, é seu pra sempre.</p></div>
-      <div class="det-card reveal d2"><div class="det-icon">🎵</div><h3>A escada de repertório</h3><p>As músicas do curso, da mais fácil pra mais difícil, com a minha execução, os acordes no tom e a levada.</p></div>
-      <div class="det-card reveal d3"><div class="det-icon">🎯</div><h3>Sistema de Prática Direcionada</h3><p>Você faz o diagnóstico no app e ele te mostra o caminho de hoje. Refaz o diagnóstico quando quiser.</p></div>
-      <div class="det-card reveal d4"><div class="det-icon">📖</div><h3>O material de cada aula</h3><p>Os diagramas, as cifras e o resumo, junto com a aula. Não é PDF.</p></div>
-      <div class="det-card reveal d5"><div class="det-icon">💬</div><h3>Grupo dos alunos</h3><p>No WhatsApp, com a turma: avisos das atualizações do curso e troca de experiências entre os alunos.</p></div>
-      <div class="det-card reveal d6"><div class="det-icon">🛡️</div><h3>Garantia de 30 dias</h3><p>Testa no seu violão. Não curtiu, me pede o dinheiro de volta e eu devolvo tudo.</p></div>
     </div>
   </div>
 </section>
@@ -592,7 +598,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="reveal" style="text-align:center">
       <p class="eyebrow">Antes de comprar</p>
       <h2 class="sec-title">Vê se esse curso é <span class="azul">pra você</span></h2>
-      <p class="sec-sub" style="margin:1rem auto 0">Vou ser sincero contigo: esse curso não é pra quem está começando no violão. Ele parte de quem já toca alguma coisa.</p>
+      <p class="sec-sub" style="margin:1rem auto 0">Vou ser sincero contigo: esse curso não é pra quem está começando no violão. Ele parte de quem já toca música inteira.</p>
     </div>
     <div class="fit-grid">
       <div class="fit-card is-sim reveal d1">
@@ -601,6 +607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="fit-item"><span class="ic">✓</span><span>Você já toca música inteira de outro estilo, troca os acordes no tempo, mas samba ainda não sai.</span></div>
           <div class="fit-item"><span class="ic">✓</span><span>Você até arranha um samba, mas trava na levada, nos acordes ou na harmonia.</span></div>
         </div>
+        <a href="#cta" class="fit-link">É o seu caso? Ver quanto custa ↓</a>
       </div>
       <div class="fit-card is-nao reveal d2">
         <h3>Ainda não é a hora se:</h3>
@@ -622,7 +629,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <p class="eyebrow">Ficou na dúvida?</p>
         <h2 class="sec-title">Me chama no WhatsApp. Eu te digo se é pra você.</h2>
-        <p class="sec-sub">Se você não sabe se está no ponto pra esse curso, ou se ficou alguma dúvida sobre a área de membros, o preço ou a garantia, me manda uma mensagem. Quem responde sou eu, não um robô. Se eu achar que ainda não é a sua hora, eu te falo.</p>
+        <p class="sec-sub">Se você não sabe se está no ponto pra esse curso, ou se ficou alguma dúvida sobre o app, sobre como funciona ou sobre a garantia, me manda uma mensagem. Quem responde sou eu, não um robô. Se eu achar que ainda não é a sua hora, eu te falo.</p>
         <a href="https://wa.me/5521993763200?text=Oi%20Jo%C3%A3o!%20Vi%20a%20p%C3%A1gina%20do%20Samba%20sem%20Mist%C3%A9rio%20e%20queria%20tirar%20uma%20d%C3%BAvida." target="_blank" class="btn btn-wpp btn-grande">Falar com o João no WhatsApp</a>
       </div>
     </div>
@@ -642,7 +649,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <iframe src="https://www.youtube.com/embed/-4TG4dJsoO4" title="Depoimento do aluno Rafael" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="dep-video-info">
-          <div class="stars">★★★★★</div>
           <p class="dep-video-quote">O Rafael fez o Samba sem Mistério. Olha o que ele achou.</p>
           <div class="dep-author" style="margin-top:1.25rem">
             <div class="avatar">R</div>
@@ -665,18 +671,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="reveal-r">
         <p class="eyebrow">Quem vai te ensinar</p>
         <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:900;color:var(--preto);line-height:1.2;margin-bottom:.75rem">João G. Belchior</h2>
-        <p style="font-size:.95rem;line-height:1.8;color:var(--texto);margin-bottom:1rem">Eu sou o João Belchior, professor de violão e pós-graduado em docência. Minhas referências são o Ian Guest e o Nelson Faria, e o meu trabalho é pegar esse conteúdo e explicar de um jeito que dê pra tocar no dia seguinte.</p>
-        <p style="font-size:.95rem;line-height:1.8;color:var(--texto);margin-bottom:1.5rem">Em 2020, na pandemia, comecei a elaborar um método que deu origem a esse curso. Eu bato muito em duas coisas: conhecer o braço do violão e entender a harmonia. Teoria sem prática não toca. Prática sem teoria não evolui.</p>
+        <p style="font-size:.95rem;line-height:1.8;color:var(--texto);margin-bottom:1rem">Eu sou o João Belchior, professor de violão e pós-graduado em docência. Minhas referências são o Ian Guest e o Nelson Faria, e o meu trabalho é pegar o que eles ensinam e explicar de um jeito que dê pra tocar no dia seguinte.</p>
+        <p style="font-size:.95rem;line-height:1.8;color:var(--texto);margin-bottom:1.5rem">Em 2020, na pandemia, comecei a montar o método que virou esse curso. Eu bato muito em duas coisas: conhecer o braço do violão e entender a harmonia. Teoria sem prática não toca. Prática sem teoria não evolui.</p>
         <!-- João, 09/11: sem os cartões de credencial; a formação fica só no texto. -->
         <a href="#cta" class="btn btn-laranja" style="display:inline-block">Quero aprender com o João</a>
       </div>
     </div>
     <!-- AVALIAÇÕES GOOGLE -->
     <div class="avaliacoes-google">
+      <p class="aval-intro">O curso tem o mesmo jeito de ensinar das minhas aulas particulares. Olha o que os alunos de lá dizem.</p>
       <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem">
         <svg width="24" height="24" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
         <div>
-          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:#111">Avaliações no Google</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:.88rem;color:#111">Avaliações no Google · alunos das minhas aulas particulares</div>
           <div style="display:flex;align-items:center;gap:.3rem">
             <span style="color:#F26522;font-size:.85rem">★★★★★</span>
             <span style="font-size:.75rem;color:#777">5.0</span>
@@ -707,27 +714,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- João, 09/11: objeções reais primeiro, dúvidas práticas depois. -->
       <div class="faq-item reveal d1">
         <button class="faq-q">Já tentei aprender e larguei. Por que agora seria diferente? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>Porque você não vai mais decidir sozinho o que estudar. O diagnóstico mostra onde você trava, e todo dia o app te dá um treino curto pro seu nível, no tom da música que você está aprendendo. É só abrir e fazer.</p></div>
+        <div class="faq-a"><p>Muita gente larga porque não sabe o que estudar e fica pulando de vídeo em vídeo. Aqui você não decide sozinho: o diagnóstico mostra onde você trava e o treino do dia te diz o que fazer hoje. Agora, não tem mágica: abriu e tocou, anda. Não abriu, não anda.</p></div>
       </div>
       <div class="faq-item reveal d1">
         <button class="faq-q">Não tenho muito tempo. Dá pra acompanhar? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>Dá. O treino do dia tem etapas de poucos minutos, e você faz no celular, no seu ritmo. Num dia corrido, faz uma parte. Num dia livre, toca o repertório inteiro.</p></div>
+        <div class="faq-a"><p>Dá. Cada etapa do treino leva poucos minutos, no celular, no seu ritmo. Num dia corrido, acha o acorde do tom, aquece e toca a música uma vez. Num dia livre, faz o treino inteiro.</p></div>
       </div>
       <div class="faq-item reveal d2">
         <button class="faq-q">Tem muito vídeo de samba de graça no YouTube. Por que pagar? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>No YouTube você junta pedaço solto, sem saber a ordem nem se é pro seu nível. Aqui é o caminho inteiro na ordem certa, e o app te diz o que treinar hoje e mostra o quanto você andou.</p></div>
+        <div class="faq-a"><p>Eu mesmo tenho aula de graça no YouTube, pode usar. Lá cada vídeo ensina uma música. Aqui você aprende o que faz todas funcionarem, na ordem da laje, e o app te diz o que treinar hoje e mostra o quanto você andou.</p></div>
       </div>
       <div class="faq-item reveal d2">
         <button class="faq-q">Esse curso é pro meu nível? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>É pra quem já toca músicas inteiras de outro estilo e quer destravar no samba. Se você ainda não forma acordes ou não segura uma música do começo ao fim, ainda não é a hora. Na dúvida, me chama no WhatsApp que eu te digo.</p></div>
+        <div class="faq-a"><p>Se você já toca música inteira de outro estilo, é. Se ainda não, ainda não é a hora. Na dúvida, me chama no WhatsApp que eu te digo.</p></div>
       </div>
       <div class="faq-item reveal d3">
         <button class="faq-q">E se eu travar numa parte? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>A aula que explica aquilo está a um toque, dentro do app. E no grupo dos alunos você troca experiência com a turma.</p></div>
-      </div>
-      <div class="faq-item reveal d3">
-        <button class="faq-q">Como eu entro depois de comprar? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>Assim que o pagamento cai, você entra com o mesmo e-mail da compra e recebe um código, sem senha. No celular, coloca o ícone na tela e ele abre como um aplicativo.</p></div>
+        <div class="faq-a"><p>A aula que explica aquilo está a um toque, dentro do app. Depois, refaz o diagnóstico e vê se aquela parte subiu. E no grupo dos alunos tem os avisos do que entrou de novo e a turma trocando experiência.</p></div>
       </div>
       <div class="faq-item reveal d4">
         <button class="faq-q">Funciona sem internet? <span class="faq-icon">+</span></button>
@@ -735,11 +738,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="faq-item reveal d4">
         <button class="faq-q">É assinatura? Por quanto tempo tenho acesso? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>É uma compra só: R$97 à vista ou 12x de R$10,03 no cartão. O acesso é pra sempre, sem renovação.</p></div>
+        <div class="faq-a"><p>É uma compra só: R$97 à vista ou 12x de R$10,03 no cartão. Se parcelar, são parcelas dessa compra, não mensalidade. O acesso é pra sempre.</p></div>
       </div>
       <div class="faq-item reveal d5">
         <button class="faq-q">Como funciona a garantia? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>São 30 dias. Dá tempo de fazer o diagnóstico e tocar com o método. Se não for o que você esperava, eu devolvo tudo, sem pergunta e sem burocracia.</p></div>
+        <div class="faq-a"><p>São 30 dias. Dá tempo de fazer o diagnóstico, treinar umas semanas e ver se faz sentido pra você. Não fez, pede o reembolso pela própria Hotmart e eu devolvo tudo. Sem pergunta.</p></div>
       </div>
     </div>
   </div>
@@ -750,7 +753,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="sec-in">
     <div class="cta-grid">
       <div class="reveal-l">
-        <p class="cta-eyebrow">Acesso vitalício</p>
+        <p class="cta-eyebrow">Samba sem Mistério</p>
         <h2 class="cta-title">Bora tocar samba?</h2>
         <p class="cta-sub">Não tem milagre: violão é treino. O que eu faço é te mostrar onde você trava e o que treinar hoje, pra você não perder tempo com o que não precisa. O treino é com você.</p>
         <!-- João, 09/11: preço R$97. Sai o quadro "se fosse comprar separado" (valores inventados); entra a âncora real nas aulas particulares. -->
@@ -759,18 +762,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="planos">
           <div class="plano-card destaque">
-            <div class="plano-badge">Curso completo</div>
-            <div class="plano-tipo">Pagamento único · acesso vitalício</div>
+            <div class="plano-badge">Curso + app</div>
+            <div class="plano-tipo">Pagamento único</div>
                         <div class="plano-preco">R$97</div>
             <div class="plano-detalhe">à vista · ou 12x de R$10,03 no cartão</div>
-            <div class="plano-prazo">30 dias de garantia</div>
             <a href="https://pay.hotmart.com/P108011431I" target="_blank" class="plano-btn plano-btn-laranja">Quero começar agora</a>
-            <p class="plano-acesso">Uma compra só, sem renovação. Curso, área de membros, escada de músicas, sistema de prática e grupo dos alunos (avisos das atualizações e troca de experiências).</p>
+            <p class="plano-acesso">As aulas em vídeo, o diagnóstico, o treino do dia e a escada de músicas, tudo no app. E o grupo dos alunos, pra avisos e troca entre a turma.</p>
           </div>
         </div>
         <div class="garantia">
           <span class="garantia-icon">🛡️</span>
           <p><strong>30 dias de garantia.</strong> Não gostou, devolvo tudo.</p>
+        </div>
+        <div class="comprou">
+          <h3>Comprou, e aí?</h3>
+          <ol>
+            <li>Entra com o e-mail da compra. Chega um código, sem senha pra decorar.</li>
+            <li>No celular, põe o ícone na tela e ele abre igual a um app.</li>
+            <li>Faz o diagnóstico. O treino de hoje e a sua música já estão lá.</li>
+          </ol>
         </div>
         <div style="margin-top:1.5rem;text-align:center">
           <a href="https://wa.me/5521993763200?text=Oi%20Jo%C3%A3o!%20Vi%20a%20p%C3%A1gina%20do%20Samba%20sem%20Mist%C3%A9rio%20e%20queria%20tirar%20uma%20d%C3%BAvida." target="_blank" class="btn btn-wpp btn-grande">Ainda tenho dúvida: falar com o João</a>
