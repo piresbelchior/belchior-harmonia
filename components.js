@@ -63,7 +63,7 @@ footer{background:#111111;border-top:1px solid rgba(255,255,255,.06);padding:2re
 @media(max-width:768px){.nav-links{display:none}.ham{display:flex}.foot-in{flex-direction:column;text-align:center}}`;
 
 // Preço do curso enviado nos eventos do Meta (único lugar pra trocar)
-const PRECO_CURSO = 297;
+const PRECO_CURSO = 97;
 
 // ── CAPI Worker ──────────────────────────────────────────
 const CAPI_URL = 'https://meta-capi-belchior.piresbelchior.workers.dev/';
